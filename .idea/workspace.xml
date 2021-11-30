@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="faf3a0c8-19ad-455f-beae-1403688dca9c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/DetailedViewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/SketchyViewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/dao/ProductDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/dao/ProductDaoMem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/model/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/model/UserStory.java" afterDir="false" />
+    <list default="true" id="faf3a0c8-19ad-455f-beae-1403688dca9c" name="Changes" comment="feat: Create product, userStory and ProductDao classes with their basic methods">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/dao/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/dao/ProductDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/dao/ProductDaoMem.java" beforeDir="false" afterPath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/dao/ProductDaoMem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/model/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/model/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="development" />
+        <entry key="$PROJECT_DIR$" value="landing_page_controller" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,6 +50,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="product_starter" />
+                    <option name="lastUsedInstant" value="1638277525" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="landing_page_controller" />
                     <option name="lastUsedInstant" value="1638273953" />
@@ -114,6 +115,14 @@
       <workItem from="1638194780067" duration="301000" />
       <workItem from="1638260624860" duration="6185000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: Create product, userStory and ProductDao classes with their basic methods">
+      <created>1638277579032</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1638277579033</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,5 +138,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: Create product, userStory and ProductDao classes with their basic methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Create product, userStory and ProductDao classes with their basic methods" />
   </component>
 </project>

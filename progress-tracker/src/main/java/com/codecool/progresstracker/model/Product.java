@@ -11,8 +11,8 @@ public class Product {
     private final User owner;
     private final List<User> admins;
 
-    public Product(UUID id, String name, User owner, List<User> admins) {
-        this.id = id;
+    public Product(String name, User owner, List<User> admins) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.owner = owner;
         this.admins = admins;
