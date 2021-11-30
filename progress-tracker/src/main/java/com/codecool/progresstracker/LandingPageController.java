@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LandingPageController {
 
     @GetMapping("/")
-    public String indexPage(){
-        return "index";
+    public String welcomePage(){
+        return "welcome";
     }
+
+
 }
