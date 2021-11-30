@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="faf3a0c8-19ad-455f-beae-1403688dca9c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/ProductPageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/model/UserType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/LandingPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/progress-tracker/src/main/java/com/codecool/progresstracker/LandingPageController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +71,7 @@
       <updated>1638194428192</updated>
       <workItem from="1638194430301" duration="284000" />
       <workItem from="1638194780067" duration="301000" />
-      <workItem from="1638260624860" duration="5257000" />
+      <workItem from="1638260624860" duration="6185000" />
     </task>
     <servers />
   </component>
