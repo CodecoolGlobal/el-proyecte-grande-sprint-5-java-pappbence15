@@ -5,6 +5,16 @@
     <title>Admin index</title>
 </head>
 <body>
-<p th:text="${user.name}"></p>
+<p th:text="${user.name} + '\'s projects'"></p>
+<table>
+    <tr><th>Project Name</th> <th>Project Owner</th> <th>Project Admins</th></tr>
+    <tr th:each="product: ${products}">
+        <!--    for some reason intellij is underlining some variables, but they still show up fine on the page-->
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.owner}"></td>
+        <td th:each="admin: ${product.admins}"><span th:text="${admin.name}"></span>
+        </td>
+    </tr>
+</table>
 </body>
 </html>
