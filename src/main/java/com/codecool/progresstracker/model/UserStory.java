@@ -7,12 +7,14 @@ public class UserStory {
     private final String name;
     private final int MAX_PROGRESS;
     private int currentProgress;
+    private boolean isFavourite;
 
     public UserStory(String name, int max_progress) {
         this.id = UUID.randomUUID();
         this.currentProgress = 0;
         this.name = name;
         MAX_PROGRESS = max_progress;
+        this.isFavourite = false;
     }
 
     public UUID getId() {
@@ -37,5 +39,13 @@ public class UserStory {
 
     public boolean isStoryComplete(){
         return this.MAX_PROGRESS == currentProgress;
+    }
+
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public void makeFavourite(){
+        this.isFavourite = true;
     }
 }
