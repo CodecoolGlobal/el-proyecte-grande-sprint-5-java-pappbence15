@@ -1,6 +1,9 @@
 package com.codecool.progresstracker.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private final UserType userType;
     private final String name;
@@ -20,5 +23,13 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
