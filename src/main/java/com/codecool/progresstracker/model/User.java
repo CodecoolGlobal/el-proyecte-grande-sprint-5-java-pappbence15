@@ -3,6 +3,8 @@ package com.codecool.progresstracker.model;
 
 import com.codecool.progresstracker.util.PasswordHandler;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -13,6 +15,7 @@ public class User {
     private final String userName;
     private final String password;
     private final PasswordHandler passwordHandler = new PasswordHandler();
+    private Map<String, Boolean> userSettings;
 
     public User(UserType userType, String name, String userName, String password) {
         this.id = UUID.randomUUID();
@@ -20,6 +23,9 @@ public class User {
         this.name = name;
         this.userName = userName;
         this.password = passwordHandler.encodePassword(password);
+        this.userSettings = new HashMap<>();
+        userSettings.put("dark-mode", false);
+        userSettings.put("notifications", false);
     }
 
     public UUID getId() {
@@ -44,5 +50,14 @@ public class User {
 
     public boolean doesPasswordMatch(String password){
         return Objects.equals(this.password, passwordHandler.encodePassword(password));
+    }
+
+    public Map<String, Boolean> getUserSettings() {
+        return userSettings;
+    }
+
+    public void updateUserSettings(String key, boolean value){
+        boolean oldValue = userSettings.get(key);
+        userSettings.replace(key, oldValue, value);
     }
 }
