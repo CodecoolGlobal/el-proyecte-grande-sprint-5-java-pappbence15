@@ -14,17 +14,6 @@ public class UserDaoMem implements UserDao{
 
     public UserDaoMem() {
         users = new ArrayList<>();
-        addFakeUser();
-    }
-
-    @Override
-    public User find(UUID id) {
-        for (User user : users) {
-            if (user.getId() == id){
-                return user;
-            }
-        }
-        return null;
     }
 
     @Override
@@ -32,19 +21,15 @@ public class UserDaoMem implements UserDao{
         this.users.add(user);
     }
 
-    //for testing purposes
-    public void addFakeUser(){
-        User fakeAdmin = new User(UserType.ADMIN, "John McBoss", "john123", "john123");
-        this.add(fakeAdmin);
-        System.out.println(fakeAdmin.getId());
+    @Override
+    public List<User> getAllUsers() {
+        return users;
     }
 
     @Override
-    public User getFirstUser(){
-        return this.users.get(0);
+    public User getById(UUID id) {
+        return users.stream().filter(u->u.getId().equals(id)).toList().get(0);
     }
-
-
 
 
 }

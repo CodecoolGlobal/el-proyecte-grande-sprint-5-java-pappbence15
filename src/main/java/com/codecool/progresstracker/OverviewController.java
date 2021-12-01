@@ -5,6 +5,7 @@ import com.codecool.progresstracker.model.Product;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
 import com.codecool.progresstracker.service.ProductService;
+import com.codecool.progresstracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -17,17 +18,19 @@ import java.util.List;
 @Controller
 public class OverviewController {
     private final UserDao userDao; //TODO: get rid of this by adding service layer between controller and DAO
+    private final UserService userService;
     private final ProductService productService; //like here
 
     @Autowired
-    public OverviewController(UserDao userDao, ProductService productService) {
+    public OverviewController(UserDao userDao, UserService userService, ProductService productService) {
         this.userDao = userDao;
+        this.userService = userService;
         this.productService = productService;
     }
 
     @GetMapping("/newsfeed")
     public String productPage(Model model){
-        User user = userDao.getFirstUser();
+        User user = userService.getTestAdmin();
         model.addAttribute("user", user);
         UserType userType = user.getUserType();
         if(userType.equals(UserType.PRODUCT_OWNER)){
