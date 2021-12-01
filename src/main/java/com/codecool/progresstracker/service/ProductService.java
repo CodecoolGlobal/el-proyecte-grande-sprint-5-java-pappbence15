@@ -49,4 +49,8 @@ public class ProductService {
         }
         us = newUserStory;
     }
+
+    public void addNewUserStory(UserStory userStory, Product product) throws Exception {
+        productDao.find(product.getId()).addNewUserStory(userStory);
+    }
 }

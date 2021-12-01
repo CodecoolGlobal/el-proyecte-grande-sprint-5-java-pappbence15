@@ -1,14 +1,12 @@
 package com.codecool.progresstracker.controllers.view;
 
+import com.codecool.progresstracker.model.Product;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserStory;
 import com.codecool.progresstracker.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -32,5 +30,11 @@ public class DetailedViewController {
                                 @RequestBody UUID userStoryId,
                                 @RequestBody UUID productId) throws Exception {
         productService.updateUserStory(changedUserStory, userStoryId, productId);
+    }
+
+    @PutMapping("/detailedProductFeed/add")
+    public void addNewUserStory(@RequestBody UserStory userStory,
+                                @RequestBody Product product) throws Exception {
+        productService.addNewUserStory(userStory, product);
     }
 }
