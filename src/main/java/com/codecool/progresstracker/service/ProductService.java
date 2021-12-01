@@ -23,6 +23,7 @@ public class ProductService {
         addAProductWithTestUserAsAdmin();
     }
 
+
     public void addAProductWithTestUserAsAdmin(){
         User user = userDao.getFirstUser();
         List<User> adminList = new ArrayList<>();
