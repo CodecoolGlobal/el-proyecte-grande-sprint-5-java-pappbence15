@@ -16,6 +16,16 @@ public class UserDaoMem implements UserDao{
     }
 
     @Override
+    public User find(String username){
+        for (User user:users) {
+            if (user.getUserName().equals(username)){
+                return user;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public void add(User user) {
         this.users.add(user);
     }

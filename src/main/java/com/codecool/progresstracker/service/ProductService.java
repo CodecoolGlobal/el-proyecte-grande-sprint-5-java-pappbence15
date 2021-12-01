@@ -28,6 +28,7 @@ public class ProductService {
         addAProductWithTestUserAsAdmin();
     }
 
+
     public void addAProductWithTestUserAsAdmin(){
         User user = userService.getTestAdmin();
         List<User> adminList = new ArrayList<>();
