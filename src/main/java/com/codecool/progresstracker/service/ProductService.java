@@ -15,16 +15,18 @@ public class ProductService {
 
     private final ProductDao productDao;
     private final UserDao userDao;
+    private final UserService userService;
 
     @Autowired
-    public ProductService(ProductDao productDao, UserDao userDao) {
+    public ProductService(ProductDao productDao, UserDao userDao, UserService userService) {
         this.productDao = productDao;
         this.userDao = userDao;
+        this.userService = userService;
         addAProductWithTestUserAsAdmin();
     }
 
     public void addAProductWithTestUserAsAdmin(){
-        User user = userDao.getFirstUser();
+        User user = userService.getTestAdmin();
         List<User> adminList = new ArrayList<>();
         adminList.add(user);
         Product product = new Product("Building a house on Firefly Lane", null, adminList);
