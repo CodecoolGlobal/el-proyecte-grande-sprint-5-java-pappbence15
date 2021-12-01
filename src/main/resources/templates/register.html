@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+    <body>
+        <form method="post" action="/register" th:object="${project}">
+            <table>
+                <tr>
+                    <p>Username</p>
+                    <input type="text" name="userName" id="userName" required>
+                    <label for="userName" th:text="Username"></label>
+                </tr>
+                <tr>
+                    <p>Name</p>
+                    <input type="text" name="name" id="name" required>
+                    <label for="userName" th:text="Name"></label>
+                </tr>
+                <tr>
+                    <p>Password</p>
+                    <input type="password" name="password" id="password" required>
+                    <label for="password" th:text="Password"></label>
+                </tr>
+            </table>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

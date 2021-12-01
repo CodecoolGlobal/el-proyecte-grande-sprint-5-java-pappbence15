@@ -32,6 +32,11 @@ public class UserDaoMem implements UserDao{
         this.users.add(user);
     }
 
+    @Override
+    public List<User> getAll() {
+        return this.users;
+    }
+
     //for testing purposes
     public void addFakeUser(){
         User fakeAdmin = new User(UserType.ADMIN, "John McBoss", "john123", "john123");
