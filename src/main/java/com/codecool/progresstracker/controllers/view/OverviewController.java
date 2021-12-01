@@ -25,17 +25,19 @@ public class OverviewController {
         this.productService = productService;
     }
 
-    @GetMapping("/newsfeed")
-    public String productPage(Model model){
+    @GetMapping("/projects")
+    public String allProjectsView(Model model){
         User user = userService.getTestAdmin();
         model.addAttribute("user", user);
         UserType userType = user.getUserType();
         if(userType.equals(UserType.PRODUCT_OWNER)){
-            return "index";
+            List<Product> products = productService.getProductsByOwner(user);
+            model.addAttribute("products", products);
+            return "all_projects";
         }else if(userType.equals(UserType.ADMIN)){
             List<Product> products = productService.getProductsByAdmin(user);
             model.addAttribute("products", products);
-            return "admin-index";
+            return "all_projects";
         }else{
             throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
         }
