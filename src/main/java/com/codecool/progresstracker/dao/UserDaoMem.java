@@ -1,7 +1,6 @@
 package com.codecool.progresstracker.dao;
 
 import com.codecool.progresstracker.model.User;
-import com.codecool.progresstracker.model.UserType;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
