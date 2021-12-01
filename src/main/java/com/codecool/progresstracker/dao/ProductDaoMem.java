@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Service
 public class ProductDaoMem implements ProductDao{
-    private List<Product> products;
+    private final List<Product> products;
 
     public ProductDaoMem() {
         this.products = new ArrayList<>();
@@ -25,7 +25,7 @@ public class ProductDaoMem implements ProductDao{
     @Override
     public Product find(UUID id) throws Exception {
         for (Product product : products) {
-            if (product.getId() == id){
+            if (product.getId().equals(id)){
                 return product;
             }
         }
