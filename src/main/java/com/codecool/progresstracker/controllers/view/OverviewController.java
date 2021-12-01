@@ -1,4 +1,4 @@
-package com.codecool.progresstracker.controllers;
+package com.codecool.progresstracker.controllers.view;
 
 import com.codecool.progresstracker.dao.UserDao;
 import com.codecool.progresstracker.model.Product;

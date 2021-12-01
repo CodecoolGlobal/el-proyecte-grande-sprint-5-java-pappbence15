@@ -1,4 +1,4 @@
-package com.codecool.progresstracker.controllers;
+package com.codecool.progresstracker.controllers.view;
 
 import com.codecool.progresstracker.model.User;
 import org.springframework.web.bind.annotation.GetMapping;
