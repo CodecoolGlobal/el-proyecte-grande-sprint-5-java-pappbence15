@@ -1,4 +1,4 @@
-package com.codecool.progresstracker;
+package com.codecool.progresstracker.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
