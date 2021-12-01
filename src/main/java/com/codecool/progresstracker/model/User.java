@@ -24,6 +24,8 @@ public class User {
         this.userName = userName;
         this.password = passwordHandler.encodePassword(password);
         this.userSettings = new HashMap<>();
+        userSettings.put("dark-mode", false);
+        userSettings.put("notifications", false);
     }
 
     public UUID getId() {
