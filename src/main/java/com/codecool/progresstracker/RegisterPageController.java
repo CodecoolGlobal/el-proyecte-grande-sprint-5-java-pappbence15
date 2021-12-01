@@ -51,9 +51,9 @@ public class RegisterPageController {
     }
 
     @PostMapping("/register")
-    public String registerNewUser(@RequestParam String userName, @RequestParam String name, @RequestParam String password, Model model){
+    public String registerNewUser(@RequestBody String userName, @RequestBody String name, @RequestBody String password, @RequestBody UserType userType, Model model){
 
-        User user = new User(UserType.SUPER_USER, name, userName, password);
+        User user = new User(userType, name, userName, password);
         userDao.add(user);
 
         System.out.println(userDao.getAll().toString());
