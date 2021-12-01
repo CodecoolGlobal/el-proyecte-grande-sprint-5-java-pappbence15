@@ -1,6 +1,9 @@
 package com.codecool.progresstracker.model;
 
 
+import com.codecool.progresstracker.util.PasswordHandler;
+
+import java.util.Objects;
 import java.util.UUID;
 
 public class User {
@@ -9,13 +12,14 @@ public class User {
     private final String name;
     private final String userName;
     private final String password;
+    private final PasswordHandler passwordHandler = new PasswordHandler();
 
     public User(UserType userType, String name, String userName, String password) {
         this.id = UUID.randomUUID();
         this.userType = userType;
         this.name = name;
         this.userName = userName;
-        this.password = password;
+        this.password = passwordHandler.encodePassword(password);
     }
 
     public UUID getId() {
@@ -36,5 +40,9 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public boolean doesPasswordMatch(String password){
+        return Objects.equals(this.password, passwordHandler.encodePassword(password));
     }
 }

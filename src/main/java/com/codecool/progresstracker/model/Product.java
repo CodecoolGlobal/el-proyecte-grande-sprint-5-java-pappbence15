@@ -16,7 +16,7 @@ public class Product {
         this.name = name;
         this.owner = owner;
         this.admins = admins;
-        userStories = new ArrayList<>();
+        this.userStories = new ArrayList<>();
     }
 
     public UUID getId() {
