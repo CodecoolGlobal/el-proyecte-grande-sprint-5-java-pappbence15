@@ -1,6 +1,5 @@
 package com.codecool.progresstracker;
 
-import com.codecool.progresstracker.dao.UserDao;
 import com.codecool.progresstracker.model.Product;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
@@ -17,13 +16,11 @@ import java.util.List;
 
 @Controller
 public class OverviewController {
-    private final UserDao userDao; //TODO: get rid of this by adding service layer between controller and DAO
     private final UserService userService;
-    private final ProductService productService; //like here
+    private final ProductService productService;
 
     @Autowired
-    public OverviewController(UserDao userDao, UserService userService, ProductService productService) {
-        this.userDao = userDao;
+    public OverviewController(UserService userService, ProductService productService) {
         this.userService = userService;
         this.productService = productService;
     }
