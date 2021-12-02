@@ -36,6 +36,7 @@ public class SketchyViewController {
         UserType userType = user.getUserType();
 
         model.addAttribute("product", product);
+        model.addAttribute("progress", Math.round(product.getPercentage()*100) + " %");
 
         if (userType == UserType.ADMIN && product.getAdmins().contains(user)) {
             return "admin_project_view";
