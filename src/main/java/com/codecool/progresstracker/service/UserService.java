@@ -24,7 +24,7 @@ public class UserService {
 
 
     public User getTestAdmin() {
-        return userDao.getById(TEST_ADMIN_ID);
+        return userDao.find(TEST_ADMIN_ID);
     }
 
     public User getLoggedInUser() {
@@ -39,12 +39,12 @@ public class UserService {
     }
 
     public Map<String, Boolean> getUserSettings(UUID userId){
-        User user = userDao.getById(userId);
+        User user = userDao.find(userId);
         return user.getUserSettings();
     }
 
     public void updateUserSettings(UUID userId, String key, boolean value){
-        Map<String, Boolean> userSettings = userDao.getById(userId).getUserSettings();
+        Map<String, Boolean> userSettings = userDao.find(userId).getUserSettings();
         boolean oldValue = userSettings.get(key);
         userSettings.replace(key, oldValue, value);
     }

@@ -1,4 +1,4 @@
-package com.codecool.progresstracker;
+package com.codecool.progresstracker.controllers;
 
 import com.codecool.progresstracker.dao.UserDao;
 import com.codecool.progresstracker.model.LoginAttempt;
