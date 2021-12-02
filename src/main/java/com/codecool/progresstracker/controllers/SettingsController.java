@@ -26,9 +26,8 @@ public class SettingsController {
         return userService.getUserSettings(userId);
     }
 
-    @PostMapping("/{userName}/settings")
-    public String setSettings(@PathVariable String userName){
-        //todo: set user's settings accordingly
-        return null;
+    @PostMapping("/settings/update")
+    public void setSettings(@RequestBody UUID userId, String key, boolean value){
+        userService.updateUserSettings(userId, key, value);
     }
 }

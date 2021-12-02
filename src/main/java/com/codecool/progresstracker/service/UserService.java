@@ -37,4 +37,10 @@ public class UserService {
         User user = userDao.getById(userId);
         return user.getUserSettings();
     }
+
+    public void updateUserSettings(UUID userId, String key, boolean value){
+        Map<String, Boolean> userSettings = userDao.getById(userId).getUserSettings();
+        boolean oldValue = userSettings.get(key);
+        userSettings.replace(key, oldValue, value);
+    }
 }
