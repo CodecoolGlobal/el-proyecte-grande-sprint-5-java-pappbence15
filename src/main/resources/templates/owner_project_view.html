@@ -10,7 +10,9 @@
         <h6 th:text="${product.owner}"></h6>
 
         <ul>
-        <li th:each="story: ${product.userStories}"><span th:text="${story.name}"></span></li>
+        <li th:each="story: ${product.userStories}">
+            <span th:text="${story.name}"></span>
+        </li>
         </ul>
 </body>
 </html>
