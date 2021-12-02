@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <h5 th:text="${product.name}"></h5>
+
+        <h6 th:text="${product.owner}"></h6>
+
+        <ul>
+        <li th:each="story: ${product.userStories}">
+            <span th:text="${story.name}"></span>
+        </li>
+        </ul>
+        <div th:replace="fragments :: footer"></div>
+
+</body>
+
+</html>

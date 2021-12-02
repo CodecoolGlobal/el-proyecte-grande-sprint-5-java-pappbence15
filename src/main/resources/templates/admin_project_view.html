@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p> Every project has a list of user stories.
+    These are the tasks that need to be completed before the project can be considered done.
+    User stories have 'story points' associated with them. These express how difficult the task is.
+    The more story points a story has, the more it counts towards the overall progress of the project.</p>
+<h3 th:text="${product.name}"></h3>
+<h4 th:text="${progress}"></h4>
+
+<h4 th:text="${product.owner}"></h4>
+
+<h4>User stories for this project:</h4>
+<ul>
+
+    <li th:each="story: ${product.userStories}">
+        <span th:text="${story.name} "></span>
+        (<span th:text="${story.MAX_PROGRESS}"></span>)
+        <a href="#">edit</a>
+    </li>
+</ul>
+<div th:replace="fragments :: footer"></div>
+
+</body>
+</html>

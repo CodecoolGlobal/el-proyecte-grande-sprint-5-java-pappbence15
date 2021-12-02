@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="loginstatus(username)">
+    <p th:text="'You are logged in as ' + ${username}"></p>
+</div>
+<footer th:fragment="footer">
+    <small>Progress Tracker brought to you by Hello World.</small>
+</footer>
+</body>
+</html>

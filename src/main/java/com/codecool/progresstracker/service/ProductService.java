@@ -19,22 +19,33 @@ public class ProductService {
     private final ProductDao productDao;
     private final UserDao userDao;
     private final UserService userService;
+    public final UUID TEST_PROJECT_ID;
 
     @Autowired
     public ProductService(ProductDao productDao, UserDao userDao, UserService userService) {
         this.productDao = productDao;
         this.userDao = userDao;
         this.userService = userService;
-        addAProductWithTestUserAsAdmin();
+        this.TEST_PROJECT_ID = addAProductWithTestUserAsAdmin();
     }
 
 
-    public void addAProductWithTestUserAsAdmin(){
+    public UUID addAProductWithTestUserAsAdmin(){
         User user = userService.getTestAdmin();
         List<User> adminList = new ArrayList<>();
         adminList.add(user);
         Product product = new Product("Building a house on Firefly Lane", null, adminList);
+        UserStory userStory = new UserStory("paint the walls", 4);
+        UserStory userStory2 = new UserStory("build the roof", 1);
+        product.addNewUserStory(userStory);
+        product.addNewUserStory(userStory2);
+        userStory2.makeFavourite();
         productDao.add(product);
+        return product.getId();
+    }
+
+    public Product getById(UUID id) throws Exception {
+        return productDao.find(id);
     }
 
     public List<Product> getProductsByAdmin(User admin){
@@ -55,5 +66,9 @@ public class ProductService {
 
     public void addNewUserStory(UserStory userStory, Product product) throws Exception {
         productDao.find(product.getId()).addNewUserStory(userStory);
+    }
+
+    public List<Product> getProductsByOwner(User user) {
+        return productDao.getProductsByOwner(user);
     }
 }

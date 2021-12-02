@@ -5,16 +5,21 @@
     <title>Admin index</title>
 </head>
 <body>
-<p th:text="${user.name} + '\'s projects'"></p>
+<div th:include="fragments :: loginstatus(${user.userName})"></div>
+
+<h3>Projects</h3>
+<p>This is a list of projects you're managing.
+    By clicking on the name of a project, you can go to the project's page, where you can update its progress.
+</p>
 <table>
     <tr><th>Project Name</th> <th>Project Owner</th> <th>Project Admins</th></tr>
     <tr th:each="product: ${products}">
-        <!--    for some reason intellij is underlining some variables, but they still show up fine on the page-->
-        <td th:text="${product.name}"></td>
+        <td><a th:text="${product.name}" th:href="'/admin/project/' + ${product.id}"></a></td>
         <td th:text="${product.owner}"></td>
         <td th:each="admin: ${product.admins}"><span th:text="${admin.name}"></span>
         </td>
     </tr>
 </table>
+<div th:replace="fragments :: footer"></div>
 </body>
 </html>

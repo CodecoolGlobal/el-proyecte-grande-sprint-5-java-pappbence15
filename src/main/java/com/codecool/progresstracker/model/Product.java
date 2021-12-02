@@ -42,4 +42,14 @@ public class Product {
     public List<User> getAdmins() {
         return admins;
     }
+
+    public double getPercentage(){
+        double totalStoryPoints = userStories.stream()
+                .map(UserStory::getMAX_PROGRESS)
+                .reduce(0, Integer::sum);
+        double completed = userStories.stream()
+                .map(story -> story.getMAX_PROGRESS()*story.getCurrentPercent())
+                .reduce(0.0, Double::sum);
+        return completed / totalStoryPoints;
+    }
 }
