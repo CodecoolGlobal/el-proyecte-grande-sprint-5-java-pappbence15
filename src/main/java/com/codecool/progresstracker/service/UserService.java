@@ -26,6 +26,11 @@ public class UserService {
         return userDao.getById(TEST_ADMIN_ID);
     }
 
+    public User getLoggedInUser() {
+        return getTestAdmin(); //for now
+    }
+
+
     public UUID addTestAdmin(){
         User fakeAdmin = new User(UserType.ADMIN, "John McBoss", "john123", "john123");
         userDao.add(fakeAdmin);
