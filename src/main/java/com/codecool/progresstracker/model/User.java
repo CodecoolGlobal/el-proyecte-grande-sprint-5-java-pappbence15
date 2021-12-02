@@ -56,8 +56,4 @@ public class User {
         return userSettings;
     }
 
-    public void updateUserSettings(String key, boolean value){
-        boolean oldValue = userSettings.get(key);
-        userSettings.replace(key, oldValue, value);
-    }
 }
