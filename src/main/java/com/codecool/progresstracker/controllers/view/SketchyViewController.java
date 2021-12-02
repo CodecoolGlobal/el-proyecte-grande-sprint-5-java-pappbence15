@@ -39,8 +39,6 @@ public class SketchyViewController {
 
         if (userType == UserType.ADMIN && product.getAdmins().contains(user)) {
             return "admin_project_view";
-        } else if (userType == UserType.PRODUCT_OWNER && product.getOwner().equals(user)){
-            return "owner_project_view";
         } else {
             throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
         }
