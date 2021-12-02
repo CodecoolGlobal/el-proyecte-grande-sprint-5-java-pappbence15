@@ -25,19 +25,28 @@ public class OverviewController {
         this.productService = productService;
     }
 
-    @GetMapping("/projects")
-    public String allProjectsView(Model model){
-        User user = userService.getTestAdmin();
+    @GetMapping("/admin/projects")
+    public String adminProjectsView(Model model){
+        User user = userService.getLoggedInUser();
+        model.addAttribute("user", user);
+        UserType userType = user.getUserType();
+        if(userType.equals(UserType.ADMIN)){
+            List<Product> products = productService.getProductsByAdmin(user);
+            model.addAttribute("products", products);
+            return "admin_all_projects";
+        }else{
+            throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
+        }
+    }
+    @GetMapping("/owner/projects")
+    public String ownerProjectsView(Model model){
+        User user = userService.getLoggedInUser();
         model.addAttribute("user", user);
         UserType userType = user.getUserType();
         if(userType.equals(UserType.PRODUCT_OWNER)){
             List<Product> products = productService.getProductsByOwner(user);
             model.addAttribute("products", products);
-            return "all_projects";
-        }else if(userType.equals(UserType.ADMIN)){
-            List<Product> products = productService.getProductsByAdmin(user);
-            model.addAttribute("products", products);
-            return "all_projects";
+            return "owner_all_projects";
         }else{
             throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
         }

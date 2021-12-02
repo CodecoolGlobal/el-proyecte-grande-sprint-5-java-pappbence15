@@ -9,7 +9,7 @@
 <table>
     <tr><th>Project Name</th> <th>Project Owner</th> <th>Project Admins</th></tr>
     <tr th:each="product: ${products}">
-        <td><a th:text="${product.name}" th:href="'/projectSketchyFeed/' + ${product.id}"></a></td>
+        <td><a th:text="${product.name}" th:href="'/owner/project/' + ${product.id}"></a></td>
         <td th:text="${product.owner}"></td>
         <td th:each="admin: ${product.admins}"><span th:text="${admin.name}"></span>
         </td>
