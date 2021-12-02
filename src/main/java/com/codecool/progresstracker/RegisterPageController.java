@@ -1,7 +1,6 @@
 package com.codecool.progresstracker;
 
 import com.codecool.progresstracker.dao.UserDao;
-import com.codecool.progresstracker.model.Product;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
 import com.codecool.progresstracker.service.ProductService;
@@ -12,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.ArrayList;
@@ -51,12 +49,11 @@ public class RegisterPageController {
     }
 
     @PostMapping("/register")
-    public String registerNewUser(@RequestBody String userName, @RequestBody String name, @RequestBody String password, @RequestBody UserType userType, Model model){
+    public String registerNewUser(@RequestBody User user, Model model){
 
-        User user = new User(userType, name, userName, password);
+
         userDao.add(user);
 
-        System.out.println(userDao.getAll().toString());
         model.addAttribute("user", user);
         return "admin-index";
     }
