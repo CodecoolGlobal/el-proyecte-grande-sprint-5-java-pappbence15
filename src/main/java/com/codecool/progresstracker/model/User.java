@@ -1,8 +1,5 @@
 package com.codecool.progresstracker.model;
 
-
-import com.codecool.progresstracker.util.PasswordHandler;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -14,7 +11,6 @@ public class User {
     private final String name;
     private final String userName;
     private final String password;
-    private final PasswordHandler passwordHandler = new PasswordHandler();
     private Map<String, Boolean> userSettings;
 
     public User(UserType userType, String name, String userName, String password) {
@@ -22,7 +18,7 @@ public class User {
         this.userType = userType;
         this.name = name;
         this.userName = userName;
-        this.password = passwordHandler.encodePassword(password);
+        this.password = password;
         this.userSettings = new HashMap<>();
         userSettings.put("dark-mode", false);
         userSettings.put("notifications", false);
@@ -49,7 +45,7 @@ public class User {
     }
 
     public boolean doesPasswordMatch(String password){
-        return Objects.equals(this.password, passwordHandler.encodePassword(password));
+        return Objects.equals(this.password, password);
     }
 
     public Map<String, Boolean> getUserSettings() {

@@ -1,13 +1,16 @@
 package com.codecool.progresstracker.dao;
 
+import com.codecool.progresstracker.model.LoginAttempt;
 import com.codecool.progresstracker.model.User;
 
+import java.util.List;
 import java.util.List;
 import java.util.UUID;
 
 public interface UserDao {
-    void add(User user);
+    User find(UUID id);
     User find(String username);
+    void add(User user);
     List<User> getAllUsers();
-    User getById(UUID id);
+    User getValidLoginUser(LoginAttempt loginAttempt);
 }
