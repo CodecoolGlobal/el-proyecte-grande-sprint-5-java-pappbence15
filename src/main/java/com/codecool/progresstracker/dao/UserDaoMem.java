@@ -1,7 +1,9 @@
 package com.codecool.progresstracker.dao;
 
+import com.codecool.progresstracker.model.LoginAttempt;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,9 +20,19 @@ public class UserDaoMem implements UserDao{
     }
 
     @Override
-    public User find(UUID id) {
+    public User find(UUID id){
         for (User user : users) {
             if (user.getId() == id){
+                return user;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public User find(String username) {
+        for (User user : users) {
+            if (user.getUserName().equals(username)){
                 return user;
             }
         }
@@ -41,7 +53,6 @@ public class UserDaoMem implements UserDao{
     public void addFakeUser(){
         User fakeAdmin = new User(UserType.ADMIN, "John McBoss", "john123", "john123");
         this.add(fakeAdmin);
-        System.out.println(fakeAdmin.getId());
     }
 
     @Override
@@ -49,7 +60,24 @@ public class UserDaoMem implements UserDao{
         return this.users.get(0);
     }
 
+    @Override
+    public User getValidLoginUser(LoginAttempt loginAttempt){
+        createMockUsers();
 
+        User user = find(loginAttempt.getUsername());
 
+        if (user != null){
+            if (user.doesPasswordMatch(loginAttempt.getPassword())){
+                return user;
+            }
+        }
+        return null;
+    }
 
+    public void createMockUsers(){
+        users.add(new User(UserType.SUPER_USER, "a","a","a"));
+        users.add(new User(UserType.SUPER_USER, "b","b","b"));
+        users.add(new User(UserType.SUPER_USER, "c","c","c"));
+        users.add(new User(UserType.SUPER_USER, "d","d","d"));
+    }
 }

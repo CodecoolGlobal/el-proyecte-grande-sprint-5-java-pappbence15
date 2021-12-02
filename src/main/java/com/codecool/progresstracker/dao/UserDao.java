@@ -1,5 +1,6 @@
 package com.codecool.progresstracker.dao;
 
+import com.codecool.progresstracker.model.LoginAttempt;
 import com.codecool.progresstracker.model.User;
 
 import java.util.List;
@@ -7,7 +8,9 @@ import java.util.UUID;
 
 public interface UserDao {
     User find(UUID id);
+    User find(String username);
     void add(User user);
     List<User> getAll();
-    User getFirstUser(); //for testing, until we can get logged in user from session or whatever
+    User getFirstUser();
+    User getValidLoginUser(LoginAttempt loginAttempt);
 }
