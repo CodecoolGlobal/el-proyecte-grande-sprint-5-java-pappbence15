@@ -1,6 +1,6 @@
 package com.codecool.progresstracker.controllers.view;
 
-import com.codecool.progresstracker.model.Product;
+import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
 import com.codecool.progresstracker.service.ProductService;
@@ -28,7 +28,7 @@ public class SketchyViewController {
 
     @GetMapping("/admin/project/{projectId}")
     public String adminProductPage(Model model, @PathVariable UUID projectId) throws Exception {
-        Product product = productService.getById(projectId);
+        Project product = productService.getById(projectId);
 
         User user = userService.getLoggedInUser();
 
@@ -46,7 +46,7 @@ public class SketchyViewController {
     }
     @GetMapping("/owner/project/{projectId}")
     public String ownerProductPage(Model model, @PathVariable UUID projectId) throws Exception {
-        Product product = productService.getById(projectId);
+        Project product = productService.getById(projectId);
 
         User user = userService.getLoggedInUser();
 

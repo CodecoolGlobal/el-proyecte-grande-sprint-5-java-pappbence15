@@ -1,6 +1,6 @@
 package com.codecool.progresstracker.controllers.view;
 
-import com.codecool.progresstracker.model.Product;
+import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
 import com.codecool.progresstracker.service.ProductService;
@@ -31,7 +31,7 @@ public class OverviewController {
         model.addAttribute("user", user);
         UserType userType = user.getUserType();
         if(userType.equals(UserType.ADMIN)){
-            List<Product> products = productService.getProductsByAdmin(user);
+            List<Project> products = productService.getProductsByAdmin(user);
             model.addAttribute("products", products);
             return "admin_all_projects";
         }else{
@@ -44,7 +44,7 @@ public class OverviewController {
         model.addAttribute("user", user);
         UserType userType = user.getUserType();
         if(userType.equals(UserType.PRODUCT_OWNER)){
-            List<Product> products = productService.getProductsByOwner(user);
+            List<Project> products = productService.getProductsByOwner(user);
             model.addAttribute("products", products);
             return "owner_all_projects";
         }else{

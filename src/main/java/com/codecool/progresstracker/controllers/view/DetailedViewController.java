@@ -1,6 +1,6 @@
 package com.codecool.progresstracker.controllers.view;
 
-import com.codecool.progresstracker.model.Product;
+import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserStory;
 import com.codecool.progresstracker.service.ProductService;
@@ -34,7 +34,7 @@ public class DetailedViewController {
 
     @PutMapping("/detailedProductFeed/add")
     public void addNewUserStory(@RequestBody UserStory userStory,
-                                @RequestBody Product product) throws Exception {
+                                @RequestBody Project product) throws Exception {
         productService.addNewUserStory(userStory, product);
     }
 }

@@ -1,6 +1,6 @@
 package com.codecool.progresstracker.dao;
 
-import com.codecool.progresstracker.model.Product;
+import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Service
 public class ProductDaoMem implements ProductDao{
-    private final List<Product> products;
+    private final List<Project> products;
 
     public ProductDaoMem() {
         this.products = new ArrayList<>();
@@ -18,13 +18,13 @@ public class ProductDaoMem implements ProductDao{
 
 
     @Override
-    public void add(Product product) {
+    public void add(Project product) {
         this.products.add(product);
     }
 
     @Override
-    public Product find(UUID id) throws Exception {
-        for (Product product : products) {
+    public Project find(UUID id) throws Exception {
+        for (Project product : products) {
             if (product.getId().equals(id)){
                 return product;
             }
@@ -33,14 +33,14 @@ public class ProductDaoMem implements ProductDao{
     }
 
     @Override
-    public List<Product> getAll() {
+    public List<Project> getAll() {
         return products;
     }
 
     @Override
-    public List<Product> getProductsByOwner(User user) {
-        List<Product> productsOfUser = new ArrayList<>();
-        for (Product product : products) {
+    public List<Project> getProductsByOwner(User user) {
+        List<Project> productsOfUser = new ArrayList<>();
+        for (Project product : products) {
             if (product.getOwner().equals(user)){
                 productsOfUser.add(product);
             }
@@ -49,9 +49,9 @@ public class ProductDaoMem implements ProductDao{
     }
 
     @Override
-    public List<Product> getProductsByAdmin(User user) {
-        List<Product> productsOfUser = new ArrayList<>();
-        for (Product product : products) {
+    public List<Project> getProductsByAdmin(User user) {
+        List<Project> productsOfUser = new ArrayList<>();
+        for (Project product : products) {
             if (product.getAdmins().contains(user)){
                 productsOfUser.add(product);
             }

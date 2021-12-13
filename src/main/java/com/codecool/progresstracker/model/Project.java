@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class Product {
+public class Project {
     private final UUID id;
     private final String name;
     private List<UserStory> userStories;
     private final User owner;
     private final List<User> admins;
 
-    public Product(String name, User owner, List<User> admins) {
+    public Project(String name, User owner, List<User> admins) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.owner = owner;

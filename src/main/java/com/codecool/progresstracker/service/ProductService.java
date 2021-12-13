@@ -2,14 +2,13 @@ package com.codecool.progresstracker.service;
 
 import com.codecool.progresstracker.dao.ProductDao;
 import com.codecool.progresstracker.dao.UserDao;
-import com.codecool.progresstracker.model.Product;
+import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserStory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,7 +33,7 @@ public class ProductService {
         User user = userService.getTestAdmin();
         List<User> adminList = new ArrayList<>();
         adminList.add(user);
-        Product product = new Product("Building a house on Firefly Lane", null, adminList);
+        Project product = new Project("Building a house on Firefly Lane", null, adminList);
         UserStory userStory = new UserStory("paint the walls", 4);
         UserStory userStory2 = new UserStory("build the roof", 1);
         product.addNewUserStory(userStory);
@@ -44,16 +43,16 @@ public class ProductService {
         return product.getId();
     }
 
-    public Product getById(UUID id) throws Exception {
+    public Project getById(UUID id) throws Exception {
         return productDao.find(id);
     }
 
-    public List<Product> getProductsByAdmin(User admin){
+    public List<Project> getProductsByAdmin(User admin){
         return productDao.getProductsByAdmin(admin);
     }
 
     public void updateUserStory(UserStory newUserStory, UUID userStoryId, UUID productId) throws Exception {
-        Product pr = productDao.find(productId);
+        Project pr = productDao.find(productId);
         List<UserStory> userStories = pr.getUserStories();
         UserStory us;
         for (UserStory userStory: userStories) {
@@ -64,11 +63,11 @@ public class ProductService {
         us = newUserStory;
     }
 
-    public void addNewUserStory(UserStory userStory, Product product) throws Exception {
+    public void addNewUserStory(UserStory userStory, Project product) throws Exception {
         productDao.find(product.getId()).addNewUserStory(userStory);
     }
 
-    public List<Product> getProductsByOwner(User user) {
+    public List<Project> getProductsByOwner(User user) {
         return productDao.getProductsByOwner(user);
     }
 }
