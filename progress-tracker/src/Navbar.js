@@ -1,5 +1,4 @@
-import logo from './logo.svg';
-function Navbar(){
+function Navbar(props){
     const projects = 'Projects';
     const latest = 'Latest';
     const all = 'All';
@@ -7,25 +6,22 @@ function Navbar(){
     return(
         <div>
             <div>
-                {logo}
+                <NavbarLink url={'#'} name={projects} changeComponent={props.change}/>
             </div>
             <div>
-                {renderNavLink('#', projects)}
+                <NavbarLink url={'#'} name={latest} changeComponent={props.change}/>
             </div>
             <div>
-                {renderNavLink('/', latest)}
-            </div>
-            <div>
-                {renderNavLink('/', all)}
+                <NavbarLink url={'#'} name={all} changeComponent={props.change}/>
             </div>
         </div>
     )
 }
 
-function renderNavLink(url, name){
+function NavbarLink(props){
     return(
-        <a href={url}>
-            {name}
+        <a href={props.url} onClick={() => props.changeComponent(props.name)}>
+            {props.name}
         </a>
     )
 }
