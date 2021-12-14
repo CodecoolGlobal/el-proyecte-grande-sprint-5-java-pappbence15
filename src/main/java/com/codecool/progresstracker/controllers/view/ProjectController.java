@@ -8,7 +8,6 @@ import com.codecool.progresstracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.HttpClientErrorException;
@@ -16,12 +15,12 @@ import org.springframework.web.client.HttpClientErrorException;
 import java.util.List;
 
 @Controller
-public class OverviewController {
+public class ProjectController {
     private final UserService userService;
     private final ProjectService projectService;
 
     @Autowired
-    public OverviewController(UserService userService, ProjectService projectService) {
+    public ProjectController(UserService userService, ProjectService projectService) {
         this.userService = userService;
         this.projectService = projectService;
     }
