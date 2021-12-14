@@ -44,6 +44,10 @@
             <artifactId>spring-security-ldap</artifactId>
             <version>5.5.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
