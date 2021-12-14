@@ -4,17 +4,17 @@ function Header(){
 
     return(
         <div>
-            {renderHeader(name)}
+            <HeaderBody name={name}/>
         </div>
     )
 }
 
-function renderHeader(name){
+function HeaderBody(props){
     return(
         <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-name">
-                {name}
+                {props.name}
             </h1>
         </header>
     )
