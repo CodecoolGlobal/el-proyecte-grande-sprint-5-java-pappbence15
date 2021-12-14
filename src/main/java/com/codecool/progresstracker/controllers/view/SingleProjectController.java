@@ -16,12 +16,12 @@ import org.springframework.web.client.HttpClientErrorException;
 import java.util.UUID;
 
 @Controller
-public class SketchyViewController {
+public class SingleProjectController {
     private final UserService userService;
     private final ProjectService projectService;
 
     @Autowired
-    public SketchyViewController(UserService userService, ProjectService projectService) {
+    public SingleProjectController(UserService userService, ProjectService projectService) {
         this.userService = userService;
         this.projectService = projectService;
     }
