@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
@@ -25,15 +26,13 @@ public class OverviewController {
         this.projectService = projectService;
     }
 
+    @ResponseBody
     @GetMapping("/admin/projects")
-    public String adminProjectsView(Model model){
+    public List<Project> adminProjectsView(){
         User user = userService.getLoggedInUser();
-        model.addAttribute("user", user);
         UserType userType = user.getUserType();
         if(userType.equals(UserType.ADMIN)){
-            List<Project> projects = projectService.getProjectsByAdmin(user);
-            model.addAttribute("projects", projects);
-            return "admin_all_projects";
+            return projectService.getProjectsByAdmin(user);
         }else{
             throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
         }
