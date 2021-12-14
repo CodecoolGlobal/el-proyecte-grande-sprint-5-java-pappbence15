@@ -1,75 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
-import React from "react";
+import Navbar from "./Navbar";
+import Header from "./Header";
+import {useState} from "react";
 
 function App() {
+    const [component, setComponent] = useState('All')
+    const changeComponent = (newComponent) => setComponent(newComponent)
   return (
+      <div>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          :)
-        </p>
-        <AdminProjectList/>
-      </header>
+        <Header/>
+        <Navbar change={changeComponent}/>
     </div>
+          <div>
+              {renderDynamicComponent(component)}
+          </div>
+      </div>
   );
 }
-
-class AdminProjectList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      items: []
-    };
-  }
-
-  componentDidMount() {
-    fetch("/admin/projects/")
-        .then(res => {
-          console.log(res);
-          return res.json()
-        })
-        .then(
-            (result) => {
-                //console.log(result)
-              this.setState({
-                isLoaded: true,
-                items: result
-              });
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-              this.setState({
-                isLoaded: true,
-                error
-              });
-            }
-        )
-  }
-
-  render() {
-    const { error, isLoaded, items } = this.state;
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-      return <div>Loading...</div>;
-    } else {
-      return (
-          <ul>
-              {items.map(item => (
-                  <li key={item.id}>
-                      {item.name}
-                  </li>
-              ))}
-          </ul>
-      );
+function renderDynamicComponent(component){
+    switch (component){
+        case 'All':
+            return(<p>test1</p>)
+        case 'Latest':
+            return (<p>test2</p>)
+        case 'Projects':
+            return (<p>test3</p>)
+        case 'Settings':
+            return (<p>test4</p>)
     }
-  }
 }
-
 export default App;
