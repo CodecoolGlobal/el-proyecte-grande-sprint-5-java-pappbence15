@@ -7,58 +7,54 @@ import com.codecool.progresstracker.service.ProjectService;
 import com.codecool.progresstracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.UUID;
 
 @Controller
-public class SketchyViewController {
+public class SingleProjectController {
     private final UserService userService;
     private final ProjectService projectService;
 
     @Autowired
-    public SketchyViewController(UserService userService, ProjectService projectService) {
+    public SingleProjectController(UserService userService, ProjectService projectService) {
         this.userService = userService;
         this.projectService = projectService;
     }
 
+    @ResponseBody
     @GetMapping("/admin/project/{projectId}")
-    public String adminProjectPage(Model model, @PathVariable UUID projectId) throws Exception {
+    public ResponseEntity<?> adminProjectPage(@PathVariable UUID projectId) throws Exception {
         Project project = projectService.getById(projectId);
 
         User user = userService.getLoggedInUser();
-
-        model.addAttribute("user", user);
         UserType userType = user.getUserType();
-
-        model.addAttribute("project", project);
-        model.addAttribute("progress", Math.round(project.getPercentage()*100) + " %");
 
         if (userType == UserType.ADMIN && project.getAdmins().contains(user)) {
-            return "admin_project_view";
+            return new ResponseEntity<>(project, HttpStatus.OK);
         } else {
-            throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("Unauthorized: you are not the admin of this project", HttpStatus.UNAUTHORIZED);
         }
     }
+
+    @ResponseBody
     @GetMapping("/owner/project/{projectId}")
-    public String ownerProjectPage(Model model, @PathVariable UUID projectId) throws Exception {
+    public ResponseEntity<?> ownerProjectPage(@PathVariable UUID projectId) throws Exception {
         Project project = projectService.getById(projectId);
 
         User user = userService.getLoggedInUser();
-
-        model.addAttribute("user", user);
         UserType userType = user.getUserType();
 
-        model.addAttribute("project", project);
-
         if (userType == UserType.PROJECT_OWNER && project.getOwner().equals(user)){
-            return "owner_project_view";
+            return new ResponseEntity<>(project, HttpStatus.OK);
         } else {
-            throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("Unauthorized: you are not the owner of this project", HttpStatus.UNAUTHORIZED);
         }
     }
 }

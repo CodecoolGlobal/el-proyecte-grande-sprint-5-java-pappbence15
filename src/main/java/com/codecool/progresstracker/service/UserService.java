@@ -14,17 +14,22 @@ import java.util.UUID;
 public class UserService {
     private final UserDao userDao;
     public final UUID TEST_ADMIN_ID;
+    public final UUID TEST_OWNER_ID;
 
 
     @Autowired
     public UserService(UserDao userDao) {
         this.userDao = userDao;
         this.TEST_ADMIN_ID = addTestAdmin();
+        this.TEST_OWNER_ID = addTestOwner();
     }
 
 
     public User getTestAdmin() {
         return userDao.find(TEST_ADMIN_ID);
+    }
+    public User getTestOwner() {
+        return userDao.find(TEST_OWNER_ID);
     }
 
     public User getLoggedInUser() {
@@ -36,6 +41,12 @@ public class UserService {
         User fakeAdmin = new User(UserType.ADMIN, "John McBoss", "john123", "john123");
         userDao.add(fakeAdmin);
         return fakeAdmin.getId();
+    }
+
+    public UUID addTestOwner(){
+        User testOwner = new User(UserType.PROJECT_OWNER, "James Smith", "james", "james");
+        userDao.add(testOwner);
+        return testOwner.getId();
     }
 
     public Map<String, Boolean> getUserSettings(UUID userId){

@@ -18,29 +18,34 @@ public class ProjectService {
     private final ProjectDao projectDao;
     private final UserDao userDao;
     private final UserService userService;
-    public final UUID TEST_PROJECT_ID;
 
     @Autowired
     public ProjectService(ProjectDao projectDao, UserDao userDao, UserService userService) {
         this.projectDao = projectDao;
         this.userDao = userDao;
         this.userService = userService;
-        this.TEST_PROJECT_ID = addAProjectWithTestUserAsAdmin();
+        addAProjectWithTestUserAsAdmin();
+        addProjectWithTestOwner();
     }
 
 
-    public UUID addAProjectWithTestUserAsAdmin(){
+    public void addAProjectWithTestUserAsAdmin(){
         User user = userService.getTestAdmin();
         List<User> adminList = new ArrayList<>();
         adminList.add(user);
-        Project project = new Project("Building a house on Firefly Lane", null, adminList);
+        Project project = new Project("Building a house on Firefly Lane", userService.getTestOwner(), adminList);
         UserStory userStory = new UserStory("paint the walls", 4);
         UserStory userStory2 = new UserStory("build the roof", 1);
         project.addNewUserStory(userStory);
         project.addNewUserStory(userStory2);
         userStory2.makeFavourite();
         projectDao.add(project);
-        return project.getId();
+    }
+
+    public void addProjectWithTestOwner(){
+        User owner = userService.getTestOwner();
+        Project project = new Project("Test project", owner, new ArrayList<>());
+        projectDao.add(project);
     }
 
     public Project getById(UUID id) throws Exception {
@@ -69,5 +74,9 @@ public class ProjectService {
 
     public List<Project> getProjectsByOwner(User user) {
         return projectDao.getProjectsByOwner(user);
+    }
+
+    public List<Project> getAll() {
+        return projectDao.getAll();
     }
 }
