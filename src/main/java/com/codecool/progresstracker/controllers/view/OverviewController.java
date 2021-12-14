@@ -37,15 +37,14 @@ public class OverviewController {
             throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
         }
     }
+
+    @ResponseBody
     @GetMapping("/owner/projects")
-    public String ownerProjectsView(Model model){
+    public List<Project> ownerProjectsView(){
         User user = userService.getLoggedInUser();
-        model.addAttribute("user", user);
         UserType userType = user.getUserType();
         if(userType.equals(UserType.PROJECT_OWNER)){
-            List<Project> projects = projectService.getProjectsByOwner(user);
-            model.addAttribute("projects", projects);
-            return "owner_all_projects";
+            return projectService.getProjectsByOwner(user);
         }else{
             throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
         }
