@@ -3,7 +3,7 @@ package com.codecool.progresstracker.model;
 import java.util.List;
 
 public enum UserType {
-    PRODUCT_OWNER("Product owner"),
+    PROJECT_OWNER("Project owner"),
     ADMIN("Admin"),
     SUPER_USER("Super user");
 

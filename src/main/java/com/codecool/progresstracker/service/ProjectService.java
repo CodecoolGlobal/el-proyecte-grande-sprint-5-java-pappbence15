@@ -1,6 +1,6 @@
 package com.codecool.progresstracker.service;
 
-import com.codecool.progresstracker.dao.ProductDao;
+import com.codecool.progresstracker.dao.ProjectDao;
 import com.codecool.progresstracker.dao.UserDao;
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
@@ -13,46 +13,46 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class ProductService {
+public class ProjectService {
 
-    private final ProductDao productDao;
+    private final ProjectDao projectDao;
     private final UserDao userDao;
     private final UserService userService;
     public final UUID TEST_PROJECT_ID;
 
     @Autowired
-    public ProductService(ProductDao productDao, UserDao userDao, UserService userService) {
-        this.productDao = productDao;
+    public ProjectService(ProjectDao projectDao, UserDao userDao, UserService userService) {
+        this.projectDao = projectDao;
         this.userDao = userDao;
         this.userService = userService;
-        this.TEST_PROJECT_ID = addAProductWithTestUserAsAdmin();
+        this.TEST_PROJECT_ID = addAProjectWithTestUserAsAdmin();
     }
 
 
-    public UUID addAProductWithTestUserAsAdmin(){
+    public UUID addAProjectWithTestUserAsAdmin(){
         User user = userService.getTestAdmin();
         List<User> adminList = new ArrayList<>();
         adminList.add(user);
-        Project product = new Project("Building a house on Firefly Lane", null, adminList);
+        Project project = new Project("Building a house on Firefly Lane", null, adminList);
         UserStory userStory = new UserStory("paint the walls", 4);
         UserStory userStory2 = new UserStory("build the roof", 1);
-        product.addNewUserStory(userStory);
-        product.addNewUserStory(userStory2);
+        project.addNewUserStory(userStory);
+        project.addNewUserStory(userStory2);
         userStory2.makeFavourite();
-        productDao.add(product);
-        return product.getId();
+        projectDao.add(project);
+        return project.getId();
     }
 
     public Project getById(UUID id) throws Exception {
-        return productDao.find(id);
+        return projectDao.find(id);
     }
 
-    public List<Project> getProductsByAdmin(User admin){
-        return productDao.getProductsByAdmin(admin);
+    public List<Project> getProjectsByAdmin(User admin){
+        return projectDao.getProjectsByAdmin(admin);
     }
 
-    public void updateUserStory(UserStory newUserStory, UUID userStoryId, UUID productId) throws Exception {
-        Project pr = productDao.find(productId);
+    public void updateUserStory(UserStory newUserStory, UUID userStoryId, UUID projectId) throws Exception {
+        Project pr = projectDao.find(projectId);
         List<UserStory> userStories = pr.getUserStories();
         UserStory us;
         for (UserStory userStory: userStories) {
@@ -63,11 +63,11 @@ public class ProductService {
         us = newUserStory;
     }
 
-    public void addNewUserStory(UserStory userStory, Project product) throws Exception {
-        productDao.find(product.getId()).addNewUserStory(userStory);
+    public void addNewUserStory(UserStory userStory, Project project) throws Exception {
+        projectDao.find(project.getId()).addNewUserStory(userStory);
     }
 
-    public List<Project> getProductsByOwner(User user) {
-        return productDao.getProductsByOwner(user);
+    public List<Project> getProjectsByOwner(User user) {
+        return projectDao.getProjectsByOwner(user);
     }
 }

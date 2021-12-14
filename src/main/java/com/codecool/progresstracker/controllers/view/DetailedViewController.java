@@ -3,7 +3,7 @@ package com.codecool.progresstracker.controllers.view;
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserStory;
-import com.codecool.progresstracker.service.ProductService;
+import com.codecool.progresstracker.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,28 +13,28 @@ import java.util.UUID;
 @Controller
 public class DetailedViewController {
 
-    private final ProductService productService;
+    private final ProjectService projectService;
 
     @Autowired
-    DetailedViewController(ProductService productService){
-        this.productService = productService;
+    DetailedViewController(ProjectService projectService){
+        this.projectService = projectService;
     }
 
-    @GetMapping("/detailedProductFeed")
-    public String productPage(@RequestBody User user){
+    @GetMapping("/detailedProjectFeed")
+    public String projectPage(@RequestBody User user){
         return null;
     }
 
-    @PostMapping("/detailedProductFeed/update")
+    @PostMapping("/detailedProjectFeed/update")
     public void changeDetails(@RequestBody UserStory changedUserStory,
                                 @RequestBody UUID userStoryId,
-                                @RequestBody UUID productId) throws Exception {
-        productService.updateUserStory(changedUserStory, userStoryId, productId);
+                                @RequestBody UUID projectId) throws Exception {
+        projectService.updateUserStory(changedUserStory, userStoryId, projectId);
     }
 
-    @PutMapping("/detailedProductFeed/add")
+    @PutMapping("/detailedProjectFeed/add")
     public void addNewUserStory(@RequestBody UserStory userStory,
-                                @RequestBody Project product) throws Exception {
-        productService.addNewUserStory(userStory, product);
+                                @RequestBody Project project) throws Exception {
+        projectService.addNewUserStory(userStory, project);
     }
 }

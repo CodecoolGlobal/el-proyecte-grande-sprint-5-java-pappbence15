@@ -3,7 +3,7 @@ package com.codecool.progresstracker.controllers.view;
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
-import com.codecool.progresstracker.service.ProductService;
+import com.codecool.progresstracker.service.ProjectService;
 import com.codecool.progresstracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,12 +17,12 @@ import java.util.List;
 @Controller
 public class OverviewController {
     private final UserService userService;
-    private final ProductService productService;
+    private final ProjectService projectService;
 
     @Autowired
-    public OverviewController(UserService userService, ProductService productService) {
+    public OverviewController(UserService userService, ProjectService projectService) {
         this.userService = userService;
-        this.productService = productService;
+        this.projectService = projectService;
     }
 
     @GetMapping("/admin/projects")
@@ -31,8 +31,8 @@ public class OverviewController {
         model.addAttribute("user", user);
         UserType userType = user.getUserType();
         if(userType.equals(UserType.ADMIN)){
-            List<Project> products = productService.getProductsByAdmin(user);
-            model.addAttribute("products", products);
+            List<Project> projects = projectService.getProjectsByAdmin(user);
+            model.addAttribute("projects", projects);
             return "admin_all_projects";
         }else{
             throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
@@ -43,9 +43,9 @@ public class OverviewController {
         User user = userService.getLoggedInUser();
         model.addAttribute("user", user);
         UserType userType = user.getUserType();
-        if(userType.equals(UserType.PRODUCT_OWNER)){
-            List<Project> products = productService.getProductsByOwner(user);
-            model.addAttribute("products", products);
+        if(userType.equals(UserType.PROJECT_OWNER)){
+            List<Project> projects = projectService.getProjectsByOwner(user);
+            model.addAttribute("projects", projects);
             return "owner_all_projects";
         }else{
             throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
