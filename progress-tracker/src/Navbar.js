@@ -6,16 +6,16 @@ function Navbar(props){
 
     return(
         <div className='navbar-container'>
-            <div>
+            <div className='navbar-link-container'>
                 <NavbarLink url={'#'} name={projects} changeComponent={props.change}/>
             </div>
-            <div>
+            <div className='navbar-link-container'>
                 <NavbarLink url={'#'} name={latest} changeComponent={props.change}/>
             </div>
-            <div>
+            <div className='navbar-link-container'>
                 <NavbarLink url={'#'} name={all} changeComponent={props.change}/>
             </div>
-            <div>
+            <div className='navbar-link-container'>
                 <NavbarLink url={'#'} name={settings} changeComponent={props.change}/>
             </div>
         </div>
@@ -24,7 +24,7 @@ function Navbar(props){
 
 function NavbarLink(props){
     return(
-        <a href={props.url} onClick={() => props.changeComponent(props.name)}>
+        <a href={props.url} onClick={() => props.changeComponent(props.name)} className='navbar-link'>
             {props.name}
         </a>
     )
