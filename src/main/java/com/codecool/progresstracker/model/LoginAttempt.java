@@ -1,5 +1,9 @@
 package com.codecool.progresstracker.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
 public class LoginAttempt {
     private final String username;
     private final String password;
@@ -7,13 +11,5 @@ public class LoginAttempt {
     public LoginAttempt(String username, String password) {
         this.username = username;
         this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 }
