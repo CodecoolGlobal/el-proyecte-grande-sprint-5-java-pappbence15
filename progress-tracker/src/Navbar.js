@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-function Header(){
+function Navbar(){
     const projects = 'Projects';
     const latest = 'Latest';
     const all = 'All';
@@ -30,4 +30,4 @@ function renderNavLink(url, name){
     )
 }
 
-export default Header;
+export default Navbar;
