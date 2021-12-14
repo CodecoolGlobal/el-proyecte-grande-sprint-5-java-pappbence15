@@ -7,6 +7,7 @@ import com.codecool.progresstracker.service.ProjectService;
 import com.codecool.progresstracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,31 +30,31 @@ public class SingleProjectController {
 
     @ResponseBody
     @GetMapping("/admin/project/{projectId}")
-    public Project adminProjectPage(@PathVariable UUID projectId) throws Exception {
+    public ResponseEntity<?> adminProjectPage(@PathVariable UUID projectId) throws Exception {
         Project project = projectService.getById(projectId);
 
         User user = userService.getLoggedInUser();
         UserType userType = user.getUserType();
 
         if (userType == UserType.ADMIN && project.getAdmins().contains(user)) {
-            return project;
+            return new ResponseEntity<>(project, HttpStatus.OK);
         } else {
-            throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("Unauthorized: you are not the admin of this project", HttpStatus.UNAUTHORIZED);
         }
     }
 
     @ResponseBody
     @GetMapping("/owner/project/{projectId}")
-    public Project ownerProjectPage(@PathVariable UUID projectId) throws Exception {
+    public ResponseEntity<?> ownerProjectPage(@PathVariable UUID projectId) throws Exception {
         Project project = projectService.getById(projectId);
 
         User user = userService.getLoggedInUser();
         UserType userType = user.getUserType();
 
         if (userType == UserType.PROJECT_OWNER && project.getOwner().equals(user)){
-            return project;
+            return new ResponseEntity<>(project, HttpStatus.OK);
         } else {
-            throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("Unauthorized: you are not the owner of this project", HttpStatus.UNAUTHORIZED);
         }
     }
 }
