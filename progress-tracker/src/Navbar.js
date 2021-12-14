@@ -5,7 +5,7 @@ function Navbar(props){
     const settings = 'Settings'
 
     return(
-        <div>
+        <div className='navbar-container'>
             <div>
                 <NavbarLink url={'#'} name={projects} changeComponent={props.change}/>
             </div>
