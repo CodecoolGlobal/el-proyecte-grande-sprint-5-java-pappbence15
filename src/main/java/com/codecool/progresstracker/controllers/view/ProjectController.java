@@ -7,6 +7,7 @@ import com.codecool.progresstracker.service.ProjectService;
 import com.codecool.progresstracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,25 +28,25 @@ public class ProjectController {
 
     @ResponseBody
     @GetMapping("/admin/projects")
-    public List<Project> adminProjectsView(){
+    public ResponseEntity<?> adminProjectsView(){
         User user = userService.getLoggedInUser();
         UserType userType = user.getUserType();
         if(userType.equals(UserType.ADMIN)){
-            return projectService.getProjectsByAdmin(user);
-        }else{
-            throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(projectService.getProjectsByAdmin(user), HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>("Unauthorized: you are not logged in as an admin", HttpStatus.UNAUTHORIZED);
         }
     }
 
     @ResponseBody
     @GetMapping("/owner/projects")
-    public List<Project> ownerProjectsView(){
+    public ResponseEntity<?> ownerProjectsView(){
         User user = userService.getLoggedInUser();
         UserType userType = user.getUserType();
         if(userType.equals(UserType.PROJECT_OWNER)){
-            return projectService.getProjectsByOwner(user);
+            List<Project> projects = projectService.getProjectsByOwner(user);
+            return new ResponseEntity<>(projects, HttpStatus.OK);
         }else{
-            throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
-        }
+            return new ResponseEntity<>("Unauthorized: you are not logged in as a project owner", HttpStatus.UNAUTHORIZED);        }
     }
 }
