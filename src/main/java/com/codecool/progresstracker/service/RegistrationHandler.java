@@ -29,7 +29,7 @@ public class RegistrationHandler {
             case "SUPER_USER":
                 return UserType.SUPER_USER;
             default:
-                return UserType.PRODUCT_OWNER;
+                return UserType.PROJECT_OWNER;
         }
     }
 }

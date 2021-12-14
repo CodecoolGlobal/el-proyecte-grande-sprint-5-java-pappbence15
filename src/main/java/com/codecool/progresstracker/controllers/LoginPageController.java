@@ -3,7 +3,7 @@ package com.codecool.progresstracker.controllers;
 import com.codecool.progresstracker.dao.UserDao;
 import com.codecool.progresstracker.model.LoginAttempt;
 import com.codecool.progresstracker.model.User;
-import com.codecool.progresstracker.service.ProductService;
+import com.codecool.progresstracker.service.ProjectService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.*;
 public class LoginPageController {
 
     private final UserDao userDao; //TODO: get rid of this by adding service layer between controller and DAO
-    private final ProductService productService; //like here
+    private final ProjectService projectService; //like here
 
     @Autowired
-    public LoginPageController(UserDao userDao, ProductService productService) {
+    public LoginPageController(UserDao userDao, ProjectService projectService) {
         this.userDao = userDao;
-        this.productService = productService;
+        this.projectService = projectService;
     }
 
     @GetMapping

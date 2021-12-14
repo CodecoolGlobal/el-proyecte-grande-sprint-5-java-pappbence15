@@ -3,7 +3,7 @@ package com.codecool.progresstracker.controllers.view;
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
-import com.codecool.progresstracker.service.ProductService;
+import com.codecool.progresstracker.service.ProjectService;
 import com.codecool.progresstracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,44 +18,44 @@ import java.util.UUID;
 @Controller
 public class SketchyViewController {
     private final UserService userService;
-    private final ProductService productService;
+    private final ProjectService projectService;
 
     @Autowired
-    public SketchyViewController(UserService userService, ProductService productService) {
+    public SketchyViewController(UserService userService, ProjectService projectService) {
         this.userService = userService;
-        this.productService = productService;
+        this.projectService = projectService;
     }
 
     @GetMapping("/admin/project/{projectId}")
-    public String adminProductPage(Model model, @PathVariable UUID projectId) throws Exception {
-        Project product = productService.getById(projectId);
+    public String adminProjectPage(Model model, @PathVariable UUID projectId) throws Exception {
+        Project project = projectService.getById(projectId);
 
         User user = userService.getLoggedInUser();
 
         model.addAttribute("user", user);
         UserType userType = user.getUserType();
 
-        model.addAttribute("product", product);
-        model.addAttribute("progress", Math.round(product.getPercentage()*100) + " %");
+        model.addAttribute("project", project);
+        model.addAttribute("progress", Math.round(project.getPercentage()*100) + " %");
 
-        if (userType == UserType.ADMIN && product.getAdmins().contains(user)) {
+        if (userType == UserType.ADMIN && project.getAdmins().contains(user)) {
             return "admin_project_view";
         } else {
             throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
         }
     }
     @GetMapping("/owner/project/{projectId}")
-    public String ownerProductPage(Model model, @PathVariable UUID projectId) throws Exception {
-        Project product = productService.getById(projectId);
+    public String ownerProjectPage(Model model, @PathVariable UUID projectId) throws Exception {
+        Project project = projectService.getById(projectId);
 
         User user = userService.getLoggedInUser();
 
         model.addAttribute("user", user);
         UserType userType = user.getUserType();
 
-        model.addAttribute("product", product);
+        model.addAttribute("project", project);
 
-        if (userType == UserType.PRODUCT_OWNER && product.getOwner().equals(user)){
+        if (userType == UserType.PROJECT_OWNER && project.getOwner().equals(user)){
             return "owner_project_view";
         } else {
             throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);

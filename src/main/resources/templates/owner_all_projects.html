@@ -8,10 +8,10 @@
 <p th:text="${user.name} + '\'s projects'"></p>
 <table>
     <tr><th>Project Name</th> <th>Project Owner</th> <th>Project Admins</th></tr>
-    <tr th:each="product: ${products}">
-        <td><a th:text="${product.name}" th:href="'/owner/project/' + ${product.id}"></a></td>
-        <td th:text="${product.owner}"></td>
-        <td th:each="admin: ${product.admins}"><span th:text="${admin.name}"></span>
+    <tr th:each="project: ${projects}">
+        <td><a th:text="${project.name}" th:href="'/owner/project/' + ${project.id}"></a></td>
+        <td th:text="${project.owner}"></td>
+        <td th:each="admin: ${project.admins}"><span th:text="${admin.name}"></span>
         </td>
     </tr>
 </table>
