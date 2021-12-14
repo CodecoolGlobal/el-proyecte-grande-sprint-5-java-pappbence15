@@ -6,12 +6,12 @@ import com.codecool.progresstracker.model.User;
 import java.util.List;
 import java.util.UUID;
 
-public interface ProductDao {
+public interface ProjectDao {
 
-    void add(Project product);
+    void add(Project project);
     Project find(UUID id) throws Exception;
 
     List<Project> getAll();
-    List<Project> getProductsByOwner(User user);
-    List<Project> getProductsByAdmin(User user);
+    List<Project> getProjectsByOwner(User user);
+    List<Project> getProjectsByAdmin(User user);
 }

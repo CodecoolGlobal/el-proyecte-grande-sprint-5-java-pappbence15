@@ -21,7 +21,7 @@ public class LandingPageController {
 
         if (user.getUserType().equals(UserType.ADMIN)){
             return "redirect:/admin/projects";
-        } else if (user.getUserType().equals(UserType.PRODUCT_OWNER)){
+        } else if (user.getUserType().equals(UserType.PROJECT_OWNER)){
             return "redirect:/admin/projects";
         }
 

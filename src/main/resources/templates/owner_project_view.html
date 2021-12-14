@@ -5,12 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-        <h5 th:text="${product.name}"></h5>
+        <h5 th:text="${project.name}"></h5>
 
-        <h6 th:text="${product.owner}"></h6>
+        <h6 th:text="${project.owner}"></h6>
 
         <ul>
-        <li th:each="story: ${product.userStories}">
+        <li th:each="story: ${project.userStories}">
             <span th:text="${story.name}"></span>
         </li>
         </ul>
