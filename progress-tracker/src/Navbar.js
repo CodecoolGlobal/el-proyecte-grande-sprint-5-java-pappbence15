@@ -2,6 +2,7 @@ function Navbar(props){
     const projects = 'Projects';
     const latest = 'Latest';
     const all = 'All';
+    const settings = 'Settings'
 
     return(
         <div>
@@ -13,6 +14,9 @@ function Navbar(props){
             </div>
             <div>
                 <NavbarLink url={'#'} name={all} changeComponent={props.change}/>
+            </div>
+            <div>
+                <NavbarLink url={'#'} name={settings} changeComponent={props.change}/>
             </div>
         </div>
     )

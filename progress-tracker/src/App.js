@@ -26,6 +26,8 @@ function renderDynamicComponent(component){
             return (<p>test2</p>)
         case 'Projects':
             return (<p>test3</p>)
+        case 'Settings':
+            return (<p>test4</p>)
     }
 }
 export default App;
