@@ -13,7 +13,7 @@ function App() {
   return (
       <div>
     <div className="App">
-        <Header name={"Name of the Brand"}/>
+        <Header name={"Name of the Brand"} changeComponent={changeComponent}/>
         <Footer owner={"©Hello World KFT"} creators={["csillalukacs", "Sjpeti97", "pappbence15", "JustBenS1"]} links={['https://github.com/csillalukacs', "https://github.com/Sjpeti97", "https://github.com/pappbence15", "https://github.com/JustBenS1"]}/>
     </div>
           <div className='dynamic-component-container'>
