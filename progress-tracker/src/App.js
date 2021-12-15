@@ -1,7 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
+import './style/App.css';
+import './style/Navbar.css';
+import './style/Header.css'
+import './style/Footer.css'
 import Navbar from "./Navbar";
 import Header from "./Header";
+import Footer from "./Footer";
 import {useState} from "react";
 import ProjectList from "./ProjectList";
 
@@ -11,10 +14,10 @@ function App() {
   return (
       <div>
     <div className="App">
-        <Header/>
-        <Navbar change={changeComponent}/>
+        <Header name={"Name of the Brand"} changeComponent={changeComponent}/>
+        <Footer owner={"©Hello World KFT"} creators={["csillalukacs", "Sjpeti97", "pappbence15", "JustBenS1"]} links={['https://github.com/csillalukacs', "https://github.com/Sjpeti97", "https://github.com/pappbence15", "https://github.com/JustBenS1"]}/>
     </div>
-          <div>
+          <div className='dynamic-component-container'>
               {renderDynamicComponent(component)}
           </div>
       </div>

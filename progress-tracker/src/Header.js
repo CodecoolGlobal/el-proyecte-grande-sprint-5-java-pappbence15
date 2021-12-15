@@ -1,21 +1,11 @@
 import logo from './logo.svg';
-function Header(){
-    const name = 'Name of the Brand';
+import Navbar from "./Navbar";
 
-    return(
-        <div>
-            <HeaderBody name={name}/>
-        </div>
-    )
-}
-
-function HeaderBody(props){
+function Header(props){
     return(
         <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-name">
-                {props.name}
-            </h1>
+            <Navbar change={props.changeComponent}/>
         </header>
     )
 }
