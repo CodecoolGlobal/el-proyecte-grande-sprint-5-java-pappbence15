@@ -29,10 +29,25 @@ function App() {
 function renderDynamicComponent(component, changeComponent, projectId, changeProject){
     switch (component){
         case 'All':
-            return(<p>detailed view of one project</p>)
+            if (projectId) {
+                return (<ProjectAdminView projectId={projectId}
+                                          detailedView={true}
+                />)
+            }
+            else {
+                return (<ProjectList userType={"admin"}
+                                     changeComponent={changeComponent}
+                                     changeProject={changeProject}
+                                     projectId={projectId}
+
+                />)
+            }
         case 'Latest':
             if (projectId) {
-                return (<ProjectAdminView projectId={projectId}/>)
+                return (<ProjectAdminView projectId={projectId}
+                                          detailedView={false}
+
+                />)
             }
             else {
                 return (<ProjectList userType={"admin"}

@@ -26,11 +26,16 @@ export default function ProjectAdminView(props) {
             )
     }, [])
 
+
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
         return <div>Loading...</div>;
     } else {
+        const allStories = project.userStories;
+        const favouriteStories = allStories.filter(s=>s.isFavourite);
+
+        const stories = props.detailedView ? allStories : favouriteStories;
         return (
             <div>
                 <p>
@@ -40,7 +45,7 @@ export default function ProjectAdminView(props) {
                     {project.id}
                 </p>
                 <p>
-                    {project.userStories.map(s=><UserStory story={s}/>)}
+                    {stories.map(s=><UserStory story={s}/>)}
                 </p>
             </div>
         );
