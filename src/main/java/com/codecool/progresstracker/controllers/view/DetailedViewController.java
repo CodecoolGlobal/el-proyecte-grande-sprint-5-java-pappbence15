@@ -26,15 +26,17 @@ public class DetailedViewController {
     }
 
     @PostMapping("/detailedProjectFeed/update")
-    public void changeDetails(@RequestBody UserStory changedUserStory,
+    public void changeDetails(@RequestBody Boolean isFavourite,
+                                @RequestBody int currentProgress,
                                 @RequestBody UUID userStoryId,
                                 @RequestBody UUID projectId) throws Exception {
-        projectService.updateUserStory(changedUserStory, userStoryId, projectId);
+        projectService.updateUserStory(isFavourite, currentProgress, userStoryId, projectId);
     }
-
+/*
     @PutMapping("/detailedProjectFeed/add")
     public void addNewUserStory(@RequestBody UserStory userStory,
                                 @RequestBody Project project) throws Exception {
         projectService.addNewUserStory(userStory, project);
-    }
+    }*/
+    //TODO what is this?
 }
