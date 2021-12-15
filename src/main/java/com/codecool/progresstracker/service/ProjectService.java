@@ -1,7 +1,6 @@
 package com.codecool.progresstracker.service;
 
 import com.codecool.progresstracker.dao.ProjectDao;
-import com.codecool.progresstracker.dao.UserDao;
 import com.codecool.progresstracker.data_sample.ProjectCreator;
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;

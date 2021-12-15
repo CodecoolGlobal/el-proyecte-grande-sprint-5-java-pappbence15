@@ -1,6 +1,5 @@
 package com.codecool.progresstracker.controllers.view;
 
-import com.codecool.progresstracker.controllers.mock_data.CreateMockData;
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
@@ -12,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 
