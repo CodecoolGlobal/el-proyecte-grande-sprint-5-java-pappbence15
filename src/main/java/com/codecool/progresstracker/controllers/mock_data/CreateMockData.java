@@ -23,6 +23,7 @@ public class CreateMockData {
         this.userService = userService;
         this.projectService = projectService;
         this.userStoryService = userStoryService;
+        spamMockData();//TODO TEST -> DELETE
     }
 
     public void spamMockData(){
