@@ -8,7 +8,7 @@ function Footer(props) {
             <p className="App-creators">
                 Made by:
                 {props.creators.map((creator, i) =>
-                    <a href={props.links[i]} className="App-creator">
+                    <a href={props.links[i]} key={i} className="App-creator">
                         {creator}
                     </a>)}
             </p>
