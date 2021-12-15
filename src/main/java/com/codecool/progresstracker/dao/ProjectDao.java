@@ -9,7 +9,7 @@ import java.util.UUID;
 public interface ProjectDao {
 
     void add(Project project);
-    Project find(UUID id) throws Exception;
+    Project find(UUID id) throws NullPointerException;
 
     List<Project> getAll();
     List<Project> getProjectsByOwner(User user);
