@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './style/App.css';
+import './style/Navbar.css';
 import Navbar from "./Navbar";
 import Header from "./Header";
 import {useState} from "react";
@@ -11,9 +12,9 @@ function App() {
       <div>
     <div className="App">
         <Header/>
-        <Navbar change={changeComponent}/>
     </div>
-          <div>
+          <div className='dynamic-component-container'>
+              <Navbar change={changeComponent}/>
               {renderDynamicComponent(component)}
           </div>
       </div>
