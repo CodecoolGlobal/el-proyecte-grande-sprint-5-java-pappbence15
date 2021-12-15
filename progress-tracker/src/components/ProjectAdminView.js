@@ -1,4 +1,6 @@
 import {useEffect, useState} from "react";
+import UserStory from "./UserStory";
+import {Star} from "./Star";
 
 export default function ProjectAdminView(props) {
     const [error, setError] = useState(null);
@@ -32,15 +34,16 @@ export default function ProjectAdminView(props) {
     } else {
         return (
             <div>
-                <ul>
+                <p>
                     {project.name}
-                </ul>
-                <ul>
+                </p>
+                <p>
                     {project.id}
-                </ul>
-                <ul>
-                    {project.userStories.map(s=><span>asdaf</span>)}
-                </ul>
+                </p>
+                <Star full={false}/>
+                <p>
+                    {project.userStories.map(s=><UserStory story={s}/>)}
+                </p>
             </div>
         );
     }
