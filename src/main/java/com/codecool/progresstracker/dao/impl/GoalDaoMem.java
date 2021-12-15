@@ -1,5 +1,6 @@
-package com.codecool.progresstracker.dao;
+package com.codecool.progresstracker.dao.impl;
 
+import com.codecool.progresstracker.dao.GoalDao;
 import com.codecool.progresstracker.model.Goal;
 import org.springframework.stereotype.Repository;
 
@@ -8,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class GoalDaoMem implements GoalDao{
+public class GoalDaoMem implements GoalDao {
     private final List<Goal> goalList;
 
     public GoalDaoMem(){

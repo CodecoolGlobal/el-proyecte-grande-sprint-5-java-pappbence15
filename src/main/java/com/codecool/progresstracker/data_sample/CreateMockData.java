@@ -1,8 +1,7 @@
-package com.codecool.progresstracker.controllers.mock_data;
+package com.codecool.progresstracker.data_sample;
 
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
-import com.codecool.progresstracker.model.UserStory;
 import com.codecool.progresstracker.model.UserType;
 import com.codecool.progresstracker.service.ProjectService;
 import com.codecool.progresstracker.service.UserService;
@@ -24,6 +23,7 @@ public class CreateMockData {
         this.userService = userService;
         this.projectService = projectService;
         this.userStoryService = userStoryService;
+        spamMockData();//TODO TEST -> DELETE
     }
 
     public void spamMockData(){
