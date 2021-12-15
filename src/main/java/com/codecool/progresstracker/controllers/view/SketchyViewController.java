@@ -28,7 +28,7 @@ public class SketchyViewController {
 
     @GetMapping("/admin/project/{projectId}")
     public String adminProjectPage(Model model, @PathVariable UUID projectId) throws Exception {
-        Project project = projectService.getById(projectId);
+        Project project = projectService.find(projectId);
 
         User user = userService.getLoggedInUser();
 
@@ -46,7 +46,7 @@ public class SketchyViewController {
     }
     @GetMapping("/owner/project/{projectId}")
     public String ownerProjectPage(Model model, @PathVariable UUID projectId) throws Exception {
-        Project project = projectService.getById(projectId);
+        Project project = projectService.find(projectId);
 
         User user = userService.getLoggedInUser();
 
