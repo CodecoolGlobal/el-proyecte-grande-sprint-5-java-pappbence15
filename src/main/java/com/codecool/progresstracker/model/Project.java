@@ -16,12 +16,15 @@ public class Project {
     private List<User> admins;
 
     public double getPercentage(){
+        if (userStories.size()==0){
+            return 0;
+        }
         double totalStoryPoints = userStories.stream()
                 .map(UserStory::getMAX_PROGRESS)
                 .reduce(0, Integer::sum);
         double completed = userStories.stream()
-                .map(story -> story.getMAX_PROGRESS()*story.getCurrentPercent())
-                .reduce(0.0, Double::sum);
+                .map(UserStory::getCurrentProgress)
+                .reduce(0, Integer::sum);
         return completed / totalStoryPoints;
     }
 
