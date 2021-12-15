@@ -15,14 +15,15 @@ public class LandingPageController {
     private final ProjectService projectService;//TODO TEST -> DELETE
 
     public LandingPageController(UserService userService, ProjectService projectService) {
+        CreateMockData createMockData = new CreateMockData(userService, projectService);//TODO TEST -> DELETE
+        createMockData.spamMockData();//TODO TEST -> DELETE
+
         this.userService = userService;
         this.projectService = projectService;//TODO TEST -> DELETE
     }
 
     @GetMapping("/")
     public String welcomePage() {
-        CreateMockData createMockData = new CreateMockData(userService, projectService);//TODO TEST -> DELETE
-        createMockData.spamMockData();//TODO TEST -> DELETE
 
 
         User user = userService.getLoggedInUser();

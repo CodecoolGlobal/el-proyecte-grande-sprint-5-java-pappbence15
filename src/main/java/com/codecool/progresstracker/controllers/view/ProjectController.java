@@ -30,10 +30,6 @@ public class ProjectController {
     @ResponseBody
     @GetMapping("/admin/projects")
     public ResponseEntity<?> adminProjectsView(){
-        CreateMockData createMockData = new CreateMockData(userService,projectService);
-
-        createMockData.spamMockData();
-
         User user = userService.getLoggedInUser();
         UserType userType = user.getUserType();
         if(userType.equals(UserType.ADMIN)){

@@ -11,6 +11,7 @@ import java.util.UUID;
 public class UserStoryCreator {
 
     private final UserStoryDao userStoryDao;
+    private final int BASE_STATUS = 0;
 
     @Autowired
     public UserStoryCreator(UserStoryDao userStoryDao) {
@@ -22,8 +23,8 @@ public class UserStoryCreator {
                 UUID.randomUUID(),
                 name,
                 max_progress,
-                0,
-                0,
+                this.BASE_STATUS,
+                this.BASE_STATUS,
                 isFavourite
         );
 
