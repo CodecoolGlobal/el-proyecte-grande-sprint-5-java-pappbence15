@@ -1,12 +1,9 @@
 package com.codecool.progresstracker.dao;
 
-import com.codecool.progresstracker.controllers.data_sample.UserCreator;
 import com.codecool.progresstracker.model.LoginAttempt;
 import com.codecool.progresstracker.model.User;
-import com.codecool.progresstracker.model.UserType;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +49,6 @@ public class UserDaoMem implements UserDao{
 
     @Override
     public User getValidLoginUser(LoginAttempt loginAttempt){
-        createMockUsers();
 
         User user = find(loginAttempt.getUsername());
 
@@ -64,12 +60,11 @@ public class UserDaoMem implements UserDao{
         return null;
     }
 
-    public void createMockUsers(){
-        UserCreator userCreator = new UserCreator(this);
 
-        userCreator.initialize(UserType.SUPER_USER, "a","a","a");
-        userCreator.initialize(UserType.SUPER_USER, "b","b","b");
-        userCreator.initialize(UserType.SUPER_USER, "c","c","c");
-        userCreator.initialize(UserType.SUPER_USER, "d","d","d");
+    //TODO TEST -> delete
+    @Override
+    public List<User> getAll() {
+        return users;
     }
+
 }
