@@ -1,5 +1,6 @@
 package com.codecool.progresstracker.controllers.view;
 
+import com.codecool.progresstracker.controllers.mock_data.CreateMockData;
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
@@ -29,6 +30,10 @@ public class OverviewController {
     @ResponseBody
     @GetMapping("/admin/projects")
     public List<Project> adminProjectsView(){
+        CreateMockData createMockData = new CreateMockData(userService,projectService);
+
+        createMockData.spamMockData();
+
         User user = userService.getLoggedInUser();
         UserType userType = user.getUserType();
         if(userType.equals(UserType.ADMIN)){
