@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import UserStory from "./UserStory";
+import ProgressBar from "./ProgressBar";
 
 export default function ProjectAdminView(props) {
     const [error, setError] = useState(null);
@@ -39,9 +40,7 @@ export default function ProjectAdminView(props) {
                 <h2>
                     {project.name}
                 </h2>
-                <p>
-                <span className={"percentage"}>{project.percentage}%</span> done
-                </p>
+                <ProgressBar percentage={Math.round(project.percentage*100)}/>
                 <p>
                     <strong>Owner: </strong>
                     {project.owner.name}
