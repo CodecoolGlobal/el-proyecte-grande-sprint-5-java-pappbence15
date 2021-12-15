@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import UserStory from "./UserStory";
-import {Star} from "./Star";
 
 export default function ProjectAdminView(props) {
     const [error, setError] = useState(null);
@@ -40,7 +39,6 @@ export default function ProjectAdminView(props) {
                 <p>
                     {project.id}
                 </p>
-                <Star full={false}/>
                 <p>
                     {project.userStories.map(s=><UserStory story={s}/>)}
                 </p>
