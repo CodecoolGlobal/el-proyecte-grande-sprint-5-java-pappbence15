@@ -29,7 +29,7 @@ public class UserCreator {
                 new HashMap<>()
         );
 
-        user.addSetting("dark-mode", false);
+        user.addSetting("darkMode", false);
         user.addSetting("notifications", false);
 
         userDao.add(user);
