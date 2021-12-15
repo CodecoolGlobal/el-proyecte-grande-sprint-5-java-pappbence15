@@ -44,9 +44,9 @@ export default function ProjectAdminView(props) {
                 <p>
                     {project.id}
                 </p>
-                <p>
-                    {stories.map(s=><UserStory story={s}/>)}
-                </p>
+                <div>
+                    {stories.map(s=><UserStory key={s.id} story={s}/>)}
+                </div>
             </div>
         );
     }
