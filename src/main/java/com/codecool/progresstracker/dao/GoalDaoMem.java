@@ -4,11 +4,12 @@ import com.codecool.progresstracker.model.Goal;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Repository
 public class GoalDaoMem implements GoalDao{
-    private final ArrayList<Goal> goalList;
+    private final List<Goal> goalList;
 
     public GoalDaoMem(){
         this.goalList = new ArrayList();
