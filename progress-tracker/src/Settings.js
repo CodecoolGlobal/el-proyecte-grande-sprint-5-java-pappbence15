@@ -1,5 +1,3 @@
-import * as url from "url";
-
 const {useState, useEffect} = require("react");
 
 function Settings(){
@@ -39,14 +37,14 @@ function Settings(){
                 <div className='settings-mode'>
                     <p>Notifications</p>
                 <label className="switch">
-                    <input type="checkbox" checked={notifications} onClick={handleNotificationClick}/>
+                    <input type="checkbox" checked={notifications} onChange={handleNotificationClick}/>
                         <span className="slider round"/>
                 </label>
                 </div>
                 <div className='settings-mode'>
                     <p>Dark mode</p>
                     <label className="switch">
-                        <input type="checkbox" checked={darkMode} onClick={handleDarkModeClick}/>
+                        <input type="checkbox" checked={darkMode} onChange={handleDarkModeClick}/>
                             <span className="slider round"/>
                     </label>
                 </div>
