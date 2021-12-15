@@ -2,40 +2,33 @@ package com.codecool.progresstracker.service;
 
 
 import com.codecool.progresstracker.dao.UserDao;
+import com.codecool.progresstracker.data_sample.UserCreator;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 @Service
 public class UserService {
     private final UserDao userDao;
-    public final UUID TEST_ADMIN_ID;
-
+    private User loggedInUser;
 
     @Autowired
     public UserService(UserDao userDao) {
         this.userDao = userDao;
-        this.TEST_ADMIN_ID = addTestAdmin();
-    }
-
-
-    public User getTestAdmin() {
-        return userDao.find(TEST_ADMIN_ID);
+        loggedInUser = null;
     }
 
     public User getLoggedInUser() {
-        return getTestAdmin(); //for now
+        return loggedInUser;
     }
 
-
-    public UUID addTestAdmin(){
-        User fakeAdmin = new User(UserType.ADMIN, "John McBoss", "john123", "john123");
-        userDao.add(fakeAdmin);
-        return fakeAdmin.getId();
+    public void setLoggedInUser(User loggedInUser) {
+        this.loggedInUser = loggedInUser;
     }
 
     public Map<String, Boolean> getUserSettings(UUID userId){
@@ -43,9 +36,21 @@ public class UserService {
         return user.getUserSettings();
     }
 
+    public void createNewUser(UserType userType, String name, String username, String password){
+        UserCreator userCreator = new UserCreator(userDao);
+
+        userCreator.initialize(userType, name, username, password);
+    }
+
     public void updateUserSettings(UUID userId, String key, boolean value){
         Map<String, Boolean> userSettings = userDao.find(userId).getUserSettings();
         boolean oldValue = userSettings.get(key);
         userSettings.replace(key, oldValue, value);
+    }
+
+
+    //TODO TEST -> DELETE
+    public List<User> getAll(){
+        return userDao.getAll();
     }
 }
