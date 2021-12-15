@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import ProjectLink from "./ProjectLink";
 
 export default function ProjectList(props){
     const [error, setError] = useState(null);
@@ -40,7 +41,12 @@ export default function ProjectList(props){
             <ul>
                 {items.map(item => (
                     <li key={item.id}>
-                        {item.name}
+                        <ProjectLink name={item.name}
+                                     url={'/admin/project/' + item.id}
+                                     id={item.id}
+                                     changeComponent={props.changeComponent}
+                                     changeProject={props.changeProject}
+                        />
                     </li>
                 ))}
             </ul>
