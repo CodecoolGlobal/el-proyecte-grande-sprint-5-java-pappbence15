@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import UserStory from "./UserStory";
+import ProgressBar from "./ProgressBar";
 
 export default function ProjectAdminView(props) {
     const [error, setError] = useState(null);
@@ -36,15 +37,22 @@ export default function ProjectAdminView(props) {
         const stories = props.detailedView ? allStories : favouriteStories;
         return (
             <div>
-                <p>
+                <h2>
                     {project.name}
+                </h2>
+                <ProgressBar percentage={Math.round(project.percentage*100)}/>
+                <p>
+                    <strong>Owner: </strong>
+                    {project.owner.name}
                 </p>
                 <p>
-                    {project.id}
+                    <strong>Admins: </strong>
+                    {project.admins.map(admin=><span key={admin.id}>{admin.name} </span>)}
                 </p>
-                <div>
+                <h3>User stories</h3>
+                <ul>
                     {stories.map(s=><UserStory key={s.id} story={s}/>)}
-                </div>
+                </ul>
             </div>
         );
     }
