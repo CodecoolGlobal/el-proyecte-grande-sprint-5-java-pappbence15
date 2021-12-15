@@ -36,15 +36,24 @@ export default function ProjectAdminView(props) {
         const stories = props.detailedView ? allStories : favouriteStories;
         return (
             <div>
-                <p>
+                <h2>
                     {project.name}
+                </h2>
+                <p>
+                <span className={"percentage"}>{project.percentage}%</span> done
                 </p>
                 <p>
-                    {project.id}
+                    <strong>Owner: </strong>
+                    {project.owner.name}
                 </p>
-                <div>
+                <p>
+                    <strong>Admins: </strong>
+                    {project.admins.map(admin=><span key={admin.id}>{admin.name} </span>)}
+                </p>
+                <h3>User stories</h3>
+                <ul>
                     {stories.map(s=><UserStory key={s.id} story={s}/>)}
-                </div>
+                </ul>
             </div>
         );
     }
