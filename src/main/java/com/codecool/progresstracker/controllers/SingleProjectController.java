@@ -1,4 +1,4 @@
-package com.codecool.progresstracker.controllers.view;
+package com.codecool.progresstracker.controllers;
 
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;

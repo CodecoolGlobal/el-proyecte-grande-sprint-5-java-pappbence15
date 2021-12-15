@@ -3,8 +3,8 @@ import './style/Navbar.css';
 import './style/Header.css'
 import './style/Footer.css'
 import './style/Settings.css';
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
 import {useState} from "react";
 import ProjectList from "./components/ProjectList";
 import ProjectAdminView from "./components/ProjectAdminView";

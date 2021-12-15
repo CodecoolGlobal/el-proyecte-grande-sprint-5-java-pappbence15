@@ -1,4 +1,4 @@
-package com.codecool.progresstracker.controllers.mock_data;
+package com.codecool.progresstracker.data_sample;
 
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
