@@ -2,13 +2,13 @@ package com.codecool.progresstracker.service;
 
 import com.codecool.progresstracker.dao.ProjectDao;
 import com.codecool.progresstracker.dao.UserDao;
+import com.codecool.progresstracker.data_sample.ProjectCreator;
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserStory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,39 +16,13 @@ import java.util.UUID;
 public class ProjectService {
 
     private final ProjectDao projectDao;
-    private final UserDao userDao;
-    private final UserService userService;
 
     @Autowired
-    public ProjectService(ProjectDao projectDao, UserDao userDao, UserService userService) {
+    public ProjectService(ProjectDao projectDao) {
         this.projectDao = projectDao;
-        this.userDao = userDao;
-        this.userService = userService;
-        addAProjectWithTestUserAsAdmin();
-        addProjectWithTestOwner();
     }
 
-
-    public void addAProjectWithTestUserAsAdmin(){
-        User user = userService.getTestAdmin();
-        List<User> adminList = new ArrayList<>();
-        adminList.add(user);
-        Project project = new Project("Building a house on Firefly Lane", userService.getTestOwner(), adminList);
-        UserStory userStory = new UserStory("paint the walls", 4);
-        UserStory userStory2 = new UserStory("build the roof", 1);
-        project.addNewUserStory(userStory);
-        project.addNewUserStory(userStory2);
-        userStory2.makeFavourite();
-        projectDao.add(project);
-    }
-
-    public void addProjectWithTestOwner(){
-        User owner = userService.getTestOwner();
-        Project project = new Project("Test project", owner, new ArrayList<>());
-        projectDao.add(project);
-    }
-
-    public Project getById(UUID id) throws Exception {
+    public Project find(UUID id) throws Exception {
         return projectDao.find(id);
     }
 
@@ -56,27 +30,36 @@ public class ProjectService {
         return projectDao.getProjectsByAdmin(admin);
     }
 
-    public void updateUserStory(UserStory newUserStory, UUID userStoryId, UUID projectId) throws Exception {
-        Project pr = projectDao.find(projectId);
-        List<UserStory> userStories = pr.getUserStories();
-        UserStory us;
-        for (UserStory userStory: userStories) {
-            if(userStory.getId().equals(userStoryId)){
-                us = userStory;
-            }
-        }
-        us = newUserStory;
+    public void createNewProject(String name, User owner, List<User> admins){
+        ProjectCreator projectCreator = new ProjectCreator(projectDao);
+
+        projectCreator.initialize(
+                name,
+                owner,
+                admins
+        );
     }
 
-    public void addNewUserStory(UserStory userStory, Project project) throws Exception {
-        projectDao.find(project.getId()).addNewUserStory(userStory);
+    public void updateUserStory(boolean isFavourite, int currentPercent, UUID userStoryId, UUID projectId) throws NullPointerException {
+        try {
+            Project project = projectDao.find(projectId);
+
+            UserStory userStory = project.findStory(userStoryId);
+
+            userStory.setFavourite(isFavourite);
+            userStory.setCurrentPercent(currentPercent);
+
+        }catch(NullPointerException notFoundElement){
+            throw new NullPointerException("Item not found during userStory update");
+        }
     }
+
 
     public List<Project> getProjectsByOwner(User user) {
         return projectDao.getProjectsByOwner(user);
     }
 
-    public List<Project> getAll() {
+    public List<Project> getAll(){
         return projectDao.getAll();
     }
 }

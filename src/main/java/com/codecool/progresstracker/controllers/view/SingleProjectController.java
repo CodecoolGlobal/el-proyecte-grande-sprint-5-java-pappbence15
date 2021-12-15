@@ -31,7 +31,7 @@ public class SingleProjectController {
     @ResponseBody
     @GetMapping("/admin/project/{projectId}")
     public ResponseEntity<?> adminProjectPage(@PathVariable UUID projectId) throws Exception {
-        Project project = projectService.getById(projectId);
+        Project project = projectService.find(projectId);
 
         User user = userService.getLoggedInUser();
         UserType userType = user.getUserType();
@@ -46,7 +46,7 @@ public class SingleProjectController {
     @ResponseBody
     @GetMapping("/owner/project/{projectId}")
     public ResponseEntity<?> ownerProjectPage(@PathVariable UUID projectId) throws Exception {
-        Project project = projectService.getById(projectId);
+        Project project = projectService.find(projectId);
 
         User user = userService.getLoggedInUser();
         UserType userType = user.getUserType();

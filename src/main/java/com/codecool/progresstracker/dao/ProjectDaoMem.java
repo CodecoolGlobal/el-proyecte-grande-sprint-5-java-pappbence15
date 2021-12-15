@@ -2,14 +2,14 @@ package com.codecool.progresstracker.dao;
 
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-@Service
+@Repository
 public class ProjectDaoMem implements ProjectDao {
     private final List<Project> projects;
 
@@ -24,13 +24,13 @@ public class ProjectDaoMem implements ProjectDao {
     }
 
     @Override
-    public Project find(UUID id) throws Exception {
+    public Project find(UUID id) throws NullPointerException {
         for (Project project : projects) {
             if (project.getId().equals(id)){
                 return project;
             }
         }
-        throw new Exception("ProjectNotFound");
+        throw new NullPointerException("ProjectNotFound");
     }
 
     @Override

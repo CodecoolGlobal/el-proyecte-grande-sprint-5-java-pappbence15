@@ -13,4 +13,7 @@ public interface UserDao {
     void add(User user);
     List<User> getAllUsers();
     User getValidLoginUser(LoginAttempt loginAttempt);
+
+
+    List<User> getAll();
 }

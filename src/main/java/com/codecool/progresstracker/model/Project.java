@@ -1,47 +1,19 @@
 package com.codecool.progresstracker.model;
 
-import java.util.ArrayList;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.util.List;
 import java.util.UUID;
 
+@Data
+@AllArgsConstructor
 public class Project {
     private final UUID id;
     private final String name;
     private List<UserStory> userStories;
     private final User owner;
-    private final List<User> admins;
-
-    public Project(String name, User owner, List<User> admins) {
-        this.id = UUID.randomUUID();
-        this.name = name;
-        this.owner = owner;
-        this.admins = admins;
-        this.userStories = new ArrayList<>();
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<UserStory> getUserStories() {
-        return userStories;
-    }
-
-    public void addNewUserStory(UserStory userStory){
-        userStories.add(userStory);
-    }
-
-    public User getOwner() {
-        return owner;
-    }
-
-    public List<User> getAdmins() {
-        return admins;
-    }
+    private List<User> admins;
 
     public double getPercentage(){
         double totalStoryPoints = userStories.stream()
@@ -51,5 +23,14 @@ public class Project {
                 .map(story -> story.getMAX_PROGRESS()*story.getCurrentPercent())
                 .reduce(0.0, Double::sum);
         return completed / totalStoryPoints;
+    }
+
+    public UserStory findStory(UUID storyId) throws NullPointerException{
+        for (UserStory userStory: userStories) {
+            if (userStory.getId().equals(storyId)){
+                return userStory;
+            }
+        }
+        throw new NullPointerException("No userStory found with given id.");
     }
 }
