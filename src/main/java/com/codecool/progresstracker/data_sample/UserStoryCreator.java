@@ -1,6 +1,7 @@
 package com.codecool.progresstracker.data_sample;
 
 import com.codecool.progresstracker.dao.UserStoryDao;
+import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.UserStory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,7 @@ public class UserStoryCreator {
         this.userStoryDao = userStoryDao;
     }
 
-    public void initialize(String name, int max_progress, boolean isFavourite) {
+    public void initialize(Project project, String name, int max_progress, boolean isFavourite) {
         UserStory userStory = new UserStory(
                 UUID.randomUUID(),
                 name,
@@ -29,5 +30,6 @@ public class UserStoryCreator {
         );
 
         userStoryDao.add(userStory);
+        project.addStory(userStory);
     }
 }
