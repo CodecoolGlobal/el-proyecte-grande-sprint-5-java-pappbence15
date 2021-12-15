@@ -2,11 +2,12 @@ import './style/App.css';
 import './style/Navbar.css';
 import './style/Header.css'
 import './style/Footer.css'
-import Navbar from "./Navbar";
+import './style/Settings.css';
 import Header from "./Header";
 import Footer from "./Footer";
 import {useState} from "react";
 import ProjectList from "./ProjectList";
+import Settings from "./Settings";
 
 function App() {
     const [component, setComponent] = useState('All')
@@ -32,7 +33,7 @@ function renderDynamicComponent(component){
         case 'Projects':
             return (<ProjectList userType={"admin"}/>)
         case 'Settings':
-            return (<p>settings</p>)
+            return <Settings/>
     }
 }
 export default App;
