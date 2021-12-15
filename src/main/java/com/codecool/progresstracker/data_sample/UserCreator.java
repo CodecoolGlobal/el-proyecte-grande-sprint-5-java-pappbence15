@@ -1,7 +1,6 @@
-package com.codecool.progresstracker.controllers.data_sample;
+package com.codecool.progresstracker.data_sample;
 
 import com.codecool.progresstracker.dao.UserDao;
-import com.codecool.progresstracker.dao.UserDaoMem;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +20,15 @@ public class UserCreator {
     }
 
     public void initialize(UserType userType, String name, String userName, String password) {
-        User user = new User();
+        User user = new User(
+                UUID.randomUUID(),
+                userType,
+                name,
+                userName,
+                password,
+                new HashMap<>()
+        );
 
-        user.setId(UUID.randomUUID());
-        user.setUserType(userType);
-        user.setName(name);
-        user.setUserName(userName);
-        user.setPassword(password);
-        user.setUserSettings(new HashMap<>());
         user.addSetting("dark-mode", false);
         user.addSetting("notifications", false);
 

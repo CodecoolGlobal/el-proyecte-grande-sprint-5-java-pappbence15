@@ -1,4 +1,4 @@
-package com.codecool.progresstracker.controllers.data_sample;
+package com.codecool.progresstracker.data_sample;
 
 import com.codecool.progresstracker.dao.ProjectDao;
 import com.codecool.progresstracker.model.Project;
@@ -13,7 +13,7 @@ import java.util.UUID;
 @Component
 public class ProjectCreator {
 
-    private ProjectDao projectDao;
+    private final ProjectDao projectDao;
 
     @Autowired
     public ProjectCreator(ProjectDao projectDao){
@@ -21,13 +21,13 @@ public class ProjectCreator {
     }
 
     public void initialize(String name, User owner, List<User> admins) {
-        Project project = new Project();
-
-        project.setId(UUID.randomUUID());
-        project.setName(name);
-        project.setOwner(owner);
-        project.setAdmins(admins);
-        project.setUserStories(new ArrayList<>());
+        Project project = new Project(
+                UUID.randomUUID(),
+                name,
+                new ArrayList<>(),
+                owner,
+                admins
+        );
 
         projectDao.add(project);
     }

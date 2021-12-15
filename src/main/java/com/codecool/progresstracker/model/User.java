@@ -1,21 +1,19 @@
 package com.codecool.progresstracker.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
 @Data
-@NoArgsConstructor
+@AllArgsConstructor
 public class User {
-    private final UUID id = UUID.randomUUID();
-    private UserType userType;
-    private String name;
-    private String userName;
+    private final UUID id;
+    private final UserType userType;
+    private final String name;
+    private final String userName;
     private String password;
     private Map<String, Boolean> userSettings;
 

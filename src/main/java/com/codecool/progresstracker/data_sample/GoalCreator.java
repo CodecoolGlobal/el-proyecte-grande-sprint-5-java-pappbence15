@@ -1,4 +1,4 @@
-package com.codecool.progresstracker.controllers.data_sample;
+package com.codecool.progresstracker.data_sample;
 
 import com.codecool.progresstracker.dao.GoalDao;
 import com.codecool.progresstracker.model.Goal;
@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Component
 public class GoalCreator {
-    private GoalDao goalDao;
+    private final GoalDao goalDao;
 
     @Autowired
     public GoalCreator(GoalDao goalDao){
@@ -19,12 +19,12 @@ public class GoalCreator {
     }
 
     public void initialize(String text, Statuses status, Date deadline){
-        Goal goal = new Goal();
-
-        goal.setId(UUID.randomUUID());
-        goal.setText(text);
-        goal.setStatus(status);
-        goal.setDeadline(deadline);
+        Goal goal = new Goal(
+                UUID.randomUUID(),
+                text,
+                status,
+                deadline
+        );
 
         goalDao.add(goal);
     }

@@ -1,19 +1,18 @@
 package com.codecool.progresstracker.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Data
-@NoArgsConstructor
+@AllArgsConstructor
 public class Project {
-    private UUID id;
-    private String name;
+    private final UUID id;
+    private final String name;
     private List<UserStory> userStories;
-    private User owner;
+    private final User owner;
     private List<User> admins;
 
     public double getPercentage(){
@@ -24,5 +23,14 @@ public class Project {
                 .map(story -> story.getMAX_PROGRESS()*story.getCurrentPercent())
                 .reduce(0.0, Double::sum);
         return completed / totalStoryPoints;
+    }
+
+    public UserStory findStory(UUID storyId) throws NullPointerException{
+        for (UserStory userStory: userStories) {
+            if (userStory.getId().equals(storyId)){
+                return userStory;
+            }
+        }
+        throw new NullPointerException("No userStory found with given id.");
     }
 }

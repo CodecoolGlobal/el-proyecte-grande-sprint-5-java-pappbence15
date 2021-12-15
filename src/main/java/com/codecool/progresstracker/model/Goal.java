@@ -1,16 +1,16 @@
 package com.codecool.progresstracker.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 import java.util.UUID;
 
 @Data
-@NoArgsConstructor
+@AllArgsConstructor
 public class Goal {
 
-    private UUID id;
+    private final UUID id;
     private String text;
     private Statuses status;
     private Date deadline;
