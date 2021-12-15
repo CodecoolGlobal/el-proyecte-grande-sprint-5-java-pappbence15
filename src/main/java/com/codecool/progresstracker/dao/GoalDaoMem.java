@@ -1,6 +1,6 @@
 package com.codecool.progresstracker.dao;
 
-import com.codecool.progresstracker.model.Goal;
+import com.codecool.progresstracker.model.goal.Goal;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

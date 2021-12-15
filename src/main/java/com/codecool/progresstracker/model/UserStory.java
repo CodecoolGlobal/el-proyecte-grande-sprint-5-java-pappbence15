@@ -1,8 +1,10 @@
 package com.codecool.progresstracker.model;
 
+import com.codecool.progresstracker.model.goal.UserStoryGoal;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -14,6 +16,11 @@ public class UserStory {
     private int currentProgress;
     private double currentPercent;
     private boolean isFavourite;
+    private List<UserStoryGoal> goals;
+
+    public void add(UserStoryGoal userStoryGoal){
+        this.goals.add(userStoryGoal);
+    }
 
     public void setCurrentPercent(int currentPercent) {
         this.currentPercent = currentPercent;

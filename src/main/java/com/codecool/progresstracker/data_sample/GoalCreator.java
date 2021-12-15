@@ -1,8 +1,13 @@
 package com.codecool.progresstracker.data_sample;
 
 import com.codecool.progresstracker.dao.GoalDao;
-import com.codecool.progresstracker.model.Goal;
+import com.codecool.progresstracker.model.Project;
+import com.codecool.progresstracker.model.UserStory;
+import com.codecool.progresstracker.model.goal.Goal;
 import com.codecool.progresstracker.model.Statuses;
+import com.codecool.progresstracker.model.goal.GoalType;
+import com.codecool.progresstracker.model.goal.ProjectGoal;
+import com.codecool.progresstracker.model.goal.UserStoryGoal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,14 +23,29 @@ public class GoalCreator {
         this.goalDao = goalDao;
     }
 
-    public void initialize(String text, Statuses status, Date deadline){
-        Goal goal = new Goal(
+    public void initializeProjectGoal(String text, Statuses status, Date deadline, Project project){
+        ProjectGoal projectGoal = new ProjectGoal(
                 UUID.randomUUID(),
                 text,
                 status,
-                deadline
+                deadline,
+                project
+        );
+        project.addProjectGoal(projectGoal);
+
+        goalDao.add(projectGoal);
+    }
+
+    public void initializeUserStoryGoal(String text, Statuses status, Date deadline, UserStory userStory){
+        UserStoryGoal userStoryGoal = new UserStoryGoal(
+                UUID.randomUUID(),
+                text,
+                status,
+                deadline,
+                userStory
         );
 
-        goalDao.add(goal);
+        userStory.add(userStoryGoal);
+        goalDao.add(userStoryGoal);
     }
 }

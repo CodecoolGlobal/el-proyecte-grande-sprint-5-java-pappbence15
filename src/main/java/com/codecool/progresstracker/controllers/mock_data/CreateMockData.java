@@ -2,11 +2,11 @@ package com.codecool.progresstracker.controllers.mock_data;
 
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
-import com.codecool.progresstracker.model.UserStory;
 import com.codecool.progresstracker.model.UserType;
 import com.codecool.progresstracker.service.ProjectService;
 import com.codecool.progresstracker.service.UserService;
 import com.codecool.progresstracker.service.UserStoryService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -6,6 +6,7 @@ import com.codecool.progresstracker.model.UserStory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 @Component
@@ -26,7 +27,8 @@ public class UserStoryCreator {
                 max_progress,
                 this.BASE_STATUS,
                 this.BASE_STATUS,
-                isFavourite
+                isFavourite,
+                new ArrayList<>()
         );
 
         userStoryDao.add(userStory);
