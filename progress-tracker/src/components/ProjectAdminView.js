@@ -16,8 +16,6 @@ export default function ProjectAdminView(props) {
                 (result) => {
                     setProject(result);
                     setIsLoaded(true);
-                    console.log(result)
-                    console.log(project)
                 },
                 (error) => {
                     setIsLoaded(true);

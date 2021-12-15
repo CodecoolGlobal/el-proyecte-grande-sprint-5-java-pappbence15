@@ -32,8 +32,6 @@ public class SettingsController {
     public void setSettings(@PathVariable String key, @PathVariable String value){
         boolean newValue;
         newValue = Objects.equals(value, "true");
-        System.out.println(key);
-        System.out.println(newValue);
         userService.updateUserSettings(key, newValue);
 //        return new ResponseEntity<>(userService.getLoggedInUser().getUserSettings(), HttpStatus.OK);
     }
