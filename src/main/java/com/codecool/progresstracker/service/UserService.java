@@ -42,8 +42,8 @@ public class UserService {
         userCreator.initialize(userType, name, username, password);
     }
 
-    public void updateUserSettings(UUID userId, String key, boolean value){
-        Map<String, Boolean> userSettings = userDao.find(userId).getUserSettings();
+    public void updateUserSettings(String key, boolean value){
+        Map<String, Boolean> userSettings = getLoggedInUser().getUserSettings();
         boolean oldValue = userSettings.get(key);
         userSettings.replace(key, oldValue, value);
     }
