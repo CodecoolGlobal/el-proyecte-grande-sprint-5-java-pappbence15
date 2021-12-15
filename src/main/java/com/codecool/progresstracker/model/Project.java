@@ -33,4 +33,8 @@ public class Project {
         }
         throw new NullPointerException("No userStory found with given id.");
     }
+
+    public void addStory(UserStory userStory){
+        this.userStories.add(userStory);
+    }
 }
