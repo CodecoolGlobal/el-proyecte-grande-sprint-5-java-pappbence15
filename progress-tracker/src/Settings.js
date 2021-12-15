@@ -1,3 +1,5 @@
+import * as url from "url";
+
 const {useState, useEffect} = require("react");
 
 function Settings(){
@@ -19,7 +21,7 @@ function Settings(){
                     setError(error);
                 }
             )
-    }, [darkMode, notifications])
+    }, [])
 
     if(error){
         return(<div className='error-message'>
@@ -37,27 +39,34 @@ function Settings(){
                 <div className='settings-mode'>
                     <p>Notifications</p>
                 <label className="switch">
-                    <input type="checkbox" value={true}/>
+                    <input type="checkbox" checked={notifications} onClick={handleNotificationClick}/>
                         <span className="slider round"/>
                 </label>
                 </div>
                 <div className='settings-mode'>
                     <p>Dark mode</p>
                     <label className="switch">
-                        <input type="checkbox" value={darkMode}/>
+                        <input type="checkbox" checked={darkMode} onClick={handleDarkModeClick}/>
                             <span className="slider round"/>
                     </label>
                 </div>
             </div>
         )
     }
+
+    function handleNotificationClick(){
+        const url = `/settings/update/notifications/${!notifications}`;
+        fetch(url, {method: "POST"});
+        setNotifications(!notifications);
+    }
+
+    function handleDarkModeClick() {
+        const url = `/settings/update/darkMode/${!darkMode}`;
+        fetch(url, {method: "POST"});
+        setDarkMode(!darkMode);
+    }
 }
 
-/*function handleClick(props){
-    useEffect(
-        ()=>{
-            fetch("settings/")
-        }
-    )
-}*/
+
+
 export default Settings;
