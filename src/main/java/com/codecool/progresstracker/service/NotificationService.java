@@ -4,7 +4,6 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.Properties;
 
-
 public class NotificationService {
     public static void sendMail(){
         //send("CodeBootSale@gmail.com","codebootsale", "CodeBootSale@gmail.com","please work","it works?");

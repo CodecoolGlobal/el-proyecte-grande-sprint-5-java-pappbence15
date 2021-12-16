@@ -1,14 +1,12 @@
 package com.codecool.progresstracker.model;
 
-import java.util.List;
-
 public enum UserType {
     PROJECT_OWNER("Project owner"),
     ADMIN("Admin"),
     SUPER_USER("Super user");
 
 
-    private String fancyUserType;
+    private final String fancyUserType;
 
     public String getFancyUserType(){
         return this.fancyUserType;

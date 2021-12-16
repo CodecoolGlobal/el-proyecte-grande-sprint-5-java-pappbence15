@@ -1,15 +1,19 @@
-package com.codecool.progresstracker.controllers.mock_data;
+package com.codecool.progresstracker.data_sample;
 
 import com.codecool.progresstracker.model.Project;
+import com.codecool.progresstracker.model.Statuses;
 import com.codecool.progresstracker.model.User;
-import com.codecool.progresstracker.model.UserStory;
 import com.codecool.progresstracker.model.UserType;
+import com.codecool.progresstracker.service.GoalService;
 import com.codecool.progresstracker.service.ProjectService;
 import com.codecool.progresstracker.service.UserService;
 import com.codecool.progresstracker.service.UserStoryService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,12 +22,15 @@ public class CreateMockData {
     private final UserService userService;
     private final ProjectService projectService;
     private final UserStoryService userStoryService;
+    private final GoalService goalService;
 
     @Autowired
-    public CreateMockData(UserService userService, ProjectService projectService, UserStoryService userStoryService){
+    public CreateMockData(UserService userService, ProjectService projectService, UserStoryService userStoryService, GoalService goalService) {
         this.userService = userService;
         this.projectService = projectService;
         this.userStoryService = userStoryService;
+        this.goalService = goalService;
+        spamMockData();//TODO TEST -> DELETE
     }
 
     public void spamMockData(){
@@ -54,12 +61,12 @@ public class CreateMockData {
 
         List<Project> projects = projectService.getAll();
 
-        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 1",75, false);
-        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 2",80, false);
-        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 3",96, true);
+        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 1", 0.65, false);
+        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 2", 0.7,false);
+        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 3", 0.3, true);
 
-        userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 4",1, true);
-        userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 5",300, false);
-        userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 6",96, true);
+        userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 4",0.01, true);
+        userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 5",0.8, false);
+        userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 6",0.96, true);
     }
 }

@@ -3,6 +3,7 @@ package com.codecool.progresstracker.data_sample;
 import com.codecool.progresstracker.dao.UserDao;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

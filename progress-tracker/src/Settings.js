@@ -1,11 +1,11 @@
-import * as url from "url";
-
 const {useState, useEffect} = require("react");
 
-function Settings(props){
+function Settings(){
+    const [darkMode, setDarkMode] = useState(false);
     const [notifications, setNotifications] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
+
     useEffect(()=>{
         fetch("/settings")
             .then(res => res.json())
@@ -36,14 +36,14 @@ function Settings(props){
                 <div className='settings-mode'>
                     <p>Notifications</p>
                 <label className="switch">
-                    <input type="checkbox" checked={notifications} onClick={handleNotificationClick}/>
+                    <input type="checkbox" checked={notifications} onChange={handleNotificationClick}/>
                         <span className="slider round"/>
                 </label>
                 </div>
                 <div className='settings-mode'>
                     <p>Dark mode</p>
                     <label className="switch">
-                        <input type="checkbox" checked={props.darkMode} onClick={handleDarkModeClick}/>
+                        <input type="checkbox" checked={props.darkMode} onChange={handleDarkModeClick}/>
                             <span className="slider round"/>
                     </label>
                 </div>
