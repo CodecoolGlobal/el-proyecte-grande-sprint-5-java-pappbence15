@@ -23,7 +23,7 @@ export default function ProjectAdminView(props) {
                     setError(error);
                 }
             )
-    }, [project, props.userType, props.detailedView])
+    }, [] )
 
 
     if (error) {
@@ -53,8 +53,8 @@ export default function ProjectAdminView(props) {
                 </p>
                 <h3>User stories</h3>
                 <ul>
-                    {stories.map(s => <span>
-                        <UserStory key={s.id} story={s}/>
+                    {stories.map(s => <span key={s.id}>
+                        <UserStory story={s}/>
                         <ProgressBar size={"small"}
                                      percentage={100*(s.currentPercent)}
                         />
