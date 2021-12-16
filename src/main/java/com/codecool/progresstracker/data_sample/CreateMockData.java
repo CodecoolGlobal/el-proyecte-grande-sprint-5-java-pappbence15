@@ -33,7 +33,7 @@ public class CreateMockData {
         spamMockData();//TODO TEST -> DELETE
     }
 
-    public void spamMockData() throws ParseException {
+    public void spamMockData(){
         //String name, User owner, List<User> admins
         userService.createNewUser(UserType.PROJECT_OWNER,"owner1", "owner1Username", "valami");
         userService.createNewUser(UserType.PROJECT_OWNER,"owner2", "owner1Username", "valam2");
@@ -61,12 +61,12 @@ public class CreateMockData {
 
         List<Project> projects = projectService.getAll();
 
-        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 1", 65, false);
-        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 2", 70,false);
-        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 3", 70, true);
+        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 1", 0.65, false);
+        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 2", 0.7,false);
+        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 3", 0.7, true);
 
-        userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 4",1, true);
-        userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 5",300, false);
-        userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 6",96, true);
+        userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 4",0.01, true);
+        userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 5",0.8, false);
+        userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 6",0.96, true);
     }
 }

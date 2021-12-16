@@ -41,7 +41,7 @@ export default function ProjectAdminView(props) {
                     {project.name}
                 </h2>
                 <ProgressBar size={"large"}
-                             percentage={Math.round(project.percentage * 100)}
+                             percentage={project.percentage * 100}
                 />
                 <p>
                     <strong>Owner: </strong>
@@ -56,7 +56,7 @@ export default function ProjectAdminView(props) {
                     {stories.map(s => <span>
                         <UserStory key={s.id} story={s}/>
                         <ProgressBar size={"small"}
-                                     percentage={Math.round(100*(s.currentProgress/s.max_PROGRESS))}
+                                     percentage={100*(s.currentPercent)}
                         />
                     </span>)}
 
