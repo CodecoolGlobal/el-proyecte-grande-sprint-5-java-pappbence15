@@ -4,7 +4,7 @@ export default function UserStory(props){
     return(
         <li>
             {props.story.name}
-            <Star full={props.isFavourite}/>
+            <Star full={props.story.favourite} id={props.story.id}/>
         </li>
     )
 }
