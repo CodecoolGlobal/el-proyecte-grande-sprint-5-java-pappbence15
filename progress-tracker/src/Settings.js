@@ -59,8 +59,8 @@ function Settings(props){
 
     function handleDarkModeClick() {
         const url = `/settings/update/darkMode/${!props.darkMode}`;
-        fetch(url, {method: "POST"});
-        props.setTheme(!props.darkMode);
+        fetch(url, {method: "POST"}).then(() => props.setTheme(!props.darkMode));
+
     }
 }
 
