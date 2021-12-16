@@ -4,10 +4,7 @@ import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.Statuses;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
-import com.codecool.progresstracker.service.GoalService;
-import com.codecool.progresstracker.service.ProjectService;
-import com.codecool.progresstracker.service.UserService;
-import com.codecool.progresstracker.service.UserStoryService;
+import com.codecool.progresstracker.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,16 +21,20 @@ public class CreateMockData {
     private final UserStoryService userStoryService;
     private final GoalService goalService;
 
+    private final SimpleDateFormat dateFormat;
+
     @Autowired
-    public CreateMockData(UserService userService, ProjectService projectService, UserStoryService userStoryService, GoalService goalService) {
+    public CreateMockData(UserService userService, ProjectService projectService, UserStoryService userStoryService, GoalService goalService) throws ParseException {
         this.userService = userService;
         this.projectService = projectService;
         this.userStoryService = userStoryService;
         this.goalService = goalService;
-        spamMockData();//TODO TEST -> DELETE
+
+        this.dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        spamMockData();//TODO TEST -> DELETE;
     }
 
-    public void spamMockData(){
+    public void spamMockData() throws ParseException {
         //String name, User owner, List<User> admins
         userService.createNewUser(UserType.PROJECT_OWNER,"Kis Ferenc", "Feri_vagyok_a", "valami");
         userService.createNewUser(UserType.PROJECT_OWNER,"Récsán Gabi", "gaborrecsan1", "valam2");
@@ -68,5 +69,7 @@ public class CreateMockData {
         userStoryService.createNewUserStory(projects.get(1),"Pénzgyűjtés",0.01, true);
         userStoryService.createNewUserStory(projects.get(1),"Final script",0.8, false);
         userStoryService.createNewUserStory(projects.get(1),"Ruha design",0.96, true);
+
+
     }
 }
