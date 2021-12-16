@@ -17,12 +17,12 @@ public class RegistrationService {
         this.userDao = userDao;
     }
 
-    public void registerUser(String username, String name, String password, String newUserType){
+    public void registerUser(String username, String name, String email, String password, String newUserType){
         UserType userType = stringToUserTypeConverter(newUserType);
 
         UserCreator userCreator = new UserCreator(userDao);
 
-        userCreator.initialize(userType, name, username, password);
+        userCreator.initialize(userType, name, username, email, password);
     }
 
     public UserType stringToUserTypeConverter (String userType){

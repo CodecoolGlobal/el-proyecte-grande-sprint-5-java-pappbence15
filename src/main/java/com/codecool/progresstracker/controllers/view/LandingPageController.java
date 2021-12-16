@@ -22,7 +22,7 @@ public class LandingPageController {
                                  UserStoryService userStoryService,
                                  UserStoryService userStoryService1,
                                  GoalService goalService) throws ParseException {
-        NotificationService.sendMail();
+        //NotificationService.sendMail();
 
         CreateMockData createMockData = new CreateMockData(userService, projectService, userStoryService, goalService);//TODO TEST -> DELETE
         createMockData.spamMockData();//TODO TEST -> DELETE
