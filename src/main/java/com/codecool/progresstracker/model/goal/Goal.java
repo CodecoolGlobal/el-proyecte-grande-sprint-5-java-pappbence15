@@ -17,5 +17,4 @@ public abstract class Goal {
     private Statuses status;
     private Date deadline;
     private final GoalType goalType;
-    //project/userStory parent, id/parent as field??
 }

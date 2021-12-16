@@ -2,8 +2,9 @@ package com.codecool.progresstracker.dao.impl;
 
 import com.codecool.progresstracker.model.goal.ProjectGoal;
 import com.codecool.progresstracker.model.goal.UserStoryGoal;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.codecool.progresstracker.dao.GoalDao;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -17,8 +18,8 @@ public class GoalDaoMem implements GoalDao{
 
     @Autowired
     public GoalDaoMem(){
-        this.userStoryGoals = new ArrayList<UserStoryGoal>();
-        this.projectGoals = new ArrayList<ProjectGoal>();
+        this.userStoryGoals = new ArrayList<>();
+        this.projectGoals = new ArrayList<>();
     }
 
     @Override

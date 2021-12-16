@@ -9,16 +9,16 @@ function Navbar(props){
     return(
         <div className='navbar-container'>
             <div className='navbar-link-container'>
-                <NavbarLink url={'#'} name={projects} changeComponent={props.change}/>
+                <NavbarLink name={projects} changeComponent={props.change}/>
             </div>
             <div className='navbar-link-container'>
-                <NavbarLink url={'#'} name={latest} changeComponent={props.change}/>
+                <NavbarLink name={latest} changeComponent={props.change}/>
             </div>
             <div className='navbar-link-container'>
-                <NavbarLink url={'#'} name={all} changeComponent={props.change}/>
+                <NavbarLink name={all} changeComponent={props.change}/>
             </div>
             <div className='navbar-link-container'>
-                <NavbarLink url={'#'} name={settings} changeComponent={props.change}/>
+                <NavbarLink name={settings} changeComponent={props.change}/>
             </div>
         </div>
     )

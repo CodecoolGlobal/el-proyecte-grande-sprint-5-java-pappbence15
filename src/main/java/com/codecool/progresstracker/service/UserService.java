@@ -48,8 +48,6 @@ public class UserService {
         userSettings.replace(key, oldValue, value);
     }
 
-
-    //TODO TEST -> DELETE
     public List<User> getAll(){
         return userDao.getAll();
     }

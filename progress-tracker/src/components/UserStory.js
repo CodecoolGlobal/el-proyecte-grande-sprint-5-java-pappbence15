@@ -14,11 +14,5 @@ export default function UserStory(props){
                 <Star full={props.story.favourite} id={props.story.id}/>
             </CardContent>
         </Card>
-        /*<li>
-            <ProgressBar size={"small"}
-                         percentage={100*(props.story.currentPercent)}/>
-            {props.story.name}
-            <Star full={props.story.favourite} id={props.story.id}/>
-        </li>*/
     )
 }

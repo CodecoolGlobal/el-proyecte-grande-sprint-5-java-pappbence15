@@ -1,7 +1,7 @@
 function Footer(props) {
     return (
         <div className="App-footer">
-            <a className={"email"} href={"mailto:example@email.com"}>example@email.com</a>
+            <a className={"email"} href={"mailto:advancedhelloworldkft@gmail.com"}>advancedhelloworldkft@gmail.com</a>
             <p>{props.owner}</p>
             <p className="App-creators">
                 Made by:

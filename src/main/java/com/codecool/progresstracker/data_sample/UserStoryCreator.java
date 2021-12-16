@@ -14,7 +14,6 @@ import java.util.UUID;
 public class UserStoryCreator {
 
     private final UserStoryDao userStoryDao;
-    private final int BASE_STATUS = 0;
 
     @Autowired
     public UserStoryCreator(UserStoryDao userStoryDao) {

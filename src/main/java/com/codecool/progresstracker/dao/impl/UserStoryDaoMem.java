@@ -2,6 +2,8 @@ package com.codecool.progresstracker.dao.impl;
 
 import com.codecool.progresstracker.dao.UserStoryDao;
 import com.codecool.progresstracker.model.UserStory;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
 public class UserStoryDaoMem implements UserStoryDao {
     private final List<UserStory> userStories;
 
+    @Autowired
     public UserStoryDaoMem() {
         this.userStories = new ArrayList<>();
     }

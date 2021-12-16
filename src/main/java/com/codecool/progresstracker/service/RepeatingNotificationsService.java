@@ -26,5 +26,6 @@ public class RepeatingNotificationsService {
     @Scheduled(cron = "0 0 8 * * *", zone ="Europe/Budapest")
     public void scheduleOverdueGoalHandling() throws ParseException {
         goalDeadlineHandler.sendOverDueNotifications();
+        System.out.println("start emailSender");
     }
 }

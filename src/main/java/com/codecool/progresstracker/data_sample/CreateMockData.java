@@ -1,7 +1,6 @@
 package com.codecool.progresstracker.data_sample;
 
 import com.codecool.progresstracker.model.Project;
-import com.codecool.progresstracker.model.Statuses;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
 import com.codecool.progresstracker.service.*;
@@ -31,7 +30,7 @@ public class CreateMockData {
         this.goalService = goalService;
 
         this.dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        spamMockData();//TODO TEST -> DELETE;
+        spamMockData();
     }
 
     public void spamMockData() throws ParseException {
@@ -72,6 +71,6 @@ public class CreateMockData {
         userStoryService.createNewUserStory(projects.get(1),"Final script",0.8, false);
         userStoryService.createNewUserStory(projects.get(1),"Ruha design",0.96, true);
 
-
+        //thanks for deleting mock data for goals :)
     }
 }

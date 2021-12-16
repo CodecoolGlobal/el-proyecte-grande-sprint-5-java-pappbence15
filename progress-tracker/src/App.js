@@ -33,7 +33,7 @@ function App() {
         <div className={backgroundColor} id='main-div'>
             <div className="App">
                 <Header name={"Name of the Brand"} changeComponent={changeComponent}/>
-                <Footer owner={"©Hello World KFT"} creators={["csillalukacs", "Sjpeti97", "pappbence15", "JustBenS1"]} links={['https://github.com/csillalukacs', "https://github.com/Sjpeti97", "https://github.com/pappbence15", "https://github.com/JustBenS1"]}/>
+                <Footer owner={"©Hello World KFT"} creators={["csillalukacs", "Sjpeti97", "pappbence15", "TheBackendGuy"]} links={['https://github.com/csillalukacs', "https://github.com/Sjpeti97", "https://github.com/pappbence15", "https://github.com/JustBenS1"]}/>
             </div>
             <Container maxWidth="sm">
                 {renderDynamicComponent(component, changeComponent, projectId, changeProjectId, setTheme, darkMode)}
@@ -54,14 +54,12 @@ function renderDynamicComponent(component, changeComponent, projectId, changePro
                                      changeComponent={changeComponent}
                                      changeProject={changeProject}
                                      projectId={projectId}
-
                 />)
             }
         case 'Latest':
             if (projectId) {
                 return (<ProjectAdminView projectId={projectId}
                                           detailedView={false}
-
                 />)
             } else {
                 return (<ProjectList userType={"admin"}

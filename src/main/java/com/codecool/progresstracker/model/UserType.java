@@ -5,7 +5,6 @@ public enum UserType {
     ADMIN("Admin"),
     SUPER_USER("Super user");
 
-
     private final String fancyUserType;
 
     public String getFancyUserType(){

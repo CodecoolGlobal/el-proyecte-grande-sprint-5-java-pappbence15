@@ -4,6 +4,7 @@ import com.codecool.progresstracker.dao.UserDao;
 import com.codecool.progresstracker.model.LoginAttempt;
 import com.codecool.progresstracker.model.User;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.UUID;
 public class UserDaoMem implements UserDao {
     private final List<User> users;
 
+    @Autowired
     public UserDaoMem() {
         users = new ArrayList<>();
     }
@@ -61,11 +63,8 @@ public class UserDaoMem implements UserDao {
         return null;
     }
 
-
-    //TODO TEST -> delete
     @Override
     public List<User> getAll() {
         return users;
     }
-
 }

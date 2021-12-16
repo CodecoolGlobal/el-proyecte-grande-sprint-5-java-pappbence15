@@ -6,7 +6,7 @@ import java.util.Properties;
 
 public class NotificationService {
     public static void sendMail(String receivingParty, String subtext, String message){
-        send("CodeBootSale@gmail.com","codebootsale", receivingParty,subtext,message);
+        send("advancedhelloworldkft@gmail.com","helloworldkft", receivingParty,subtext,message);
     }
     public static void send(String from,String password,String to,String sub,String msg){
         //Get properties object

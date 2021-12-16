@@ -3,6 +3,8 @@ package com.codecool.progresstracker.dao.impl;
 import com.codecool.progresstracker.dao.ProjectDao;
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -14,10 +16,10 @@ import java.util.UUID;
 public class ProjectDaoMem implements ProjectDao {
     private final List<Project> projects;
 
+    @Autowired
     public ProjectDaoMem() {
         this.projects = new ArrayList<>();
     }
-
 
     @Override
     public void add(Project project) {
