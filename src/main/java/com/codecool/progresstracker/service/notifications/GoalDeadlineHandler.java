@@ -18,14 +18,14 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class DailyGoalDeadlineCheckService {
+public class GoalDeadlineHandler {
     private final ProjectDao projectDao;
     private final NotificationService notificationService;
     private final SimpleDateFormat dateFormat;
     private final NotificationsUtil util;
 
     @Autowired
-    public DailyGoalDeadlineCheckService(ProjectDao projectDao){
+    public GoalDeadlineHandler(ProjectDao projectDao){
         this.projectDao = projectDao;
         this.notificationService = new NotificationService();
         this.dateFormat =  new SimpleDateFormat("yyyy-MM-dd");
