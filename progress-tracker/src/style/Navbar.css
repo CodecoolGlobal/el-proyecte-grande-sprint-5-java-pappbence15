@@ -4,6 +4,9 @@
     text-decoration: none;
     color: #61dafb;
 }
+.navbar-link:hover {
+    color: #ff00ff;
+}
 
 
 .navbar-link-container{
