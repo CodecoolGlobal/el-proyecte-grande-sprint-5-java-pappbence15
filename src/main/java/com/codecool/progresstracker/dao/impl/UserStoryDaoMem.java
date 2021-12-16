@@ -6,17 +6,25 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Repository
 public class UserStoryDaoMem implements UserStoryDao {
     private final List<UserStory> userStories;
 
     public UserStoryDaoMem() {
-        this.userStories = new ArrayList<UserStory>();
+        this.userStories = new ArrayList<>();
     }
 
     @Override
     public void add(UserStory userStory) {
         this.userStories.add(userStory);
+    }
+
+    @Override
+    public UserStory find(UUID storyId) {
+        return userStories.stream().filter(s-> Objects.equals(s.getId(), storyId)).collect(Collectors.toList()).get(0);
     }
 }
