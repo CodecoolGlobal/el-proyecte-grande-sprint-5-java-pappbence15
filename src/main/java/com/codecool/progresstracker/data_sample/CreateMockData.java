@@ -24,7 +24,7 @@ public class CreateMockData {
     private final SimpleDateFormat dateFormat;
 
     @Autowired
-    public CreateMockData(UserService userService, ProjectService projectService, UserStoryService userStoryService, GoalService goalService) {
+    public CreateMockData(UserService userService, ProjectService projectService, UserStoryService userStoryService, GoalService goalService) throws ParseException {
         this.userService = userService;
         this.projectService = projectService;
         this.userStoryService = userStoryService;

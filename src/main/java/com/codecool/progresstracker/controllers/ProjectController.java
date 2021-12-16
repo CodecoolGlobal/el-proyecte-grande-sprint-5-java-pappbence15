@@ -2,10 +2,10 @@ package com.codecool.progresstracker.controllers;
 
 import com.codecool.progresstracker.dao.ProjectDao;
 import com.codecool.progresstracker.model.Project;
-import com.codecool.progresstracker.service.notifications.RepeatedMessageSender;
+import com.codecool.progresstracker.service.RepeatingNotificationsService;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
-import com.codecool.progresstracker.service.notifications.builder.DailyGoalDeadlineCheckService;
+import com.codecool.progresstracker.service.notifications.DailyGoalDeadlineCheckService;
 import com.codecool.progresstracker.service.ProjectService;
 import com.codecool.progresstracker.service.UserService;
 
@@ -37,7 +37,7 @@ public class ProjectController {
     public ResponseEntity<?> adminProjectsView() throws ParseException {
         DailyGoalDeadlineCheckService dailyCheck = new DailyGoalDeadlineCheckService(projectDao);
         //dailyCheck.sendOverDueNotifications();
-        RepeatedMessageSender repeatedMessageSender= new RepeatedMessageSender(projectDao);
+        RepeatingNotificationsService repeatedMessageSender= new RepeatingNotificationsService(projectDao);
         repeatedMessageSender.scheduleFixedRateTask();
         User user = userService.getLoggedInUser();
         UserType userType = user.getUserType();

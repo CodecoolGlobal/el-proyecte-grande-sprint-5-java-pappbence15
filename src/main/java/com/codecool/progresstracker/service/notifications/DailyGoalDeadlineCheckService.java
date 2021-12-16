@@ -1,4 +1,4 @@
-package com.codecool.progresstracker.service.notifications.builder;
+package com.codecool.progresstracker.service.notifications;
 
 import com.codecool.progresstracker.dao.ProjectDao;
 
@@ -6,7 +6,7 @@ import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.goal.ProjectGoal;
 
-import com.codecool.progresstracker.service.NotificationService;
+import com.codecool.progresstracker.service.notifications.builder.NotificationService;
 import com.codecool.progresstracker.service.notifications.builder.util.NotificationsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.codecool.progresstracker.service;
+package com.codecool.progresstracker.service.notifications.builder;
 
 import javax.mail.*;
 import javax.mail.internet.*;
