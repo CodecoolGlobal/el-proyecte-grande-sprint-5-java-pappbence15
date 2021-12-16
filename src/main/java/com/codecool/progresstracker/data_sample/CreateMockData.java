@@ -36,6 +36,7 @@ public class CreateMockData {
 
     public void spamMockData() throws ParseException {
         //String name, User owner, List<User> admins
+
         userService.createNewUser(UserType.PROJECT_OWNER,"Kis Ferenc", "Feri_vagyok_a", "valami@valami.hu","valami");
         userService.createNewUser(UserType.PROJECT_OWNER,"Récsán Gabi", "gaborrecsan1", "valami@valami.hu", "valam2");
         userService.createNewUser(UserType.PROJECT_OWNER,"Simon Peti", "P-dog", "valami@valami.hu", "valam3");
@@ -47,6 +48,7 @@ public class CreateMockData {
         userService.createNewUser(UserType.ADMIN,"Lukács Csilla", "admin3Username", "valami@valami.hu", "pontez3");
         userService.createNewUser(UserType.ADMIN,"Szabó Bence", "admin4Username", "valami@valami.hu", "pontez4");
         userService.createNewUser(UserType.ADMIN,"Benec", "admin5Username", "valami@valami.hu", "pontez5");//5 admins created and saved
+
 
         List<User> userList = userService.getAll();
         List<User> adminList = new ArrayList<>();
