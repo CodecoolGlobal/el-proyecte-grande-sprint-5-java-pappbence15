@@ -34,8 +34,12 @@ public class ProjectController {
     @ResponseBody
     @GetMapping("/admin/projects")
     public ResponseEntity<?> adminProjectsView() throws ParseException {
+        //Call the automated email sender's instance
         RepeatingNotificationsService repeatedMessageSender= new RepeatingNotificationsService(projectDao);
+        //for demo only, immediate call of email sending service.
+        //Independent of the current time, TODO: please delete direct method call after the demo
         repeatedMessageSender.scheduleOverdueGoalHandling();
+
         User user = userService.getLoggedInUser();
         UserType userType = user.getUserType();
 

@@ -1,6 +1,7 @@
 package com.codecool.progresstracker.data_sample;
 
 import com.codecool.progresstracker.model.Project;
+import com.codecool.progresstracker.model.Statuses;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
 import com.codecool.progresstracker.service.*;
@@ -34,19 +35,19 @@ public class CreateMockData {
     }
 
     public void spamMockData() throws ParseException {
-        //String name, User owner, List<User> admins
+        //Crippled the email sending service with setting mock data emails to CodeBootSale@gmail.com, thanks
 
-        userService.createNewUser(UserType.PROJECT_OWNER,"Kis Ferenc", "Feri_vagyok_a", "valami@valami.hu","valami");
-        userService.createNewUser(UserType.PROJECT_OWNER,"Récsán Gabi", "gaborrecsan1", "valami@valami.hu", "valam2");
-        userService.createNewUser(UserType.PROJECT_OWNER,"Simon Peti", "P-dog", "valami@valami.hu", "valam3");
-        userService.createNewUser(UserType.PROJECT_OWNER,"Urbán Urbán", "Urbán", "valami@valami.hu", "valam4");
-        userService.createNewUser(UserType.PROJECT_OWNER,"Ecneb Károly", "Karcsi bácsi", "valami@valami.hu", "valam5");//5 project owners created and saved
+        userService.createNewUser(UserType.PROJECT_OWNER,"Kis Ferenc", "Feri_vagyok_a", "CodeBootSale@gmail.com","valami");
+        userService.createNewUser(UserType.PROJECT_OWNER,"Récsán Gabi", "gaborrecsan1", "CodeBootSale@gmail.com", "valam2");
+        userService.createNewUser(UserType.PROJECT_OWNER,"Simon Peti", "P-dog", "CodeBootSale@gmail.com", "valam3");
+        userService.createNewUser(UserType.PROJECT_OWNER,"Urbán Urbán", "Urbán", "CodeBootSale@gmail.com", "valam4");
+        userService.createNewUser(UserType.PROJECT_OWNER,"Ecneb Károly", "Karcsi bácsi", "CodeBootSale@gmail.com", "valam5");//5 project owners created and saved
 
-        userService.createNewUser(UserType.ADMIN,"Mr. X, ", "admin1Username", "valami@valami.hu", "pontez1");
-        userService.createNewUser(UserType.ADMIN,"P-dog", "admin2Username", "valami@valami.hu", "pontez2");
-        userService.createNewUser(UserType.ADMIN,"Lukács Csilla", "admin3Username", "valami@valami.hu", "pontez3");
-        userService.createNewUser(UserType.ADMIN,"Szabó Bence", "admin4Username", "valami@valami.hu", "pontez4");
-        userService.createNewUser(UserType.ADMIN,"Benec", "admin5Username", "valami@valami.hu", "pontez5");//5 admins created and saved
+        userService.createNewUser(UserType.ADMIN,"TheBackEndGuy, ", "admin1Username", "CodeBootSale@gmail.com", "pontez1");
+        userService.createNewUser(UserType.ADMIN,"P-dog", "admin2Username", "CodeBootSale@gmail.com", "pontez2");
+        userService.createNewUser(UserType.ADMIN,"Lukács Csilla", "admin3Username", "CodeBootSale@gmail.com", "pontez3");
+        userService.createNewUser(UserType.ADMIN,"Szabó Bence", "admin4Username", "CodeBootSale@gmail.com", "pontez4");
+        userService.createNewUser(UserType.ADMIN,"Benec", "admin5Username", "CodeBootSale@gmail.com", "pontez5");//5 admins created and saved
 
 
         List<User> userList = userService.getAll();
@@ -72,5 +73,14 @@ public class CreateMockData {
         userStoryService.createNewUserStory(projects.get(1),"Ruha design",0.96, true);
 
         //thanks for deleting mock data for goals :)
+        //I consider myself lucky because I refactored most of the dead code at 11:00PM
+        //So I had the privilege to see my beauty of an automatic email sender crippled without data
+        //oh and thanks again
+
+        goalService.createNewProjectGoal("A csempe megrendelése", Statuses.IN_PROGRESS, dateFormat.parse("2021-12-15"), projects.get(0));
+
+        goalService.createNewUserStoryGoal("A csempe felhelyezése", Statuses.NEW, dateFormat.parse("2021-12-15"),
+                projects.get(0).getUserStories().get(0)
+        );
     }
 }

@@ -3,6 +3,7 @@ package com.codecool.progresstracker.service.notifications;
 import com.codecool.progresstracker.dao.ProjectDao;
 
 import com.codecool.progresstracker.model.Project;
+import com.codecool.progresstracker.model.Statuses;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.goal.ProjectGoal;
 
@@ -38,7 +39,7 @@ public class GoalDeadlineHandler {
         Date currentDate = dateFormat.parse(currentDateString);
         for (Project project : projectList) {
             for (ProjectGoal projectGoal : project.getProjectGoals()) {
-                if (currentDate.after(projectGoal.getDeadline())){
+                if (!projectGoal.getStatus().equals(Statuses.DONE) && currentDate.after(projectGoal.getDeadline())){
                     notificationHandler(project, projectGoal);
                 }
             }
