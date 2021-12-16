@@ -1,6 +1,8 @@
 package com.codecool.progresstracker.dao;
 
-import com.codecool.progresstracker.model.goal.Goal;
+import com.codecool.progresstracker.model.goal.ProjectGoal;
+import com.codecool.progresstracker.model.goal.UserStoryGoal;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -9,22 +11,40 @@ import java.util.UUID;
 
 @Repository
 public class GoalDaoMem implements GoalDao{
-    private final List<Goal> goalList;
+    private final List<UserStoryGoal> userStoryGoals;
+    private final List<ProjectGoal> projectGoals;
 
+    @Autowired
     public GoalDaoMem(){
-        this.goalList = new ArrayList();
+        this.userStoryGoals = new ArrayList<UserStoryGoal>();
+        this.projectGoals = new ArrayList<ProjectGoal>();
     }
 
     @Override
-    public void add(Goal goal){
-        this.goalList.add(goal);
+    public void add(ProjectGoal projectGoal){
+        this.projectGoals.add(projectGoal);
     }
 
     @Override
-    public Goal find(UUID id) throws NullPointerException{
-        for (Goal goal : goalList) {
-            if (goal.getId() == id){
-                return goal;
+    public void add(UserStoryGoal userStoryGoal){
+        this.userStoryGoals.add(userStoryGoal);
+    }
+
+    @Override
+    public ProjectGoal findProjectGoal(UUID id) throws NullPointerException{
+        for (ProjectGoal projectGoal : projectGoals) {
+            if (projectGoal.getId() == id){
+                return projectGoal;
+            }
+        }
+        throw new NullPointerException("Goal not found.");
+    }
+
+    @Override
+    public UserStoryGoal findUserStoryGoal(UUID id) throws NullPointerException{
+        for (UserStoryGoal userStoryGoal : userStoryGoals) {
+            if (userStoryGoal.getId() == id){
+                return userStoryGoal;
             }
         }
         throw new NullPointerException("Goal not found.");

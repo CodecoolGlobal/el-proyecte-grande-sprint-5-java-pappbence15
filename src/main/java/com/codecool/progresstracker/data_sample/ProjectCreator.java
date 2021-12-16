@@ -26,7 +26,8 @@ public class ProjectCreator {
                 name,
                 new ArrayList<>(),
                 owner,
-                admins
+                admins,
+                new ArrayList<>()
         );
 
         projectDao.add(project);

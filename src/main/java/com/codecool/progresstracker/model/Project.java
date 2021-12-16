@@ -41,6 +41,6 @@ public class Project {
     }
 
     public void addProjectGoal(ProjectGoal projectGoal){
-
+        this.projectGoals.add(projectGoal);
     }
 }
