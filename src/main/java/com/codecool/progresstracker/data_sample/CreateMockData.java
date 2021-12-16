@@ -4,10 +4,7 @@ import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.Statuses;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
-import com.codecool.progresstracker.service.GoalService;
-import com.codecool.progresstracker.service.ProjectService;
-import com.codecool.progresstracker.service.UserService;
-import com.codecool.progresstracker.service.UserStoryService;
+import com.codecool.progresstracker.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,28 +21,32 @@ public class CreateMockData {
     private final UserStoryService userStoryService;
     private final GoalService goalService;
 
+    private final SimpleDateFormat dateFormat;
+
     @Autowired
     public CreateMockData(UserService userService, ProjectService projectService, UserStoryService userStoryService, GoalService goalService) {
         this.userService = userService;
         this.projectService = projectService;
         this.userStoryService = userStoryService;
         this.goalService = goalService;
-        spamMockData();//TODO TEST -> DELETE
+
+        this.dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        spamMockData();//TODO TEST -> DELETE;
     }
 
-    public void spamMockData(){
+    public void spamMockData() throws ParseException {
         //String name, User owner, List<User> admins
-        userService.createNewUser(UserType.PROJECT_OWNER,"owner1", "owner1Username", "valami");
-        userService.createNewUser(UserType.PROJECT_OWNER,"owner2", "owner1Username", "valam2");
-        userService.createNewUser(UserType.PROJECT_OWNER,"owner3", "owner1Username", "valam3");
-        userService.createNewUser(UserType.PROJECT_OWNER,"owner4", "owner1Username", "valam4");
-        userService.createNewUser(UserType.PROJECT_OWNER,"owner5", "owner1Username", "valam5");//5 project owners created and saved
+        userService.createNewUser(UserType.PROJECT_OWNER,"owner1", "owner1Username", "CodeBootSale@gmail.com", "valami");
+        userService.createNewUser(UserType.PROJECT_OWNER,"owner2", "owner1Username", "CodeBootSale@gmail.com", "valam2");
+        userService.createNewUser(UserType.PROJECT_OWNER,"owner3", "owner1Username", "CodeBootSale@gmail.com", "valam3");
+        userService.createNewUser(UserType.PROJECT_OWNER,"owner4", "owner1Username", "CodeBootSale@gmail.com", "valam4");
+        userService.createNewUser(UserType.PROJECT_OWNER,"owner5", "owner1Username", "CodeBootSale@gmail.com", "valam5");//5 project owners created and saved
 
-        userService.createNewUser(UserType.ADMIN,"admin1", "admin1Username", "pontez1");
-        userService.createNewUser(UserType.ADMIN,"admin2", "admin2Username", "pontez2");
-        userService.createNewUser(UserType.ADMIN,"admin3", "admin3Username", "pontez3");
-        userService.createNewUser(UserType.ADMIN,"admin4", "admin4Username", "pontez4");
-        userService.createNewUser(UserType.ADMIN,"admin5", "admin5Username", "pontez5");//5 admins created and saved
+        userService.createNewUser(UserType.ADMIN,"admin1", "admin1Username", "CodeBootSale@gmail.com", "pontez1");
+        userService.createNewUser(UserType.ADMIN,"admin2", "admin2Username", "CodeBootSale@gmail.com", "pontez2");
+        userService.createNewUser(UserType.ADMIN,"admin3", "admin3Username", "CodeBootSale@gmail.com", "pontez3");
+        userService.createNewUser(UserType.ADMIN,"admin4", "admin4Username", "CodeBootSale@gmail.com", "pontez4");
+        userService.createNewUser(UserType.ADMIN,"admin5", "admin5Username", "CodeBootSale@gmail.com", "pontez5");//5 admins created and saved
 
         List<User> userList = userService.getAll();
         List<User> adminList = new ArrayList<>();
@@ -68,5 +69,17 @@ public class CreateMockData {
         userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 4",0.01, true);
         userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 5",0.8, false);
         userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 6",0.96, true);
+
+
+
+
+
+        goalService.createNewProjectGoal("goal1 of project1", Statuses.NEW, dateFormat.parse("2001-01-01"), projects.get(0));
+        System.out.println(projects.get(0).getProjectGoals());
+
+        goalService.createNewUserStoryGoal("userStoryGoal1 of project1's userStory1", Statuses.DONE, dateFormat.parse("2001-01-01"),
+                projects.get(0).getUserStories().get(0)
+        );
+        System.out.println(projects.get(0).getUserStories().get(0).getUserStoryGoals());
     }
 }

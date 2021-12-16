@@ -20,12 +20,13 @@ public class UserCreator {
         this.userDao = userDao;
     }
 
-    public void initialize(UserType userType, String name, String userName, String password) {
+    public void initialize(UserType userType, String name, String userName, String email, String password) {
         User user = new User(
                 UUID.randomUUID(),
                 userType,
                 name,
                 userName,
+                email,
                 password,
                 new HashMap<>()
         );

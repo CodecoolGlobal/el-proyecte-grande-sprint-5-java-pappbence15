@@ -36,10 +36,10 @@ public class UserService {
         return user.getUserSettings();
     }
 
-    public void createNewUser(UserType userType, String name, String username, String password){
+    public void createNewUser(UserType userType, String name, String username, String email, String password){
         UserCreator userCreator = new UserCreator(userDao);
 
-        userCreator.initialize(userType, name, username, password);
+        userCreator.initialize(userType, name, username, email, password);
     }
 
     public void updateUserSettings(String key, boolean value){
