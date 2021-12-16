@@ -1,7 +1,6 @@
 package com.codecool.progresstracker.model;
 
 import com.codecool.progresstracker.model.goal.ProjectGoal;
-import com.codecool.progresstracker.model.goal.UserStoryGoal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -17,7 +16,6 @@ public class Project {
     private final User owner;
     private List<User> admins;
     private List<ProjectGoal> projectGoals;
-    private List<UserStoryGoal> userStoryGoals;
 
     public double getPercentage(){
         double totalStoryPoints = userStories.stream()

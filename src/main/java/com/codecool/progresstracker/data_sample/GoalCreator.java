@@ -3,15 +3,13 @@ package com.codecool.progresstracker.data_sample;
 import com.codecool.progresstracker.dao.GoalDao;
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.UserStory;
-import com.codecool.progresstracker.model.goal.Goal;
 import com.codecool.progresstracker.model.Statuses;
-import com.codecool.progresstracker.model.goal.GoalType;
 import com.codecool.progresstracker.model.goal.ProjectGoal;
 import com.codecool.progresstracker.model.goal.UserStoryGoal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.UUID;
 
 @Component
@@ -31,6 +29,7 @@ public class GoalCreator {
                 deadline,
                 project
         );
+
         project.addProjectGoal(projectGoal);
 
         goalDao.add(projectGoal);

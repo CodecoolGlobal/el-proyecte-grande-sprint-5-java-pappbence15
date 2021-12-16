@@ -3,8 +3,9 @@ package com.codecool.progresstracker.model.goal;
 import com.codecool.progresstracker.model.Statuses;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.UUID;
 
 @Data
