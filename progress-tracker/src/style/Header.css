@@ -4,13 +4,15 @@
     align-items: center;
     justify-content: flex-start;
 
-    position: sticky;
+    position: fixed;
     width: 100%;
     top: 0;
 
     font-size: calc(3vmin);
 
     background-color: #282c34;
+
+    box-shadow: 0 0.2em rgba(95, 99, 103, 0.44);
 }
 
 .App-name {
@@ -25,7 +27,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
     .App-logo {
-        animation: App-logo-spin infinite 20s linear;
+        /*animation: App-logo-spin infinite 0.1s linear;*/
     }
 }
 

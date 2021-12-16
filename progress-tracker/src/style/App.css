@@ -31,3 +31,7 @@ body{
 a:hover {
   cursor: pointer;
 }
+
+.dynamic-component-container {
+  padding-top: 10vmin;
+}

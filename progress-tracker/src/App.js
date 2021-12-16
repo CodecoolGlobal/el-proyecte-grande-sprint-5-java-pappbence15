@@ -30,15 +30,15 @@ function App() {
     useEffect(() => getThemeSetting(setDarkMode), [])
 
   return (
-      <div className={backgroundColor} id='main-div'>
-    <div className="App">
-        <Header name={"Name of the Brand"} changeComponent={changeComponent}/>
-        <Footer owner={"©Hello World KFT"} creators={["csillalukacs", "Sjpeti97", "pappbence15", "JustBenS1"]} links={['https://github.com/csillalukacs', "https://github.com/Sjpeti97", "https://github.com/pappbence15", "https://github.com/JustBenS1"]}/>
-    </div>
-          <Container maxWidth="sm">
-          {renderDynamicComponent(component, changeComponent, projectId, changeProjectId, setTheme, darkMode)}
-          </Container>
-      </div>
+        <div className={backgroundColor} id='main-div'>
+            <div className="App">
+                <Header name={"Name of the Brand"} changeComponent={changeComponent}/>
+                <Footer owner={"©Hello World KFT"} creators={["csillalukacs", "Sjpeti97", "pappbence15", "JustBenS1"]} links={['https://github.com/csillalukacs', "https://github.com/Sjpeti97", "https://github.com/pappbence15", "https://github.com/JustBenS1"]}/>
+            </div>
+            <div className='dynamic-component-container'>
+                {renderDynamicComponent(component, changeComponent, projectId, changeProjectId, setTheme, darkMode)}
+            </div>
+        </div>
   );
 }
 
