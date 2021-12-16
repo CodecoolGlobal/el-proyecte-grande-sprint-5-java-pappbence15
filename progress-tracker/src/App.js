@@ -10,6 +10,7 @@ import {useEffect, useState} from "react";
 import ProjectList from "./components/ProjectList";
 import ProjectAdminView from "./components/ProjectAdminView";
 import Settings from "./Settings";
+import {Container} from "@mui/material";
 
 function App() {
     const [component, setComponent] = useState('All')

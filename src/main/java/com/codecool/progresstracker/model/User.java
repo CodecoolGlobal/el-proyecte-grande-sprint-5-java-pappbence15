@@ -14,6 +14,7 @@ public class User {
     private final UserType userType;
     private final String name;
     private final String userName;
+    private final String email;
     private String password;
     private Map<String, Boolean> userSettings;
 

@@ -1,12 +1,12 @@
 .progress-bar{
-    width: 50%;
+    width: 80%;
     background-color: lightgrey;
     height: 34px;
     border-radius: 34px;
 }
 
 .progress-bar.small{
-    width: 40%;
+    width: 65%;
     background-color: lightgrey;
     height: 17px;
     border-radius: 17px;

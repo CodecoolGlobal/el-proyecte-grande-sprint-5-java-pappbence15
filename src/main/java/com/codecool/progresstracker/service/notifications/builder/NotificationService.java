@@ -1,12 +1,12 @@
-package com.codecool.progresstracker.service;
+package com.codecool.progresstracker.service.notifications.builder;
 
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.Properties;
 
 public class NotificationService {
-    public static void sendMail(){
-        //send("CodeBootSale@gmail.com","codebootsale", "CodeBootSale@gmail.com","please work","it works?");
+    public static void sendMail(String receivingParty, String subtext, String message){
+        send("CodeBootSale@gmail.com","codebootsale", receivingParty,subtext,message);
     }
     public static void send(String from,String password,String to,String sub,String msg){
         //Get properties object
