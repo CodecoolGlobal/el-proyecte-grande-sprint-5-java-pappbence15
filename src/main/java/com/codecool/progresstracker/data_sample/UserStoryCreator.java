@@ -21,11 +21,11 @@ public class UserStoryCreator {
         this.userStoryDao = userStoryDao;
     }
 
-    public void initialize(Project project, String name, boolean isFavourite) {
+    public void initialize(Project project, String name, boolean isFavourite, double currentPercent) {
         UserStory userStory = new UserStory(
                 UUID.randomUUID(),
                 name,
-                this.BASE_STATUS,
+                currentPercent,
                 isFavourite,
                 new ArrayList<>()
         );

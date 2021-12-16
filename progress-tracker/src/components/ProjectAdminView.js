@@ -32,7 +32,7 @@ export default function ProjectAdminView(props) {
         return <div>Loading...</div>;
     } else {
         const allStories = project.userStories;
-        const favouriteStories = allStories.filter(s=>s.favourite);
+        const favouriteStories = allStories.filter(s => s.favourite);
 
         const stories = props.detailedView ? allStories : favouriteStories;
         return (
@@ -40,18 +40,26 @@ export default function ProjectAdminView(props) {
                 <h2>
                     {project.name}
                 </h2>
-                <ProgressBar percentage={Math.round(project.percentage*100)}/>
+                <ProgressBar size={"large"}
+                             percentage={project.percentage * 100}
+                />
                 <p>
                     <strong>Owner: </strong>
                     {project.owner.name}
                 </p>
                 <p>
                     <strong>Admins: </strong>
-                    {project.admins.map(admin=><span key={admin.id}>{admin.name} </span>)}
+                    {project.admins.map(admin => <span key={admin.id}>{admin.name} </span>)}
                 </p>
                 <h3>User stories</h3>
                 <ul>
-                    {stories.map(s=><UserStory key={s.id} story={s}/>)}
+                    {stories.map(s => <span>
+                        <UserStory key={s.id} story={s}/>
+                        <ProgressBar size={"small"}
+                                     percentage={100*(s.currentPercent)}
+                        />
+                    </span>)}
+
                 </ul>
             </div>
         );

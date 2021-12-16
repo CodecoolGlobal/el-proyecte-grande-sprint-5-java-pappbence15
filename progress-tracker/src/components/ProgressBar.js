@@ -11,14 +11,16 @@ export default function ProgressBar(props) {
         setPercent(e.target.value)
     }
 
+    const text = props.size === "small" ? '' : `${percent}% done`
+
     return (
         <div className={"flex"}>
-            <div className={"progress-bar"}>
+            <div className={`progress-bar ${props.size}`}>
                 <div
                     className={"progress"}
                     style={{width: `${percent}%`, backgroundColor: `${color}`}}
                 >
-                    <span className={"percentage"}>{percent}% done</span>
+                    <span className={"percentage"}>{text}</span>
                 </div>
             </div>
             <input type={"number"}
