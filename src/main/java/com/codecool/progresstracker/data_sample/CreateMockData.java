@@ -25,7 +25,7 @@ public class CreateMockData {
     private final GoalService goalService;
 
     @Autowired
-    public CreateMockData(UserService userService, ProjectService projectService, UserStoryService userStoryService, GoalService goalService) throws ParseException {
+    public CreateMockData(UserService userService, ProjectService projectService, UserStoryService userStoryService, GoalService goalService) {
         this.userService = userService;
         this.projectService = projectService;
         this.userStoryService = userStoryService;
@@ -63,7 +63,7 @@ public class CreateMockData {
 
         userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 1", 0.65, false);
         userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 2", 0.7,false);
-        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 3", 0.7, true);
+        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 3", 0.3, true);
 
         userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 4",0.01, true);
         userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 5",0.8, false);

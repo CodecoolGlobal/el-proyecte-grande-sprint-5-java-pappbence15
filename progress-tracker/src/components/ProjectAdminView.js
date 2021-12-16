@@ -23,7 +23,7 @@ export default function ProjectAdminView(props) {
                     setError(error);
                 }
             )
-    }, [])
+    }, [project, props.userType, props.detailedView])
 
 
     if (error) {
