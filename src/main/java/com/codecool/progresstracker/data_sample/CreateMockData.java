@@ -61,22 +61,12 @@ public class CreateMockData {
 
         List<Project> projects = projectService.getAll();
 
-        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 1",75, 65, false);
-        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 2",80, 70,false);
-        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 3",96, 70, true);
+        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 1", 65, false);
+        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 2", 70,false);
+        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 3", 70, true);
 
         userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 4",1, true);
         userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 5",300, false);
         userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 6",96, true);
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-        goalService.createNewProjectGoal("goal1 of project1", Statuses.NEW, dateFormat.parse("2001-01-01"), projects.get(0));
-        System.out.println(projects.get(0).getProjectGoals());
-
-        goalService.createNewUserStoryGoal("userStoryGoal1 of project1's userStory1", Statuses.DONE, dateFormat.parse("2001-01-01"),
-                projects.get(0).getUserStories().get(0)
-        );
-        System.out.println(projects.get(0).getUserStories().get(0).getUserStoryGoals());
     }
 }

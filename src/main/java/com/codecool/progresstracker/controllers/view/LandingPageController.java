@@ -1,6 +1,6 @@
 package com.codecool.progresstracker.controllers.view;
 
-import com.codecool.progresstracker.controllers.mock_data.CreateMockData;
+import com.codecool.progresstracker.data_sample.CreateMockData;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
 import com.codecool.progresstracker.service.*;

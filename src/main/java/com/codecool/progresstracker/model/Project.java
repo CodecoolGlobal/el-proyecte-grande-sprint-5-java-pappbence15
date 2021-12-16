@@ -18,19 +18,6 @@ public class Project {
     private List<User> admins;
     private List<ProjectGoal> projectGoals;
 
-    public double getPercentage(){
-        if (userStories.size()==0){
-            return 0;
-        }
-        double totalStoryPoints = userStories.stream()
-                .map(UserStory::getMAX_PROGRESS)
-                .reduce(0, Integer::sum);
-        double completed = userStories.stream()
-                .map(UserStory::getCurrentProgress)
-                .reduce(0, Integer::sum);
-        return completed / totalStoryPoints;
-    }
-
     public UserStory findStory(UUID storyId) throws NullPointerException{
         for (UserStory userStory: userStories) {
             if (userStory.getId().equals(storyId)){
