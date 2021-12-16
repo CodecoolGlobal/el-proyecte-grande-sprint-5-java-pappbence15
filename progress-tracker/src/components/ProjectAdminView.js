@@ -41,7 +41,7 @@ export default function ProjectAdminView(props) {
                     {project.name}
                 </h2>
                 <ProgressBar size={"large"}
-                             percentage={project.percentage * 100}
+                             percentage={Math.round(project.percentage * 100)}
                 />
                 <p>
                     <strong>Owner: </strong>

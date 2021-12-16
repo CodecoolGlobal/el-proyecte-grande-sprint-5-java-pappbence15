@@ -27,6 +27,14 @@ public class Project {
         throw new NullPointerException("No userStory found with given id.");
     }
 
+    public double getPercentage(){
+        if (userStories.size()==0){
+            return 0;
+        }
+        return userStories.stream().map(UserStory::getCurrentPercent).reduce(0.0, Double::sum)
+                / userStories.size();
+    }
+
     public void addStory(UserStory userStory){
         this.userStories.add(userStory);
     }
