@@ -37,13 +37,13 @@ public class CreateMockData {
 
 
     @Autowired
-    public CreateMockData(UserService userService, ProjectService projectService, UserStoryService userStoryService){
+    public CreateMockData(UserService userService, ProjectService projectService, UserStoryService userStoryService, GoalService goalService) throws ParseException {
         this.userService = userService;
         this.projectService = projectService;
         this.userStoryService = userStoryService;
     }
 
-    public void spamMockData(){
+    public void spamMockData() throws ParseException {
         //String name, User owner, List<User> admins
         userService.createNewUser(UserType.PROJECT_OWNER,"owner1", "owner1Username", "valami");
         userService.createNewUser(UserType.PROJECT_OWNER,"owner2", "owner1Username", "valam2");
@@ -78,5 +78,15 @@ public class CreateMockData {
         userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 4",1, true);
         userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 5",300, false);
         userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 6",96, true);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        goalService.createNewProjectGoal("goal1 of project1", Statuses.NEW, dateFormat.parse("2001-01-01"), projects.get(0));
+        System.out.println(projects.get(0).getProjectGoals());
+
+        goalService.createNewUserStoryGoal("userStoryGoal1 of project1's userStory1", Statuses.DONE, dateFormat.parse("2001-01-01"),
+                projects.get(0).getUserStories().get(0)
+        );
+        System.out.println(projects.get(0).getUserStories().get(0).getUserStoryGoals());
     }
 }
