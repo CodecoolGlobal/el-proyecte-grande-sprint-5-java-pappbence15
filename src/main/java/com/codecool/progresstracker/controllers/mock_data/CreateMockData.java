@@ -41,6 +41,7 @@ public class CreateMockData {
         this.userService = userService;
         this.projectService = projectService;
         this.userStoryService = userStoryService;
+        this.goalService = goalService;
     }
 
     public void spamMockData() throws ParseException {
