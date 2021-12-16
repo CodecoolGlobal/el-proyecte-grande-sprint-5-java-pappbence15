@@ -4,6 +4,7 @@ import com.codecool.progresstracker.dao.UserStoryDao;
 import com.codecool.progresstracker.data_sample.UserStoryCreator;
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.UserStory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +23,9 @@ public class UserStoryService {
         this.userStoryDao.add(userStory);
     }
 
-    public void createNewUserStory(Project project, String name, int maxProgress, int currentProgress, boolean isFavourite){
+    public void createNewUserStory(Project project, String name, int currentProgress, boolean isFavourite){
         UserStoryCreator userStoryCreator = new UserStoryCreator(userStoryDao);
 
-        userStoryCreator.initialize(project, name, maxProgress, currentProgress, isFavourite);
-
+        userStoryCreator.initialize(project, name, isFavourite);
     }
 }

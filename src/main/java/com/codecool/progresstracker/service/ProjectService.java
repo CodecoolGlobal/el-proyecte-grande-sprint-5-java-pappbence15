@@ -5,6 +5,7 @@ import com.codecool.progresstracker.data_sample.ProjectCreator;
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserStory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

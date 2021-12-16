@@ -1,5 +1,7 @@
 package com.codecool.progresstracker.model;
 
+import com.codecool.progresstracker.model.goal.ProjectGoal;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -14,19 +16,7 @@ public class Project {
     private List<UserStory> userStories;
     private final User owner;
     private List<User> admins;
-
-    public double getPercentage(){
-        if (userStories.size()==0){
-            return 0;
-        }
-        double totalStoryPoints = userStories.stream()
-                .map(UserStory::getMAX_PROGRESS)
-                .reduce(0, Integer::sum);
-        double completed = userStories.stream()
-                .map(UserStory::getCurrentProgress)
-                .reduce(0, Integer::sum);
-        return completed / totalStoryPoints;
-    }
+    private List<ProjectGoal> projectGoals;
 
     public UserStory findStory(UUID storyId) throws NullPointerException{
         for (UserStory userStory: userStories) {
@@ -39,5 +29,9 @@ public class Project {
 
     public void addStory(UserStory userStory){
         this.userStories.add(userStory);
+    }
+
+    public void addProjectGoal(ProjectGoal projectGoal){
+        this.projectGoals.add(projectGoal);
     }
 }
