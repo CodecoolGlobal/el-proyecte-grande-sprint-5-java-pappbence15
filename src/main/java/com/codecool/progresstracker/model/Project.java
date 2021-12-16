@@ -1,6 +1,7 @@
 package com.codecool.progresstracker.model;
 
 import com.codecool.progresstracker.model.goal.ProjectGoal;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

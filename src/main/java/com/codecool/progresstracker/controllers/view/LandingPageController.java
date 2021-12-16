@@ -4,6 +4,7 @@ import com.codecool.progresstracker.controllers.mock_data.CreateMockData;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
 import com.codecool.progresstracker.service.*;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 

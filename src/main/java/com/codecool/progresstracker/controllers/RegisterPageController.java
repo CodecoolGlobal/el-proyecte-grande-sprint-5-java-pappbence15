@@ -4,6 +4,7 @@ import com.codecool.progresstracker.dao.UserDao;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
 import com.codecool.progresstracker.service.ProjectService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

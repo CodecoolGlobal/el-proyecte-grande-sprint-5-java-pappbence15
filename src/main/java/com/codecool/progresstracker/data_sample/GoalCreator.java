@@ -6,6 +6,7 @@ import com.codecool.progresstracker.model.UserStory;
 import com.codecool.progresstracker.model.Statuses;
 import com.codecool.progresstracker.model.goal.ProjectGoal;
 import com.codecool.progresstracker.model.goal.UserStoryGoal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

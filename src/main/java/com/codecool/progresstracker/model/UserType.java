@@ -1,7 +1,5 @@
 package com.codecool.progresstracker.model;
 
-import java.util.List;
-
 public enum UserType {
     PROJECT_OWNER("Project owner"),
     ADMIN("Admin"),

@@ -12,18 +12,10 @@ import com.codecool.progresstracker.service.UserStoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.fasterxml.jackson.databind.type.LogicalType.DateTime;
 
 @Component
 public class CreateMockData {
