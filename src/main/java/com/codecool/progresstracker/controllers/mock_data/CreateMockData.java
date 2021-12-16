@@ -24,10 +24,6 @@ public class CreateMockData {
     private final UserStoryService userStoryService;
     private final GoalService goalService;
 
-
-
-
-
     @Autowired
     public CreateMockData(UserService userService, ProjectService projectService, UserStoryService userStoryService, GoalService goalService) throws ParseException {
         this.userService = userService;
