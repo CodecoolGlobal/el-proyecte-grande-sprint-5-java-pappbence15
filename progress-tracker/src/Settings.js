@@ -12,7 +12,6 @@ function Settings(){
             .then(
                 (result) => {
                     setNotifications(result.notifications);
-                    setDarkMode(result.darkMode);
                     setIsLoaded(true);
                 },(error) => {
                     setIsLoaded(true);
@@ -44,7 +43,7 @@ function Settings(){
                 <div className='settings-mode'>
                     <p>Dark mode</p>
                     <label className="switch">
-                        <input type="checkbox" checked={darkMode} onChange={handleDarkModeClick}/>
+                        <input type="checkbox" checked={props.darkMode} onChange={handleDarkModeClick}/>
                             <span className="slider round"/>
                     </label>
                 </div>
@@ -59,9 +58,9 @@ function Settings(){
     }
 
     function handleDarkModeClick() {
-        const url = `/settings/update/darkMode/${!darkMode}`;
-        fetch(url, {method: "POST"});
-        setDarkMode(!darkMode);
+        const url = `/settings/update/darkMode/${!props.darkMode}`;
+        fetch(url, {method: "POST"}).then(() => props.setTheme(!props.darkMode));
+
     }
 }
 

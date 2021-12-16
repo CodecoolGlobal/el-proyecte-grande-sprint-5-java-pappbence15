@@ -6,6 +6,8 @@ import './style/Settings.css';
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import {useState} from "react";
+import './style/DarkMode.css'
+import {useEffect, useState} from "react";
 import ProjectList from "./components/ProjectList";
 import ProjectAdminView from "./components/ProjectAdminView";
 import Settings from "./Settings";
@@ -13,24 +15,35 @@ import Settings from "./Settings";
 function App() {
     const [component, setComponent] = useState('All')
     const [projectId, setProjectId] = useState('')
+    const [darkMode, setDarkMode] = useState(true);
+    const setTheme = (mode) => setDarkMode(mode);
     const changeComponent = (newComponent) => setComponent(newComponent)
     const changeProjectId = (newId) => setProjectId(newId)
-    return (
-        <div>
-            <div className="App">
-                <Header name={"Name of the Brand"} changeComponent={changeComponent}/>
-                <Footer owner={"©Hello World KFT"} creators={["csillalukacs", "Sjpeti97", "pappbence15", "JustBenS1"]}
-                        links={['https://github.com/csillalukacs', "https://github.com/Sjpeti97", "https://github.com/pappbence15", "https://github.com/JustBenS1"]}/>
-            </div>
-            <div className='dynamic-component-container'>
-                {renderDynamicComponent(component, changeComponent, projectId, changeProjectId)}
-            </div>
-        </div>
-    );
+    let backgroundColor;
+
+    if(darkMode){
+        backgroundColor = "dark-mode-background";
+    }else{
+        backgroundColor = 'light-mode-background';
+    }
+
+    useEffect(() => getThemeSetting(setDarkMode), [])
+
+  return (
+      <div className={backgroundColor} id='main-div'>
+    <div className="App">
+        <Header name={"Name of the Brand"} changeComponent={changeComponent}/>
+        <Footer owner={"©Hello World KFT"} creators={["csillalukacs", "Sjpeti97", "pappbence15", "JustBenS1"]} links={['https://github.com/csillalukacs', "https://github.com/Sjpeti97", "https://github.com/pappbence15", "https://github.com/JustBenS1"]}/>
+    </div>
+          <div className='dynamic-component-container'>
+              {renderDynamicComponent(component, changeComponent, projectId, changeProjectId, setTheme, darkMode)}
+          </div>
+      </div>
+  );
 }
 
-function renderDynamicComponent(component, changeComponent, projectId, changeProject) {
-    switch (component) {
+function renderDynamicComponent(component, changeComponent, projectId, changeProject, setTheme, darkMode){
+    switch (component){
         case 'All':
             if (projectId) {
                 return (<ProjectAdminView projectId={projectId}
@@ -64,8 +77,17 @@ function renderDynamicComponent(component, changeComponent, projectId, changePro
                                  projectId={projectId}
             />)
         case 'Settings':
-            return <Settings/>
+            return <Settings setTheme={setTheme} darkMode={darkMode}/>
     }
+}
+
+function getThemeSetting(setTheme){
+    fetch("/settings/darkMode")
+        .then(res => res.json())
+        .then(result => {
+            console.log(result)
+            setTheme(result)
+        })
 }
 
 export default App;

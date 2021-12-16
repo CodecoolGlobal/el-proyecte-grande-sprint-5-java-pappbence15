@@ -30,6 +30,12 @@ public class SettingsController {
     }
 
     @ResponseBody
+    @GetMapping("/settings/darkMode")
+    public ResponseEntity<?> getThemeSetting(){
+        return new ResponseEntity<>(userService.getLoggedInUser().getUserSettings().get("darkMode"), HttpStatus.OK);
+    }
+
+    @ResponseBody
     @PostMapping("/settings/update/{key}/{value}")
     public void setSettings(@PathVariable String key, @PathVariable String value) {
         boolean newValue;

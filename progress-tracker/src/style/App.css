@@ -6,6 +6,12 @@
   color: #61dafb;
 }
 
+body{
+  height: 100vh;
+  width: 100%;
+}
+
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -15,3 +21,10 @@
                                   supported by Chrome, Opera and Firefox */
 }
 
+#main-div {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
