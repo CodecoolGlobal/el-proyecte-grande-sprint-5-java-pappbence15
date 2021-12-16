@@ -16,10 +16,10 @@ public class UserStory {
     private int currentProgress;
     private double currentPercent;
     private boolean isFavourite;
-    private List<UserStoryGoal> goals;
+    private List<UserStoryGoal> userStoryGoals;
 
     public void add(UserStoryGoal userStoryGoal){
-        this.goals.add(userStoryGoal);
+        this.userStoryGoals.add(userStoryGoal);
     }
 
     public void setCurrentPercent(int currentPercent) {
