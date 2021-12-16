@@ -33,22 +33,6 @@ function Settings(props){
         )
     }else{
         return(
-            /*<div className='settings-controller'>
-                <div className='settings-mode'>
-                    <p>Notifications</p>
-                <label className="switch">
-                    <input type="checkbox" checked={notifications} onClick={handleNotificationClick}/>
-                        <span className="slider round"/>
-                </label>
-                </div>
-                <div className='settings-mode'>
-                    <p>Dark mode</p>
-                    <label className="switch">
-                        <input type="checkbox" checked={props.darkMode} onClick={handleDarkModeClick}/>
-                            <span className="slider round"/>
-                    </label>
-                </div>
-            </div>*/
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                 <Grid item xs={6} direction={"row"}>
                     <p>Notifications</p>
