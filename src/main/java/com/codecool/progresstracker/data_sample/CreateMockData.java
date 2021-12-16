@@ -36,17 +36,17 @@ public class CreateMockData {
 
     public void spamMockData() throws ParseException {
         //String name, User owner, List<User> admins
-        userService.createNewUser(UserType.PROJECT_OWNER,"Kis Ferenc", "Feri_vagyok_a", "valami");
-        userService.createNewUser(UserType.PROJECT_OWNER,"Récsán Gabi", "gaborrecsan1", "valam2");
-        userService.createNewUser(UserType.PROJECT_OWNER,"Simon Peti", "P-dog", "valam3");
-        userService.createNewUser(UserType.PROJECT_OWNER,"Urbán Urbán", "Urbán", "valam4");
-        userService.createNewUser(UserType.PROJECT_OWNER,"Ecneb Károly", "Karcsi bácsi", "valam5");//5 project owners created and saved
+        userService.createNewUser(UserType.PROJECT_OWNER,"Kis Ferenc", "Feri_vagyok_a", "valami", "valami");
+        userService.createNewUser(UserType.PROJECT_OWNER,"Récsán Gabi", "gaborrecsan1", "valam2", "valami");
+        userService.createNewUser(UserType.PROJECT_OWNER,"Simon Peti", "P-dog", "valam3", "valami");
+        userService.createNewUser(UserType.PROJECT_OWNER,"Urbán Urbán", "Urbán", "valam4", "valami");
+        userService.createNewUser(UserType.PROJECT_OWNER,"Ecneb Károly", "Karcsi bácsi", "valam5", "valami");//5 project owners created and saved
 
-        userService.createNewUser(UserType.ADMIN,"Mr. X, ", "admin1Username", "pontez1");
-        userService.createNewUser(UserType.ADMIN,"P-dog", "admin2Username", "pontez2");
-        userService.createNewUser(UserType.ADMIN,"Lukács Csilla", "admin3Username", "pontez3");
-        userService.createNewUser(UserType.ADMIN,"Szabó Bence", "admin4Username", "pontez4");
-        userService.createNewUser(UserType.ADMIN,"Benec", "admin5Username", "pontez5");//5 admins created and saved
+        userService.createNewUser(UserType.ADMIN,"Mr. X, ", "admin1Username", "pontez1", "valami");
+        userService.createNewUser(UserType.ADMIN,"P-dog", "admin2Username", "pontez2", "valami");
+        userService.createNewUser(UserType.ADMIN,"Lukács Csilla", "admin3Username", "pontez3", "valami");
+        userService.createNewUser(UserType.ADMIN,"Szabó Bence", "admin4Username", "pontez4", "valami");
+        userService.createNewUser(UserType.ADMIN,"Benec", "admin5Username", "pontez5", "valami");//5 admins created and saved
 
         List<User> userList = userService.getAll();
         List<User> adminList = new ArrayList<>();
