@@ -23,7 +23,7 @@ public class UserStoryService {
         this.userStoryDao.add(userStory);
     }
 
-    public void createNewUserStory(Project project, String name, int maxProgress, boolean isFavourite){
+    public void createNewUserStory(Project project, String name, int maxProgress, int currentProgress, boolean isFavourite){
         UserStoryCreator userStoryCreator = new UserStoryCreator(userStoryDao);
 
         userStoryCreator.initialize(project, name,maxProgress,isFavourite);

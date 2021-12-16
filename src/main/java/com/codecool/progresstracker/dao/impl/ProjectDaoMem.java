@@ -1,5 +1,6 @@
-package com.codecool.progresstracker.dao;
+package com.codecool.progresstracker.dao.impl;
 
+import com.codecool.progresstracker.dao.ProjectDao;
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
 import org.springframework.stereotype.Repository;

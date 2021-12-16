@@ -1,8 +1,10 @@
-package com.codecool.progresstracker.dao;
+package com.codecool.progresstracker.dao.impl;
 
 import com.codecool.progresstracker.model.goal.ProjectGoal;
 import com.codecool.progresstracker.model.goal.UserStoryGoal;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.codecool.progresstracker.dao.GoalDao;
+import com.codecool.progresstracker.model.Goal;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

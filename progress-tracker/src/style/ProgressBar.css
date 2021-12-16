@@ -1,0 +1,29 @@
+.progress-bar{
+    width: 50%;
+    background-color: lightgrey;
+    height: 34px;
+    border-radius: 34px;
+}
+
+.progress{
+    height: 100%;
+    border-radius: inherit;
+    color: snow;
+}
+
+.flex{
+    display:flex;
+}
+
+.flex input{
+    margin-left:10px;
+    border-radius: 20px;
+    border: none;
+    background-color: gainsboro;
+    text-align: center;
+}
+
+.percentage{
+    line-height: 2rem;
+    padding:10px;
+}

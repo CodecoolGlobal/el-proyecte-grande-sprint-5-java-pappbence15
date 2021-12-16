@@ -1,4 +1,4 @@
-package com.codecool.progresstracker.controllers.mock_data;
+package com.codecool.progresstracker.data_sample;
 
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.Statuses;
@@ -30,6 +30,7 @@ public class CreateMockData {
         this.projectService = projectService;
         this.userStoryService = userStoryService;
         this.goalService = goalService;
+        spamMockData();//TODO TEST -> DELETE
     }
 
     public void spamMockData() throws ParseException {
@@ -60,9 +61,9 @@ public class CreateMockData {
 
         List<Project> projects = projectService.getAll();
 
-        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 1",75, false);
-        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 2",80, false);
-        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 3",96, true);
+        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 1",75, 65, false);
+        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 2",80, 70,false);
+        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 3",96, 70, true);
 
         userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 4",1, true);
         userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 5",300, false);
