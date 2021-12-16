@@ -6,7 +6,7 @@ export default function UserStory(props){
     return(
         <Card sx={{minWidth: 275}}>
             <CardContent>
-                <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
+                <Typography sx={{ fontSize: 20 }} color="text" gutterBottom>
                     {props.story.name}
                 </Typography>
                 <ProgressBar size={"small"}
