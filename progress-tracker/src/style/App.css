@@ -56,8 +56,8 @@ body{
   }
 }
 
+
 @media (min-width: 1400px){
   .dynamic-component-container{
     margin-left: 25%;
   }
-}

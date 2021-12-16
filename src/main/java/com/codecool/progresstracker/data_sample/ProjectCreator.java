@@ -3,6 +3,7 @@ package com.codecool.progresstracker.data_sample;
 import com.codecool.progresstracker.dao.ProjectDao;
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +27,8 @@ public class ProjectCreator {
                 name,
                 new ArrayList<>(),
                 owner,
-                admins
+                admins,
+                new ArrayList<>()
         );
 
         projectDao.add(project);

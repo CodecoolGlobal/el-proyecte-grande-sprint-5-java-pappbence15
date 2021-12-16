@@ -1,15 +1,12 @@
 package com.codecool.progresstracker.service;
 
 import com.codecool.progresstracker.dao.UserStoryDao;
-import com.codecool.progresstracker.data_sample.UserCreator;
 import com.codecool.progresstracker.data_sample.UserStoryCreator;
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.UserStory;
-import com.codecool.progresstracker.model.UserType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 public class UserStoryService {
@@ -26,10 +23,9 @@ public class UserStoryService {
         this.userStoryDao.add(userStory);
     }
 
-    public void createNewUserStory(Project project, String name, int maxProgress, boolean isFavourite){
+    public void createNewUserStory(Project project, String name, double currentPercent, boolean isFavourite){
         UserStoryCreator userStoryCreator = new UserStoryCreator(userStoryDao);
 
-        userStoryCreator.initialize(project, name,maxProgress,isFavourite);
-
+        userStoryCreator.initialize(project, name, isFavourite, currentPercent);
     }
 }

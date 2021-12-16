@@ -1,12 +1,12 @@
 import Grid from '@mui/material/Grid';
 import {Box, Switch} from "@mui/material";
-
 const {useState, useEffect} = require("react");
 
 function Settings(props){
     const [notifications, setNotifications] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
+
     useEffect(()=>{
         fetch("/settings")
             .then(res => res.json())

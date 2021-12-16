@@ -4,7 +4,6 @@ import com.codecool.progresstracker.model.LoginAttempt;
 import com.codecool.progresstracker.model.User;
 
 import java.util.List;
-import java.util.List;
 import java.util.UUID;
 
 public interface UserDao {

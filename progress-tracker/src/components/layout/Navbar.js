@@ -1,3 +1,5 @@
+import {NavbarLink} from "./NavbarLink";
+
 function Navbar(props){
     const projects = 'Projects';
     const latest = 'Latest';
@@ -19,14 +21,6 @@ function Navbar(props){
                 <NavbarLink url={'#'} name={settings} changeComponent={props.change}/>
             </div>
         </div>
-    )
-}
-
-function NavbarLink(props){
-    return(
-        <a href={props.url} onClick={() => props.changeComponent(props.name)} className='navbar-link'>
-            {props.name}
-        </a>
     )
 }
 

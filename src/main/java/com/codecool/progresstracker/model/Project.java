@@ -1,5 +1,7 @@
 package com.codecool.progresstracker.model;
 
+import com.codecool.progresstracker.model.goal.ProjectGoal;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -14,16 +16,7 @@ public class Project {
     private List<UserStory> userStories;
     private final User owner;
     private List<User> admins;
-
-    public double getPercentage(){
-        double totalStoryPoints = userStories.stream()
-                .map(UserStory::getMAX_PROGRESS)
-                .reduce(0, Integer::sum);
-        double completed = userStories.stream()
-                .map(story -> story.getMAX_PROGRESS()*story.getCurrentPercent())
-                .reduce(0.0, Double::sum);
-        return completed / totalStoryPoints;
-    }
+    private List<ProjectGoal> projectGoals;
 
     public UserStory findStory(UUID storyId) throws NullPointerException{
         for (UserStory userStory: userStories) {
@@ -34,7 +27,19 @@ public class Project {
         throw new NullPointerException("No userStory found with given id.");
     }
 
+    public double getPercentage(){
+        if (userStories.size()==0){
+            return 0;
+        }
+        return userStories.stream().map(UserStory::getCurrentPercent).reduce(0.0, Double::sum)
+                / userStories.size();
+    }
+
     public void addStory(UserStory userStory){
         this.userStories.add(userStory);
+    }
+
+    public void addProjectGoal(ProjectGoal projectGoal){
+        this.projectGoals.add(projectGoal);
     }
 }

@@ -3,9 +3,9 @@ import './style/Navbar.css';
 import './style/Header.css'
 import './style/Footer.css'
 import './style/Settings.css';
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
 import './style/DarkMode.css'
-import Header from "./Header";
-import Footer from "./Footer";
 import {useEffect, useState} from "react";
 import ProjectList from "./components/ProjectList";
 import ProjectAdminView from "./components/ProjectAdminView";
@@ -48,8 +48,7 @@ function renderDynamicComponent(component, changeComponent, projectId, changePro
                 return (<ProjectAdminView projectId={projectId}
                                           detailedView={true}
                 />)
-            }
-            else {
+            } else {
                 return (<ProjectList userType={"admin"}
                                      changeComponent={changeComponent}
                                      changeProject={changeProject}
@@ -63,8 +62,7 @@ function renderDynamicComponent(component, changeComponent, projectId, changePro
                                           detailedView={false}
 
                 />)
-            }
-            else {
+            } else {
                 return (<ProjectList userType={"admin"}
                                      changeComponent={changeComponent}
                                      changeProject={changeProject}

@@ -1,5 +1,6 @@
-package com.codecool.progresstracker.dao;
+package com.codecool.progresstracker.dao.impl;
 
+import com.codecool.progresstracker.dao.UserDao;
 import com.codecool.progresstracker.model.LoginAttempt;
 import com.codecool.progresstracker.model.User;
 
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class UserDaoMem implements UserDao{
+public class UserDaoMem implements UserDao {
     private final List<User> users;
 
     public UserDaoMem() {

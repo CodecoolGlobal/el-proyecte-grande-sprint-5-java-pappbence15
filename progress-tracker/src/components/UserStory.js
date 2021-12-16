@@ -2,9 +2,9 @@ import {Star} from "./Star";
 
 export default function UserStory(props){
     return(
-        <p>
-            <Star full={props.isFavourite}/>
+        <li>
             {props.story.name}
-        </p>
+            <Star full={props.story.favourite} id={props.story.id}/>
+        </li>
     )
 }
