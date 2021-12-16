@@ -3,6 +3,7 @@ import './style/Navbar.css';
 import './style/Header.css'
 import './style/Footer.css'
 import './style/Settings.css';
+import './style/DarkMode.css'
 import Header from "./Header";
 import Footer from "./Footer";
 import {useState} from "react";
@@ -13,21 +14,29 @@ import Settings from "./Settings";
 function App() {
     const [component, setComponent] = useState('All')
     const [projectId, setProjectId] = useState('')
+    const [darkMode, setDarkMode] = useState(getThemeSetting());
+    const setTheme = (mode) => setDarkMode(mode);
     const changeComponent = (newComponent) => setComponent(newComponent)
     const changeProjectId = (newId) => setProjectId(newId)
+    let backgroundColor;
+    if(darkMode){
+        backgroundColor = "dark-mode-background";
+    }else{
+        backgroundColor = 'light-mode-background';
+    }
   return (
-      <div>
+      <div className={backgroundColor}>
     <div className="App">
         <Header name={"Name of the Brand"} changeComponent={changeComponent}/>
         <Footer owner={"©Hello World KFT"} creators={["csillalukacs", "Sjpeti97", "pappbence15", "JustBenS1"]} links={['https://github.com/csillalukacs', "https://github.com/Sjpeti97", "https://github.com/pappbence15", "https://github.com/JustBenS1"]}/>
     </div>
           <div className='dynamic-component-container'>
-              {renderDynamicComponent(component, changeComponent, projectId, changeProjectId)}
+              {renderDynamicComponent(component, changeComponent, projectId, changeProjectId, setTheme, darkMode)}
           </div>
       </div>
   );
 }
-function renderDynamicComponent(component, changeComponent, projectId, changeProject){
+function renderDynamicComponent(component, changeComponent, projectId, changeProject, setTheme, darkMode){
     switch (component){
         case 'All':
             if (projectId) {
@@ -64,7 +73,17 @@ function renderDynamicComponent(component, changeComponent, projectId, changePro
                                  projectId={projectId}
             />)
         case 'Settings':
-            return <Settings/>
+            return <Settings setTheme={setTheme} darkMode={darkMode}/>
     }
 }
+
+function getThemeSetting(){
+    return fetch("/settings/darkMode")
+        .then(res => res.json())
+        .then(result => {
+            console.log(result)
+            return result
+        })
+}
+
 export default App;

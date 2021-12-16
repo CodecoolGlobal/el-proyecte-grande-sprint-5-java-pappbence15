@@ -2,19 +2,16 @@ import * as url from "url";
 
 const {useState, useEffect} = require("react");
 
-function Settings(){
-    const [darkMode, setDarkMode] = useState(false);
+function Settings(props){
     const [notifications, setNotifications] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
-
     useEffect(()=>{
         fetch("/settings")
             .then(res => res.json())
             .then(
                 (result) => {
                     setNotifications(result.notifications);
-                    setDarkMode(result.darkMode);
                     setIsLoaded(true);
                 },(error) => {
                     setIsLoaded(true);
@@ -46,7 +43,7 @@ function Settings(){
                 <div className='settings-mode'>
                     <p>Dark mode</p>
                     <label className="switch">
-                        <input type="checkbox" checked={darkMode} onClick={handleDarkModeClick}/>
+                        <input type="checkbox" checked={props.darkMode} onClick={handleDarkModeClick}/>
                             <span className="slider round"/>
                     </label>
                 </div>
@@ -61,9 +58,9 @@ function Settings(){
     }
 
     function handleDarkModeClick() {
-        const url = `/settings/update/darkMode/${!darkMode}`;
+        const url = `/settings/update/darkMode/${!props.darkMode}`;
         fetch(url, {method: "POST"});
-        setDarkMode(!darkMode);
+        props.setTheme(!props.darkMode);
     }
 }
 
