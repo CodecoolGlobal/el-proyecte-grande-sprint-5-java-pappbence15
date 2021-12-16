@@ -4,7 +4,8 @@ export function Star(props) {
     const [isFull, setFull] = useState(props.full)
 
     function onClick() {
-        setFull(prev=>!prev)
+        setFull(prev=>!prev);
+        fetch(`/${props.id}/favourite`, {method:'POST'});
     }
 
     return (
