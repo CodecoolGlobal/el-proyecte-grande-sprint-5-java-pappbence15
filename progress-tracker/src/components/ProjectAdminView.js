@@ -32,7 +32,7 @@ export default function ProjectAdminView(props) {
         return <div>Loading...</div>;
     } else {
         const allStories = project.userStories;
-        const favouriteStories = allStories.filter(s=>s.isFavourite);
+        const favouriteStories = allStories.filter(s=>s.favourite);
 
         const stories = props.detailedView ? allStories : favouriteStories;
         return (
