@@ -10,6 +10,7 @@ import {useEffect, useState} from "react";
 import ProjectList from "./components/ProjectList";
 import ProjectAdminView from "./components/ProjectAdminView";
 import Settings from "./Settings";
+import {Container} from "@mui/material";
 
 function App() {
     const [component, setComponent] = useState('All')
@@ -34,9 +35,9 @@ function App() {
         <Header name={"Name of the Brand"} changeComponent={changeComponent}/>
         <Footer owner={"©Hello World KFT"} creators={["csillalukacs", "Sjpeti97", "pappbence15", "JustBenS1"]} links={['https://github.com/csillalukacs', "https://github.com/Sjpeti97", "https://github.com/pappbence15", "https://github.com/JustBenS1"]}/>
     </div>
-          <div className='dynamic-component-container'>
-              {renderDynamicComponent(component, changeComponent, projectId, changeProjectId, setTheme, darkMode)}
-          </div>
+          <Container maxWidth="sm">
+          {renderDynamicComponent(component, changeComponent, projectId, changeProjectId, setTheme, darkMode)}
+          </Container>
       </div>
   );
 }

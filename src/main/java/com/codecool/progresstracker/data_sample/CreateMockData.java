@@ -36,17 +36,17 @@ public class CreateMockData {
 
     public void spamMockData() throws ParseException {
         //String name, User owner, List<User> admins
-        userService.createNewUser(UserType.PROJECT_OWNER,"owner1", "owner1Username", "CodeBootSale@gmail.com", "valami");
-        userService.createNewUser(UserType.PROJECT_OWNER,"owner2", "owner1Username", "CodeBootSale@gmail.com", "valam2");
-        userService.createNewUser(UserType.PROJECT_OWNER,"owner3", "owner1Username", "CodeBootSale@gmail.com", "valam3");
-        userService.createNewUser(UserType.PROJECT_OWNER,"owner4", "owner1Username", "CodeBootSale@gmail.com", "valam4");
-        userService.createNewUser(UserType.PROJECT_OWNER,"owner5", "owner1Username", "CodeBootSale@gmail.com", "valam5");//5 project owners created and saved
+        userService.createNewUser(UserType.PROJECT_OWNER,"Kis Ferenc", "Feri_vagyok_a", "valami");
+        userService.createNewUser(UserType.PROJECT_OWNER,"Récsán Gabi", "gaborrecsan1", "valam2");
+        userService.createNewUser(UserType.PROJECT_OWNER,"Simon Peti", "P-dog", "valam3");
+        userService.createNewUser(UserType.PROJECT_OWNER,"Urbán Urbán", "Urbán", "valam4");
+        userService.createNewUser(UserType.PROJECT_OWNER,"Ecneb Károly", "Karcsi bácsi", "valam5");//5 project owners created and saved
 
-        userService.createNewUser(UserType.ADMIN,"admin1", "admin1Username", "CodeBootSale@gmail.com", "pontez1");
-        userService.createNewUser(UserType.ADMIN,"admin2", "admin2Username", "CodeBootSale@gmail.com", "pontez2");
-        userService.createNewUser(UserType.ADMIN,"admin3", "admin3Username", "CodeBootSale@gmail.com", "pontez3");
-        userService.createNewUser(UserType.ADMIN,"admin4", "admin4Username", "CodeBootSale@gmail.com", "pontez4");
-        userService.createNewUser(UserType.ADMIN,"admin5", "admin5Username", "CodeBootSale@gmail.com", "pontez5");//5 admins created and saved
+        userService.createNewUser(UserType.ADMIN,"Mr. X, ", "admin1Username", "pontez1");
+        userService.createNewUser(UserType.ADMIN,"P-dog", "admin2Username", "pontez2");
+        userService.createNewUser(UserType.ADMIN,"Lukács Csilla", "admin3Username", "pontez3");
+        userService.createNewUser(UserType.ADMIN,"Szabó Bence", "admin4Username", "pontez4");
+        userService.createNewUser(UserType.ADMIN,"Benec", "admin5Username", "pontez5");//5 admins created and saved
 
         List<User> userList = userService.getAll();
         List<User> adminList = new ArrayList<>();
@@ -55,31 +55,21 @@ public class CreateMockData {
 
         userService.setLoggedInUser(userList.get(5));//set logged in user
 
-        projectService.createNewProject("asadasd",userList.get(0), adminList);
-        projectService.createNewProject("asadas2d",userList.get(0), adminList);
-        projectService.createNewProject("asadas3d3",userList.get(0), adminList);
-        projectService.createNewProject("asada444sd",userList.get(0), adminList);//4 projects created and saved
+        projectService.createNewProject("Neres kávéház",userList.get(0), adminList);
+        projectService.createNewProject("Antal-film",userList.get(0), adminList);
+        projectService.createNewProject("Journey refactor",userList.get(0), adminList);
+        projectService.createNewProject("Codewars 5kyu",userList.get(0), adminList);//4 projects created and saved
 
         List<Project> projects = projectService.getAll();
 
-        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 1", 0.65, false);
-        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 2", 0.7,false);
-        userStoryService.createNewUserStory(projects.get(0),"(of 0) teszt story 3", 0.3, true);
+        userStoryService.createNewUserStory(projects.get(0),"Csempézés", 0.65, true);
+        userStoryService.createNewUserStory(projects.get(0),"Falfestés", 0.7,false);
+        userStoryService.createNewUserStory(projects.get(0),"Lakkozás", 0.3, false);
 
-        userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 4",0.01, true);
-        userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 5",0.8, false);
-        userStoryService.createNewUserStory(projects.get(1),"(of 1) teszt story 6",0.96, true);
-
-
+        userStoryService.createNewUserStory(projects.get(1),"Pénzgyűjtés",0.01, true);
+        userStoryService.createNewUserStory(projects.get(1),"Final script",0.8, false);
+        userStoryService.createNewUserStory(projects.get(1),"Ruha design",0.96, true);
 
 
-
-        goalService.createNewProjectGoal("goal1 of project1", Statuses.NEW, dateFormat.parse("2001-01-01"), projects.get(0));
-        System.out.println(projects.get(0).getProjectGoals());
-
-        goalService.createNewUserStoryGoal("userStoryGoal1 of project1's userStory1", Statuses.DONE, dateFormat.parse("2001-01-01"),
-                projects.get(0).getUserStories().get(0)
-        );
-        System.out.println(projects.get(0).getUserStories().get(0).getUserStoryGoals());
     }
 }

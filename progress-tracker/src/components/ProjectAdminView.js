@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import UserStory from "./UserStory";
 import ProgressBar from "./ProgressBar";
+import Grid from "@mui/material/Grid";
 
 export default function ProjectAdminView(props) {
     const [error, setError] = useState(null);
@@ -52,15 +53,12 @@ export default function ProjectAdminView(props) {
                     {project.admins.map(admin => <span key={admin.id}>{admin.name} </span>)}
                 </p>
                 <h3>User stories</h3>
-                <ul>
-                    {stories.map(s => <span key={s.id}>
+                <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 1, sm: 1, md: 1 }}>
+                    {stories.map(s =>
+                        <Grid item xs={1} sm={1} md={1} key={s.id}>
                         <UserStory story={s}/>
-                        <ProgressBar size={"small"}
-                                     percentage={100*(s.currentPercent)}
-                        />
-                    </span>)}
-
-                </ul>
+                    </Grid>)}
+                </Grid>
             </div>
         );
     }
