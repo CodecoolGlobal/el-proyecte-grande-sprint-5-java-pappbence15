@@ -1,4 +1,4 @@
-import logo from '../../logo.svg';
+import logo from '../../logo-for-progress-tracker.png';
 import Navbar from "./Navbar";
 
 function Header(props){
