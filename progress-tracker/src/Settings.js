@@ -1,4 +1,5 @@
-import * as url from "url";
+import Grid from '@mui/material/Grid';
+import {Box, Switch} from "@mui/material";
 
 const {useState, useEffect} = require("react");
 
@@ -32,7 +33,7 @@ function Settings(props){
         )
     }else{
         return(
-            <div className='settings-controller'>
+            /*<div className='settings-controller'>
                 <div className='settings-mode'>
                     <p>Notifications</p>
                 <label className="switch">
@@ -47,7 +48,31 @@ function Settings(props){
                             <span className="slider round"/>
                     </label>
                 </div>
-            </div>
+            </div>*/
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                <Grid item xs={6} direction={"row"}>
+                    <p>Notifications</p>
+                </Grid>
+                <Grid item xs={6} direction={"row"}>
+                    <Switch
+                        size={"large"}
+                        checked={notifications}
+                        onChange={handleNotificationClick}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                    />
+                </Grid>
+                <Grid item xs={6}>
+                    <p>Dark mode</p>
+                </Grid>
+                <Grid item xs={6}>
+                    <Switch
+                        size={"large"}
+                        checked={props.darkMode}
+                        onChange={handleDarkModeClick}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                    />
+                </Grid>
+            </Grid>
         )
     }
 
