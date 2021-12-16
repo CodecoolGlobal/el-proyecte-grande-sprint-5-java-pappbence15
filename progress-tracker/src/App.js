@@ -5,7 +5,6 @@ import './style/Footer.css'
 import './style/Settings.css';
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
-import {useState} from "react";
 import './style/DarkMode.css'
 import {useEffect, useState} from "react";
 import ProjectList from "./components/ProjectList";

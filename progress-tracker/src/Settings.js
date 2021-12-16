@@ -1,7 +1,6 @@
 const {useState, useEffect} = require("react");
 
-function Settings(){
-    const [darkMode, setDarkMode] = useState(false);
+function Settings(props){
     const [notifications, setNotifications] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
