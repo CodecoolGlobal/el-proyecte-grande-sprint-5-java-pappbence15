@@ -21,3 +21,10 @@ body{
                                   supported by Chrome, Opera and Firefox */
 }
 
+#main-div {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
