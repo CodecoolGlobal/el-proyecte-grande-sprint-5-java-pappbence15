@@ -2,6 +2,7 @@ package com.codecool.progresstracker.service.notifications.builder.util;
 
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.User;
+import com.codecool.progresstracker.model.goal.Goal;
 import com.codecool.progresstracker.model.goal.ProjectGoal;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,7 @@ import java.util.Date;
 
 @Component
 public class NotificationsUtil {
-    public String overdueProjectGoalTextGeneratorForOwner(Project project, ProjectGoal projectGoal){
+    public String overdueProjectGoalTextGeneratorForOwner(Project project, Goal projectGoal){
         String notificationText = "";
 
         notificationText = "Your project named: \"" + project.getName() + "\" has a project level goal incomplete after it's deadline.\n\n";
@@ -26,7 +27,7 @@ public class NotificationsUtil {
         return notificationText;
     }
 
-    public String overdueProjectGoalTextGeneratorForAdmin(Project project, ProjectGoal projectGoal){
+    public String overdueProjectGoalTextGeneratorForAdmin(Project project, Goal projectGoal){
         String notificationText = "";
 
         notificationText = "A project that you are an admin of: \"" + project.getName() + "\" has a project level goal incomplete after it's deadline.\n\n";
