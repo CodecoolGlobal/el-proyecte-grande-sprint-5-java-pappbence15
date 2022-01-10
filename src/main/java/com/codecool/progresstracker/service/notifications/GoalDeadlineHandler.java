@@ -48,21 +48,21 @@ public class GoalDeadlineHandler {
 
     private void notificationHandler(Project project, ProjectGoal projectGoal){
         String messageForOwner = util.overdueProjectGoalTextGeneratorForOwner(project, projectGoal);
-        sendOverdueNotificationToOwner(project.getOwner().getEmail(), project.getName(),messageForOwner);
+//        sendOverdueNotificationToOwner(project.getOwner().getEmail(), project.getName(),messageForOwner);
 
         String messageForAdmins = util.overdueProjectGoalTextGeneratorForAdmin(project, projectGoal);
-        sendOverdueNotificationToAdmins(project.getAdmins(), project.getName(), messageForAdmins);
+//        sendOverdueNotificationToAdmins(project.getAdmins(), project.getName(), messageForAdmins);
     }
 
-    private void sendOverdueNotificationToOwner(String address, String projectName, String message){
-        NotificationService.sendMail(address,"One of " + projectName+ "'s project goals is overdue.", message);
-    }
+//    private void sendOverdueNotificationToOwner(String address, String projectName, String message){
+//        NotificationService.sendMail(address,"One of " + projectName+ "'s project goals is overdue.", message);
+//    }
 
-    public void sendOverdueNotificationToAdmins(List<User> admins, String projectName, String message){
-        for (User admin : admins) {
-            NotificationService.sendMail(admin.getEmail(),"One of " + projectName+ "'s project level goals task is overdue.", message);
-        }
-    }
+//    public void sendOverdueNotificationToAdmins(List<User> admins, String projectName, String message){
+//        for (User admin : admins) {
+//            NotificationService.sendMail(admin.getEmail(),"One of " + projectName+ "'s project level goals task is overdue.", message);
+//        }
+//    }
 
 
 }
