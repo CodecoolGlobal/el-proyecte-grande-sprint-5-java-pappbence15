@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
@@ -23,11 +24,8 @@ public class User {
     private String userName;
     private String email;
     private String password;
-    private Map<String, Boolean> userSettings;
-
-    public void addSetting(String name, boolean value){
-        this.userSettings.put(name, value);
-    }
+    @OneToOne
+    private UserSettings userSettings;
 
     public boolean doesPasswordMatch(String password){
         return Objects.equals(this.password, password);

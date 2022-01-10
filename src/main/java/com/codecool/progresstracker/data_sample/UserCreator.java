@@ -2,6 +2,7 @@ package com.codecool.progresstracker.data_sample;
 
 import com.codecool.progresstracker.dao.UserDao;
 import com.codecool.progresstracker.model.User;
+import com.codecool.progresstracker.model.UserSettings;
 import com.codecool.progresstracker.model.UserType;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,11 @@ public class UserCreator {
                 userName,
                 email,
                 password,
-                new HashMap<>()
+                new UserSettings()
         );
 
-        user.addSetting("darkMode", false);
-        user.addSetting("notifications", false);
+        user.getUserSettings().setDarkMode(true);
+        user.getUserSettings().setNotifications(false);
 
         userDao.add(user);
     }
