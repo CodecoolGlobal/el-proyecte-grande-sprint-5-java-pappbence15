@@ -2,8 +2,10 @@ package com.codecool.progresstracker.service;
 
 import com.codecool.progresstracker.dao.UserDao;
 import com.codecool.progresstracker.data_sample.UserCreator;
+import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
 
+import com.codecool.progresstracker.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,18 +13,16 @@ import org.springframework.stereotype.Service;
 public class RegistrationService {
 
     private final UserDao userDao;
+    private final UserRepository userRepository;
 
     @Autowired
-    public RegistrationService(UserDao userDao) {
+    public RegistrationService(UserDao userDao, UserRepository userRepository) {
         this.userDao = userDao;
+        this.userRepository = userRepository;
     }
 
-    public void registerUser(String username, String name, String email, String password, String newUserType){
-        UserType userType = stringToUserTypeConverter(newUserType);
-
-        UserCreator userCreator = new UserCreator(userDao);
-
-        userCreator.initialize(userType, name, username, email, password);
+    public void registerUser(User newUser){
+        userRepository.save(newUser);
     }
 
     public UserType stringToUserTypeConverter (String userType){

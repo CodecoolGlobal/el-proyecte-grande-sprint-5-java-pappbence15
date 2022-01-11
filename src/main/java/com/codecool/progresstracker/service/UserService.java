@@ -1,6 +1,5 @@
 package com.codecool.progresstracker.service;
 
-import com.codecool.progresstracker.dao.UserDao;
 import com.codecool.progresstracker.data_sample.UserCreator;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserSettings;
@@ -16,13 +15,11 @@ import java.util.UUID;
 
 @Service
 public class UserService {
-    private final UserDao userDao;
     private User loggedInUser;
     private UserRepository userRepository;
 
     @Autowired
-    public UserService(UserDao userDao, UserRepository userRepository) {
-        this.userDao = userDao;
+    public UserService(UserRepository userRepository) {
         loggedInUser = null;
         this.userRepository = userRepository;
     }
