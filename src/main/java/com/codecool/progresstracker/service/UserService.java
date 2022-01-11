@@ -31,10 +31,6 @@ public class UserService {
         this.loggedInUser = loggedInUser;
     }
 
-    public Map<String, Boolean> getUserSettings(UUID userId){
-        User user = userDao.find(userId);
-        return user.getUserSettings();
-    }
 
     public void createNewUser(UserType userType, String name, String username, String email, String password){
         UserCreator userCreator = new UserCreator(userDao);
@@ -42,11 +38,11 @@ public class UserService {
         userCreator.initialize(userType, name, username, email, password);
     }
 
-    public void updateUserSettings(String key, boolean value){
+    /*public void updateUserSettings(String key, boolean value){
         Map<String, Boolean> userSettings = getLoggedInUser().getUserSettings();
         boolean oldValue = userSettings.get(key);
         userSettings.replace(key, oldValue, value);
-    }
+    }*/
 
     public List<User> getAll(){
         return userDao.getAll();

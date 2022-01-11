@@ -32,7 +32,8 @@ public class SettingsController {
     @ResponseBody
     @GetMapping("/settings/darkMode")
     public ResponseEntity<?> getThemeSetting(){
-        return new ResponseEntity<>(userService.getLoggedInUser().getUserSettings().get("darkMode"), HttpStatus.OK);
+        //return new ResponseEntity<>(userService.getLoggedInUser().getUserSettings().get("darkMode"), HttpStatus.OK);
+    return null;
     }
 
     @ResponseBody
@@ -40,6 +41,6 @@ public class SettingsController {
     public void setSettings(@PathVariable String key, @PathVariable String value) {
         boolean newValue;
         newValue = Objects.equals(value, "true");
-        userService.updateUserSettings(key, newValue);
+        //userService.updateUserSettings(key, newValue);
     }
 }
