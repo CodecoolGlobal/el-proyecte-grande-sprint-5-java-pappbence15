@@ -52,37 +52,37 @@ public class CreateMockData {
 
 */
 
-        List<User> userList = userService.getAll();
-        List<User> adminList = new ArrayList<>();
-        adminList.add(userList.get(5));
-        adminList.add(userList.get(6));
+//        List<User> userList = userService.getAll();
+//        List<User> adminList = new ArrayList<>();
+//        adminList.add(userList.get(5));
+//        adminList.add(userList.get(6));
+//
+//        userService.setLoggedInUser(userList.get(5));//set logged in user
 
-        userService.setLoggedInUser(userList.get(5));//set logged in user
+//        projectService.createNewProject("Neres kávéház",userList.get(0), adminList);
+//        projectService.createNewProject("Antal-film",userList.get(0), adminList);
+//        projectService.createNewProject("Journey refactor",userList.get(0), adminList);
+//        projectService.createNewProject("Codewars 5kyu",userList.get(0), adminList);//4 projects created and saved
 
-        projectService.createNewProject("Neres kávéház",userList.get(0), adminList);
-        projectService.createNewProject("Antal-film",userList.get(0), adminList);
-        projectService.createNewProject("Journey refactor",userList.get(0), adminList);
-        projectService.createNewProject("Codewars 5kyu",userList.get(0), adminList);//4 projects created and saved
+//        List<Project> projects = projectService.getAll();
 
-        List<Project> projects = projectService.getAll();
-
-        userStoryService.createNewUserStory(projects.get(0),"Csempézés", 0.65, true);
-        userStoryService.createNewUserStory(projects.get(0),"Falfestés", 0.7,false);
-        userStoryService.createNewUserStory(projects.get(0),"Lakkozás", 0.3, false);
-
-        userStoryService.createNewUserStory(projects.get(1),"Pénzgyűjtés",0.01, true);
-        userStoryService.createNewUserStory(projects.get(1),"Final script",0.8, false);
-        userStoryService.createNewUserStory(projects.get(1),"Ruha design",0.96, true);
+//        userStoryService.createNewUserStory(projects.get(0),"Csempézés", 0.65, true);
+//        userStoryService.createNewUserStory(projects.get(0),"Falfestés", 0.7,false);
+//        userStoryService.createNewUserStory(projects.get(0),"Lakkozás", 0.3, false);
+//
+//        userStoryService.createNewUserStory(projects.get(1),"Pénzgyűjtés",0.01, true);
+//        userStoryService.createNewUserStory(projects.get(1),"Final script",0.8, false);
+//        userStoryService.createNewUserStory(projects.get(1),"Ruha design",0.96, true);
 
         //thanks for deleting mock data for goals :)
         //I consider myself lucky because I refactored most of the dead code at 11:00PM
         //So I had the privilege to see my beauty of an automatic email sender crippled without data
         //oh and thanks again
 
-        goalService.createNewProjectGoal("A csempe megrendelése", Statuses.IN_PROGRESS, dateFormat.parse("2021-12-15"), projects.get(0));
-
-        goalService.createNewUserStoryGoal("A csempe felhelyezése", Statuses.NEW, dateFormat.parse("2021-12-15"),
-                projects.get(0).getUserStories().get(0)
-        );
+//        goalService.createNewProjectGoal("A csempe megrendelése", Statuses.IN_PROGRESS, dateFormat.parse("2021-12-15"), projects.get(0));
+//
+//        goalService.createNewUserStoryGoal("A csempe felhelyezése", Statuses.NEW, dateFormat.parse("2021-12-15"),
+//                projects.get(0).getUserStories().get(0)
+//        );
     }
 }
