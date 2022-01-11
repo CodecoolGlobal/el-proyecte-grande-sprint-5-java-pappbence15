@@ -20,6 +20,6 @@ public class UserSettings {
     @GeneratedValue
     private UUID id;
 
-    private boolean darkMode;
-    private boolean notifications;
+    private boolean darkMode=false;
+    private boolean notifications=false;
 }

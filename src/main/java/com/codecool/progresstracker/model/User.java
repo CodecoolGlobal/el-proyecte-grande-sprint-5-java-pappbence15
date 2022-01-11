@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
@@ -18,6 +15,7 @@ import java.util.UUID;
 @Entity
 public class User {
     @Id
+    @GeneratedValue
     private UUID id;
     private UserType userType;
     private String name;
@@ -26,6 +24,9 @@ public class User {
     private String password;
     @OneToOne
     private UserSettings userSettings;
+
+    public User(UserType userType, String name, String username, String email, String password, UserSettings userSettings) {
+    }
 
     public boolean doesPasswordMatch(String password){
         return Objects.equals(this.password, password);

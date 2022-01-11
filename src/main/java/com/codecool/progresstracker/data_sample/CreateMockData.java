@@ -36,6 +36,7 @@ public class CreateMockData {
 
     public void spamMockData() throws ParseException {
         //Crippled the email sending service with setting mock data emails to CodeBootSale@gmail.com, thanks
+/*
 
         userService.createNewUser(UserType.PROJECT_OWNER,"Kis Ferenc", "Feri_vagyok_a", "CodeBootSale@gmail.com","valami");
         userService.createNewUser(UserType.PROJECT_OWNER,"Récsán Gabi", "gaborrecsan1", "CodeBootSale@gmail.com", "valam2");
@@ -49,6 +50,7 @@ public class CreateMockData {
         userService.createNewUser(UserType.ADMIN,"Szabó Bence", "admin4Username", "CodeBootSale@gmail.com", "pontez4");
         userService.createNewUser(UserType.ADMIN,"Benec", "admin5Username", "CodeBootSale@gmail.com", "pontez5");//5 admins created and saved
 
+*/
 
         List<User> userList = userService.getAll();
         List<User> adminList = new ArrayList<>();
