@@ -9,6 +9,8 @@ import com.codecool.progresstracker.repository.UserStoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class UserStoryService {
 
@@ -22,6 +24,14 @@ public class UserStoryService {
     public void add(Project project, UserStory userStory){
         //TODO cascade if not gut
         this.userStoryRepository.save(userStory);
+    }
+
+    public UserStory find(UUID userStoryId){
+        return userStoryRepository.getById(userStoryId);
+    }
+
+    public void toggleFavourite(UUID userStoryId, boolean isFavourite){
+        userStoryRepository.updateFavourite(userStoryId, isFavourite);
     }
 
 //    public void createNewUserStory(Project project, String name, double currentPercent, boolean isFavourite){
