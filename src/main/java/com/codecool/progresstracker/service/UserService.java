@@ -1,17 +1,14 @@
 package com.codecool.progresstracker.service;
 
-import com.codecool.progresstracker.data_sample.UserCreator;
+import com.codecool.progresstracker.model.LoginAttempt;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserSettings;
-import com.codecool.progresstracker.model.UserType;
 
 import com.codecool.progresstracker.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 @Service
 public class UserService {
@@ -43,5 +40,19 @@ public class UserService {
 
     public List<User> getAll(){
         return userRepository.getAll();
+    }
+
+    public User getValidLoginUser(LoginAttempt loginAttempt) {
+        User user = userRepository.getUserByUserName(loginAttempt.getUsername());
+        if (user!=null) {
+            if (user.doesPasswordMatch(loginAttempt.getPassword())) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public void saveNewUser(User user) {
+        userRepository.save(user);
     }
 }
