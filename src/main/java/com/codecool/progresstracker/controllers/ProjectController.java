@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.ParseException;
@@ -54,5 +56,17 @@ public class ProjectController {
             return new ResponseEntity<>(projects, HttpStatus.OK);
         }else{
             return new ResponseEntity<>("Unauthorized: you are not logged in as a project owner", HttpStatus.UNAUTHORIZED);        }
+    }
+
+    @PostMapping("/project/add")
+    public void saveNewProject(@RequestBody Project project) {
+//        User user = userService.getLoggedInUser(); TODO make this work with session.
+        User user = userService.getAll().get(0);
+        if (user.getUserType().equals(UserType.ADMIN)) {
+            project.getAdmins().add(user);
+        } else if (user.getUserType().equals(UserType.PROJECT_OWNER)) {
+            project.setOwner(user);
+        }
+        projectService.saveNewProject(project);
     }
 }
