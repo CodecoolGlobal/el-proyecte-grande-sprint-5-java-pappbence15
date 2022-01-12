@@ -63,5 +63,7 @@ public class ProjectService {
         return projectRepository.getAll();
     }
 
-
+    public void saveNewProject(Project project) {
+        projectRepository.save(project);
+    }
 }
