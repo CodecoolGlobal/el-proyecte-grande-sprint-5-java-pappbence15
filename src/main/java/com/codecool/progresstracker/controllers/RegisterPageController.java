@@ -43,7 +43,7 @@ public class RegisterPageController {
     }
 
     @PostMapping
-    public String registerNewUser(@RequestBody User user, Model model) {
+    public String registerNewUser(@RequestBody User user) {
         userService.saveNewUser(user);
 
         return "registered user";
