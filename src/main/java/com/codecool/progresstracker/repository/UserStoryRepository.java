@@ -24,4 +24,13 @@ public interface UserStoryRepository extends CrudRepository<UserStory, UUID> {
                          @Param("isFavorite") boolean isFavorite,
                          @Param("name") String name,
                          @Param("userStoryGoals")List<Goal> userStoryGoals);
+
+    UserStory getById(UUID id);
+
+    @Modifying
+    @Query("update UserStory us " +
+            "set us.isFavourite = :isFavourite " +
+            "where us.id = :userStoryId")
+    void updateFavourite(@Param("userStoryId") UUID userStoryId,
+                         @Param("isFavourite") boolean isFavourite);
 }
