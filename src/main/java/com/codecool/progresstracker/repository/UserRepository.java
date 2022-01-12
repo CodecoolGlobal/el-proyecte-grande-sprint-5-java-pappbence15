@@ -26,4 +26,7 @@ public interface UserRepository extends CrudRepository<User, UUID> {
                             @Param("newSettings")UserSettings newSettings);
 
     User getUserByUserName(String userName);
+
+    @Query("select u from User u where u.email = ?1")
+    User findByEmail(String email);
 }
