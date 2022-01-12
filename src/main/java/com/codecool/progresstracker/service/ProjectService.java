@@ -27,7 +27,7 @@ public class ProjectService {
         this.userStoryRepository = userStoryRepository;
     }
 
-    public Project find(UUID id) throws Exception {
+    public Project find(UUID id) {
         return projectRepository.getById(id);
     }
 
