@@ -5,6 +5,7 @@ import com.codecool.progresstracker.model.LoginAttempt;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.service.ProjectService;
 
+import com.codecool.progresstracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/login")
 public class LoginPageController {
 
-    private final UserDao userDao; //TODO: get rid of this by adding service layer between controller and DAO
-    private final ProjectService projectService; //like here
+    private final UserService userService;
+    private final ProjectService projectService;
 
     @Autowired
-    public LoginPageController(UserDao userDao, ProjectService projectService) {
-        this.userDao = userDao;
+    public LoginPageController(UserService userService, ProjectService projectService) {
+        this.userService = userService;
         this.projectService = projectService;
     }
 
@@ -28,7 +29,7 @@ public class LoginPageController {
 
     @PostMapping
     public String loginUser(@RequestBody LoginAttempt loginAttempt){
-        User loginUser = userDao.getValidLoginUser(loginAttempt);
+        User loginUser = userService.getValidLoginUser(loginAttempt);
         if (loginUser != null){
             return "logged in";
         }else{
