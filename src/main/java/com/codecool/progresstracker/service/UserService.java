@@ -6,6 +6,7 @@ import com.codecool.progresstracker.model.UserSettings;
 import com.codecool.progresstracker.model.UserType;
 
 import com.codecool.progresstracker.repository.UserRepository;
+import org.h2.jdbc.JdbcConnection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +40,10 @@ public class UserService {
 
     public void updateUserSettings(UserSettings newUserSettings){
         userRepository.updateUserSettings(loggedInUser.getId(), newUserSettings);
+    }
+
+    public UserSettings getUserSettings(User user){
+        return userRepository.getUserSettings(user.getId());
     }
 
     public List<User> getAll(){
