@@ -1,28 +1,29 @@
 package com.codecool.progresstracker.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class User {
     @Id
     @GeneratedValue
+    @JsonIgnore
     private UUID id;
     private UserType userType;
     private String name;
     private String userName;
     private String email;
     private String password;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private UserSettings userSettings;
 
     public User(UserType userType, String name, String username, String email, String password, UserSettings userSettings) {

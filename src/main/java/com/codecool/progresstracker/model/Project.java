@@ -3,15 +3,15 @@ package com.codecool.progresstracker.model;
 import com.codecool.progresstracker.model.goal.Goal;
 import com.codecool.progresstracker.model.goal.ProjectGoal;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -19,6 +19,7 @@ public class Project {
 
     @Id
     @GeneratedValue
+    @JsonIgnore
     private UUID id;
 
     private String name;
