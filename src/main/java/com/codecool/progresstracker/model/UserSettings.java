@@ -1,5 +1,6 @@
 package com.codecool.progresstracker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.UUID;
 public class UserSettings {
     @Id
     @GeneratedValue
+    @JsonIgnore
     private UUID id;
 
     private boolean darkMode=false;
