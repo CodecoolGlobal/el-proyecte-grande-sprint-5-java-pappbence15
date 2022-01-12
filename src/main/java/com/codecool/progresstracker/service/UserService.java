@@ -42,8 +42,8 @@ public class UserService {
         userRepository.updateUserSettings(loggedInUser.getId(), newUserSettings);
     }
 
-    public UserSettings getUserSettings(User user){
-        return userRepository.getUserSettings(user.getId());
+    public UserSettings getUserSettings(UUID userID){
+        return userRepository.getUserSettings(userID);
     }
 
     public List<User> getAll(){

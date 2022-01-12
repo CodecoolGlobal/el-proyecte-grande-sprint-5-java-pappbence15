@@ -26,7 +26,7 @@ public class SettingsController {
     @GetMapping("/settings")
     public ResponseEntity<?> getSettings() {
         User currentUser = userService.getLoggedInUser();
-        return new ResponseEntity<>(userService.getUserSettings(currentUser), HttpStatus.OK);
+        return new ResponseEntity<>(userService.getUserSettings(currentUser.getId()), HttpStatus.OK);
     }
 
     @ResponseBody
