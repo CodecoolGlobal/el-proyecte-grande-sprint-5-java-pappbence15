@@ -24,4 +24,6 @@ public interface UserRepository extends CrudRepository<User, UUID> {
     @Query("update User u set u.userSettings = :newSettings where u.id = :userId")
     void updateUserSettings(@Param("userId")UUID userId,
                             @Param("newSettings")UserSettings newSettings);
+
+    User getUserByUserName(String userName);
 }
