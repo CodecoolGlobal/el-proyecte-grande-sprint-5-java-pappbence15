@@ -33,17 +33,17 @@ public class CreateMockData {
     public void spamMockData(){
 
 
-        userService.createNewUser(new User(UserType.PROJECT_OWNER,"Kis Ferenc", "Feri_vagyok_a", "CodeBootSale@gmail.com","valami", new UserSettings()));
-        userService.createNewUser(new User(UserType.PROJECT_OWNER,"Récsán Gabi", "gaborrecsan1", "CodeBootSale@gmail.com", "valam2", new UserSettings()));
-        userService.createNewUser(new User(UserType.PROJECT_OWNER,"Simon Peti", "P-dog", "CodeBootSale@gmail.com", "valam3", new UserSettings()));
-        userService.createNewUser(new User(UserType.PROJECT_OWNER,"Urbán Urbán", "Urbán", "CodeBootSale@gmail.com", "valam4", new UserSettings()));
-        userService.createNewUser(new User(UserType.PROJECT_OWNER,"Ecneb Károly", "Karcsi bácsi", "CodeBootSale@gmail.com", "valam5", new UserSettings()));//5 project owners created and saved
+        userService.createNewUser(new User(UserType.PROJECT_OWNER,"John Smith", "John", "john@gmail.com","John123", new UserSettings()));
+        userService.createNewUser(new User(UserType.PROJECT_OWNER,"Ruth Gilbert", "Ruth", "ruth@gmail.com", "Ruth123", new UserSettings()));
+        userService.createNewUser(new User(UserType.PROJECT_OWNER,"Gillian Medina", "Gillian", "gillian@gmail.com", "Gillian123", new UserSettings()));
+        userService.createNewUser(new User(UserType.PROJECT_OWNER,"Travis Hart", "Travis", "travis@gmail.com", "Travis123", new UserSettings()));
+        userService.createNewUser(new User(UserType.PROJECT_OWNER,"Sybil Bush", "Sybil", "sybil@gmail.com", "Sybil123", new UserSettings()));
 
-        userService.createNewUser(new User(UserType.ADMIN,"TheBackEndGuy, ", "admin1Username", "CodeBootSale@gmail.com", "pontez1", new UserSettings()));
-        userService.createNewUser(new User(UserType.ADMIN,"P-dog", "admin2Username", "CodeBootSale@gmail.com", "pontez2", new UserSettings()));
-        userService.createNewUser(new User(UserType.ADMIN,"Lukács Csilla", "admin3Username", "CodeBootSale@gmail.com", "pontez3", new UserSettings()));
-        userService.createNewUser(new User(UserType.ADMIN,"Szabó Bence", "admin4Username", "CodeBootSale@gmail.com", "pontez4", new UserSettings()));
-        userService.createNewUser(new User(UserType.ADMIN,"Benec", "admin5Username", "CodeBootSale@gmail.com", "pontez5", new UserSettings()));//5 admins created and saved
+        userService.createNewUser(new User(UserType.ADMIN,"Anna GrossBerg, ", "Anna", "anna@gmail.com", "Anna123", new UserSettings()));
+        userService.createNewUser(new User(UserType.ADMIN,"Pat Lawrence", "Pat", "pat@gmail.com", "Pat123", new UserSettings()));
+        userService.createNewUser(new User(UserType.ADMIN,"Wren Hodgson", "Wren", "wren@gmail.com", "Wren132", new UserSettings()));
+        userService.createNewUser(new User(UserType.ADMIN,"Darren Fraley", "Darren", "darren@gmail.com", "Darren123", new UserSettings()));
+        userService.createNewUser(new User(UserType.ADMIN,"Bonnie Briggs", "Bonnie", "bonnie@gmail.com", "Bonnie123", new UserSettings()));
 
 
 
@@ -54,17 +54,17 @@ public class CreateMockData {
 
         userService.setLoggedInUser(userList.get(5));//set logged in user
 
-        projectService.createNewProject(new Project("Neres kávéház", userList.get(0), adminList));
-        projectService.createNewProject(new Project("Antal-film", userList.get(0), adminList));
+        projectService.createNewProject(new Project("Build My House", userList.get(0), adminList));
+        projectService.createNewProject(new Project("Garden renovation", userList.get(0), adminList));
         List<Project> projects = projectService.getAll();
 
-        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("Csempézés", 0.65, true));
-        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("Falfestés", 0.7, false));
-        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("Lakkozás", 0.3, false));
+        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("House base", 0.65, true));
+        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("Painting", 0.7, false));
+        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("Furnishing", 0.3, false));
 
-        projectService.addUserStoryToProject(projects.get(1).getId(), new UserStory("Test", 0.62, false));
-        projectService.addUserStoryToProject(projects.get(1).getId(), new UserStory("Test1", 0.3, true));
-        projectService.addUserStoryToProject(projects.get(1).getId(), new UserStory("Test2", 0.1, true));
+        projectService.addUserStoryToProject(projects.get(1).getId(), new UserStory("Get rid of old plants", 0.62, false));
+        projectService.addUserStoryToProject(projects.get(1).getId(), new UserStory("Irrigation system", 0.3, true));
+        projectService.addUserStoryToProject(projects.get(1).getId(), new UserStory("New plants", 0.1, true));
 
 
 //        goalService.createNewProjectGoal("A csempe megrendelése", Statuses.IN_PROGRESS, dateFormat.parse("2021-12-15"), projects.get(0));
