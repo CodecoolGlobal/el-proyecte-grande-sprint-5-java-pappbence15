@@ -16,7 +16,6 @@ import java.util.UUID;
 public class User {
     @Id
     @GeneratedValue
-    @JsonIgnore
     private UUID id;
     private UserType userType;
     private String name;

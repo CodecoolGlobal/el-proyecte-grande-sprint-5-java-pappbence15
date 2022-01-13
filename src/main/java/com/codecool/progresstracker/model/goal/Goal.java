@@ -19,7 +19,6 @@ import java.util.UUID;
 public abstract class Goal {
     @Id
     @GeneratedValue
-    @JsonIgnore
     private UUID id;
     private String text;
     private Statuses status;

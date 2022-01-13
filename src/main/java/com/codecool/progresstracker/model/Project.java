@@ -20,11 +20,10 @@ public class Project {
 
     @Id
     @GeneratedValue
-    @JsonIgnore
     private UUID id;
 
     private String name;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<UserStory> userStories;
     @ManyToOne
     private User owner;
@@ -37,6 +36,7 @@ public class Project {
         this.name = name;
         this.owner = owner;
         this.admins = admins;
+        this.userStories = new ArrayList<>();
     }
 
     public UserStory findStory(UUID storyId) throws NullPointerException{

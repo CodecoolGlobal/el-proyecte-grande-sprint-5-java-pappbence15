@@ -19,7 +19,6 @@ import java.util.UUID;
 public class UserSettings {
     @Id
     @GeneratedValue
-    @JsonIgnore
     private UUID id;
 
     private boolean darkMode=false;
