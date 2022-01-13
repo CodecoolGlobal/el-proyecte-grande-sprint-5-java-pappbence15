@@ -26,7 +26,13 @@ public class User {
     @OneToOne(cascade = {CascadeType.ALL})
     private UserSettings userSettings;
 
-    public User(UserType userType, String name, String username, String email, String password, UserSettings userSettings) {
+    public User(UserType userType, String name, String userName, String email, String password, UserSettings userSettings) {
+        this.userType = userType;
+        this.name = name;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.userSettings = userSettings;
     }
 
     public boolean doesPasswordMatch(String password){

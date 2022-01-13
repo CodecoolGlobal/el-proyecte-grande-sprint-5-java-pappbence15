@@ -45,6 +45,7 @@ public class RegisterPageController {
     @PostMapping
     public String registerNewUser(@RequestBody User user) {
         userService.saveNewUser(user);
+        userService.setLoggedInUser(user);
 
         return "registered user";
     }

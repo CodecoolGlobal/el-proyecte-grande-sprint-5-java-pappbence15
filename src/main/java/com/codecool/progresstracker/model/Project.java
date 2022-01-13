@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,10 +28,16 @@ public class Project {
     private List<UserStory> userStories;
     @ManyToOne
     private User owner;
-    @OneToMany
+    @ManyToMany
     private List<User> admins;
     @OneToMany
     private List<Goal> projectGoals;
+
+    public Project(String name, User owner, List<User> admins) {
+        this.name = name;
+        this.owner = owner;
+        this.admins = admins;
+    }
 
     public UserStory findStory(UUID storyId) throws NullPointerException{
         for (UserStory userStory: userStories) {

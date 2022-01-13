@@ -2,7 +2,6 @@ package com.codecool.progresstracker.controllers;
 
 import com.codecool.progresstracker.dao.ProjectDao;
 import com.codecool.progresstracker.model.Project;
-import com.codecool.progresstracker.service.RepeatingNotificationsService;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
 import com.codecool.progresstracker.service.ProjectService;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 public class ProjectController {
@@ -66,7 +64,7 @@ public class ProjectController {
         } else if (user.getUserType().equals(UserType.PROJECT_OWNER)) {
             project.setOwner(user);
         }
-        projectService.saveNewProject(project);
+        projectService.saveProject(project);
     }
 
     @ResponseBody
@@ -75,6 +73,6 @@ public class ProjectController {
         User admin = userService.getUserByEmail(email);
         Project project = projectService.find(projectService.getAll().get(0).getId());
         project.getAdmins().add(admin);
-        projectService.saveNewProject(project);
+        projectService.saveProject(project);
     }
 }

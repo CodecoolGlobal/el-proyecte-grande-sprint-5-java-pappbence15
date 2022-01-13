@@ -21,7 +21,7 @@ public class UserStoryService {
         this.userStoryRepository = userStoryRepository;
     }
 
-    public void add(Project project, UserStory userStory){
+    public void addNewUserStory(UserStory userStory){
         //TODO cascade if not gut
         this.userStoryRepository.save(userStory);
     }

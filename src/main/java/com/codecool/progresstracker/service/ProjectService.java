@@ -63,7 +63,17 @@ public class ProjectService {
         return projectRepository.getAll();
     }
 
-    public void saveNewProject(Project project) {
+    public void saveProject(Project project) {
+        projectRepository.save(project);
+    }
+
+    public Project getProjectById(UUID id) {
+        return projectRepository.getById(id);
+    }
+
+    public void addUserStoryToProject(UUID projectId, UserStory userStory) {
+        Project project = getProjectById(projectId);
+        project.getUserStories().add(userStory);
         projectRepository.save(project);
     }
 }

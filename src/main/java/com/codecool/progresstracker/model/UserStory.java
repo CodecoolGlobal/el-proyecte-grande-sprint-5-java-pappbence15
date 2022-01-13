@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,6 +27,13 @@ public class UserStory {
     private boolean isFavourite;
     @OneToMany
     private List<Goal> userStoryGoals;
+
+    public UserStory(String name, double currentPercent, boolean isFavourite, List<Goal> userStoryGoals) {
+        this.name = name;
+        this.currentPercent = currentPercent;
+        this.isFavourite = isFavourite;
+        this.userStoryGoals = userStoryGoals;
+    }
 
     public void add(UserStoryGoal userStoryGoal){
         this.userStoryGoals.add(userStoryGoal);
