@@ -8,7 +8,9 @@ import java.util.UUID;
 
 public class UserStoryGoal extends Goal{
 
-    private final UserStory parentStory;
+    private UserStory parentStory;
+
+    public UserStoryGoal(){super();}
 
     public UserStoryGoal(UUID id, String text, Statuses status, Date deadline, UserStory parentStory) {
         super(id, text, status, deadline, GoalType.USER_STORY_GOAL);

@@ -1,22 +1,43 @@
 package com.codecool.progresstracker.model;
 
+import com.codecool.progresstracker.model.goal.Goal;
 import com.codecool.progresstracker.model.goal.ProjectGoal;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Project {
-    private final UUID id;
-    private final String name;
+
+    @Id
+    @GeneratedValue
+    private UUID id;
+
+    private String name;
+    @OneToMany(cascade = CascadeType.ALL)
     private List<UserStory> userStories;
-    private final User owner;
+    @ManyToOne
+    private User owner;
+    @ManyToMany
     private List<User> admins;
-    private List<ProjectGoal> projectGoals;
+    @OneToMany
+    private List<Goal> projectGoals;
+
+    public Project(String name, User owner, List<User> admins) {
+        this.name = name;
+        this.owner = owner;
+        this.admins = admins;
+        this.userStories = new ArrayList<>();
+    }
 
     public UserStory findStory(UUID storyId) throws NullPointerException{
         for (UserStory userStory: userStories) {
@@ -42,4 +63,5 @@ public class Project {
     public void addProjectGoal(ProjectGoal projectGoal){
         this.projectGoals.add(projectGoal);
     }
+
 }

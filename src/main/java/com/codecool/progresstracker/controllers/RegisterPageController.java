@@ -5,6 +5,7 @@ import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
 import com.codecool.progresstracker.service.ProjectService;
 
+import com.codecool.progresstracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +17,14 @@ import java.util.List;
 @RequestMapping("/register")
 public class RegisterPageController {
 
-    private final UserDao userDao; //TODO: get rid of this by adding service layer between controller and DAO
-    private final ProjectService projectService; //like here
+    private final ProjectService projectService;
+    private final UserService userService;
 
     @Autowired
-    public RegisterPageController(UserDao userDao, ProjectService projectService) {
-        this.userDao = userDao;
+    public RegisterPageController(ProjectService projectService,
+                                  UserService userService) {
         this.projectService = projectService;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -33,7 +35,7 @@ public class RegisterPageController {
     }
 
     public List<String> getFancyUserTypes(){
-        List<String> fancyUserTypes = new ArrayList<String>();
+        List<String> fancyUserTypes = new ArrayList<>();
         fancyUserTypes.add(UserType.SUPER_USER.getFancyUserType());
         fancyUserTypes.add(UserType.ADMIN.getFancyUserType());
 
@@ -41,8 +43,9 @@ public class RegisterPageController {
     }
 
     @PostMapping
-    public String registerNewUser(@RequestBody User user, Model model){
-        userDao.add(user);
+    public String registerNewUser(@RequestBody User user) {
+        userService.saveNewUser(user);
+        userService.setLoggedInUser(user);
 
         return "registered user";
     }

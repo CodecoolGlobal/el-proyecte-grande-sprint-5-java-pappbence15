@@ -5,6 +5,7 @@ import com.codecool.progresstracker.dao.ProjectDao;
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.Statuses;
 import com.codecool.progresstracker.model.User;
+import com.codecool.progresstracker.model.goal.Goal;
 import com.codecool.progresstracker.model.goal.ProjectGoal;
 
 import com.codecool.progresstracker.service.notifications.builder.NotificationService;
@@ -38,7 +39,7 @@ public class GoalDeadlineHandler {
         String currentDateString = util.formatDateToString(LocalDate.now());
         Date currentDate = dateFormat.parse(currentDateString);
         for (Project project : projectList) {
-            for (ProjectGoal projectGoal : project.getProjectGoals()) {
+            for (Goal projectGoal : project.getProjectGoals()) {
                 if (!projectGoal.getStatus().equals(Statuses.DONE) && currentDate.after(projectGoal.getDeadline())){
                     notificationHandler(project, projectGoal);
                 }
@@ -46,7 +47,7 @@ public class GoalDeadlineHandler {
         }
     }
 
-    private void notificationHandler(Project project, ProjectGoal projectGoal){
+    private void notificationHandler(Project project, Goal projectGoal){
         String messageForOwner = util.overdueProjectGoalTextGeneratorForOwner(project, projectGoal);
 //        sendOverdueNotificationToOwner(project.getOwner().getEmail(), project.getName(),messageForOwner);
 

@@ -1,26 +1,26 @@
 package com.codecool.progresstracker.service;
 
-import com.codecool.progresstracker.dao.UserDao;
-import com.codecool.progresstracker.data_sample.UserCreator;
+import com.codecool.progresstracker.model.LoginAttempt;
 import com.codecool.progresstracker.model.User;
-import com.codecool.progresstracker.model.UserType;
+import com.codecool.progresstracker.model.UserSettings;
 
+import com.codecool.progresstracker.repository.UserRepository;
+import org.h2.jdbc.JdbcConnection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @Service
 public class UserService {
-    private final UserDao userDao;
     private User loggedInUser;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserService(UserDao userDao) {
-        this.userDao = userDao;
+    public UserService(UserRepository userRepository) {
         loggedInUser = null;
+        this.userRepository = userRepository;
     }
 
     public User getLoggedInUser() {
@@ -31,24 +31,38 @@ public class UserService {
         this.loggedInUser = loggedInUser;
     }
 
-    public Map<String, Boolean> getUserSettings(UUID userId){
-        User user = userDao.find(userId);
-        return user.getUserSettings();
+
+    public void createNewUser(User newUser){
+        userRepository.save(newUser);
     }
 
-    public void createNewUser(UserType userType, String name, String username, String email, String password){
-        UserCreator userCreator = new UserCreator(userDao);
-
-        userCreator.initialize(userType, name, username, email, password);
+    public void updateUserSettings(UserSettings newUserSettings){
+        userRepository.updateUserSettings(loggedInUser.getId(), newUserSettings);
     }
 
-    public void updateUserSettings(String key, boolean value){
-        Map<String, Boolean> userSettings = getLoggedInUser().getUserSettings();
-        boolean oldValue = userSettings.get(key);
-        userSettings.replace(key, oldValue, value);
+    public UserSettings getUserSettings(UUID userID){
+        return userRepository.getUserSettings(userID);
     }
 
     public List<User> getAll(){
-        return userDao.getAll();
+        return userRepository.getAll();
+    }
+
+    public User getValidLoginUser(LoginAttempt loginAttempt) {
+        User user = userRepository.getUserByUserName(loginAttempt.getUsername());
+        if (user!=null) {
+            if (user.doesPasswordMatch(loginAttempt.getPassword())) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public void saveNewUser(User user) {
+        userRepository.save(user);
+    }
+
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

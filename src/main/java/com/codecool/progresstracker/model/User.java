@@ -1,25 +1,37 @@
 package com.codecool.progresstracker.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
+import javax.persistence.*;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class User {
-    private final UUID id;
-    private final UserType userType;
-    private final String name;
-    private final String userName;
-    private final String email;
+    @Id
+    @GeneratedValue
+    private UUID id;
+    private UserType userType;
+    private String name;
+    private String userName;
+    private String email;
     private String password;
-    private Map<String, Boolean> userSettings;
+    @OneToOne(cascade = {CascadeType.ALL})
+    private UserSettings userSettings;
 
-    public void addSetting(String name, boolean value){
-        this.userSettings.put(name, value);
+    public User(UserType userType, String name, String userName, String email, String password, UserSettings userSettings) {
+        this.userType = userType;
+        this.name = name;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.userSettings = userSettings;
     }
 
     public boolean doesPasswordMatch(String password){

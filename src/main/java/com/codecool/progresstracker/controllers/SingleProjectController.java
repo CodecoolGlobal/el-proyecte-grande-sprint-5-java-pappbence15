@@ -29,22 +29,13 @@ public class SingleProjectController {
 
     @ResponseBody
     @GetMapping("/admin/project/{projectId}")
-    public ResponseEntity<?> adminProjectPage(@PathVariable UUID projectId) throws Exception {
-        Project project = projectService.find(projectId);
-
-        User user = userService.getLoggedInUser();
-        UserType userType = user.getUserType();
-
-        if (userType == UserType.ADMIN && project.getAdmins().contains(user)) {
-            return new ResponseEntity<>(project, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("Unauthorized: you are not the admin of this project", HttpStatus.UNAUTHORIZED);
-        }
+    public ResponseEntity<?> adminProjectPage(@PathVariable UUID projectId) {
+        return new ResponseEntity<>(projectService.find(projectId), HttpStatus.OK);
     }
 
     @ResponseBody
     @GetMapping("/owner/project/{projectId}")
-    public ResponseEntity<?> ownerProjectPage(@PathVariable UUID projectId) throws Exception {
+    public ResponseEntity<?> ownerProjectPage(@PathVariable UUID projectId) {
         Project project = projectService.find(projectId);
 
         User user = userService.getLoggedInUser();

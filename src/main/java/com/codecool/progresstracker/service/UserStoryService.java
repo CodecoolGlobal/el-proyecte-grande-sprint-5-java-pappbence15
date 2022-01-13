@@ -5,27 +5,38 @@ import com.codecool.progresstracker.data_sample.UserStoryCreator;
 import com.codecool.progresstracker.model.Project;
 import com.codecool.progresstracker.model.UserStory;
 
+import com.codecool.progresstracker.repository.UserStoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class UserStoryService {
 
-    private final UserStoryDao userStoryDao;
+    private final UserStoryRepository userStoryRepository;
 
     @Autowired
-    public UserStoryService(UserStoryDao userStoryDao){
-        this.userStoryDao = userStoryDao;
+    public UserStoryService(UserStoryRepository userStoryRepository){
+        this.userStoryRepository = userStoryRepository;
     }
 
-    public void add(Project project, UserStory userStory){
-        project.addStory(userStory);
-        this.userStoryDao.add(userStory);
+    public void addNewUserStory(UserStory userStory){
+        //TODO cascade if not gut
+        this.userStoryRepository.save(userStory);
     }
 
-    public void createNewUserStory(Project project, String name, double currentPercent, boolean isFavourite){
-        UserStoryCreator userStoryCreator = new UserStoryCreator(userStoryDao);
-
-        userStoryCreator.initialize(project, name, isFavourite, currentPercent);
+    public UserStory find(UUID userStoryId){
+        return userStoryRepository.getById(userStoryId);
     }
+
+    public void toggleFavourite(UUID userStoryId, boolean isFavourite){
+        userStoryRepository.updateFavourite(userStoryId, isFavourite);
+    }
+
+//    public void createNewUserStory(Project project, String name, double currentPercent, boolean isFavourite){
+//        UserStoryCreator userStoryCreator = new UserStoryCreator(userStoryDao);
+//
+//        userStoryCreator.initialize(project, name, isFavourite, currentPercent);
+//    }
 }
