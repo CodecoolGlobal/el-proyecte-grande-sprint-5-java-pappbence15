@@ -3,7 +3,7 @@ import ProjectLink from "./ProjectLink";
 import {Card, CardContent, Fab, Paper} from "@mui/material";
 import Grid from "@mui/material/Grid";
 import AddIcon from '@mui/icons-material/Add';
-import BasicModal from "../BasicModal";
+import AddNewProjectModal from "./AddNewProjectModal";
 
 export default function ProjectList(props){
     const [error, setError] = useState(null);
@@ -52,7 +52,7 @@ export default function ProjectList(props){
                     </ProjectLink>
                 ))}
                 <Grid item xs={1} sm={1} md={1} marginTop={3}>
-                    <BasicModal />
+                    <AddNewProjectModal />
                 </Grid>
             </Grid>
         );
