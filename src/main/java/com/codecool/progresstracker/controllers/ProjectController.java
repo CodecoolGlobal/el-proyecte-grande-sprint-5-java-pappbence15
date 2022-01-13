@@ -54,7 +54,7 @@ public class ProjectController {
             return new ResponseEntity<>("Unauthorized: you are not logged in as a project owner", HttpStatus.UNAUTHORIZED);        }
     }
 
-    @ResponseBody //TODO ask why it works only with this.
+    @ResponseBody
     @PostMapping("/project/add")
     public void saveNewProject(@RequestBody Project project) {
 //        User user = userService.getLoggedInUser(); TODO make this work with session.
