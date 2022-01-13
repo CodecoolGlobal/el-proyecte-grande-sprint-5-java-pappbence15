@@ -43,28 +43,27 @@ export default function ProjectList(props){
         return (
             <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 1, sm: 1, md: 1 }} direction={"row"}>
                 {items.map(item => (
-                    <Grid item xs={1} sm={1} md={1} marginTop={3}>
-                        <Card elevation={0} sx={{minWidth: 275}} style={{backgroundColor: "grey"}}>
-                            <CardContent>
-                            <ProjectLink name={item.name}
-                                     url={'/admin/project/' + item.id}
-                                     id={item.id}
-                                     changeComponent={props.changeComponent}
-                                     changeProject={props.changeProject}>
-                            </ProjectLink>
-                            </CardContent>
-                        </Card>
-                    </Grid>
+                    <ProjectLink name={item.name}
+                             url={'/admin/project/' + item.id}
+                             id={item.id}
+                             changeComponent={props.changeComponent}
+                             changeProject={props.changeProject}>
+                    </ProjectLink>
                 ))}
                 <Grid item xs={1} sm={1} md={1} marginTop={3}>
-                <Card elevation={0} sx={{minWidth: 275}} style={{backgroundColor: "grey"}}>
-                    <CardContent>
-                        <Fab color={"primary"} aria-label={"add"} variant={"extended"}>
-                            <AddIcon sx={{ mr: 1 }}/>
-                            Add new project
-                        </Fab>
-                    </CardContent>
-                </Card>
+                    <Card elevation={0}
+                          sx={{minWidth: 275}}
+                          style={{backgroundColor: "gray"}}
+                          onClick={() => {
+
+                          }}>
+                        <CardContent>
+                            <Fab color={"primary"} aria-label={"add"} variant={"extended"}>
+                                <AddIcon sx={{ mr: 1 }}/>
+                                Add new project
+                            </Fab>
+                        </CardContent>
+                    </Card>
                 </Grid>
             </Grid>
         );
