@@ -3,6 +3,7 @@ import ProjectLink from "./ProjectLink";
 import {Card, CardContent, Fab, Paper} from "@mui/material";
 import Grid from "@mui/material/Grid";
 import AddIcon from '@mui/icons-material/Add';
+import BasicModal from "../BasicModal";
 
 export default function ProjectList(props){
     const [error, setError] = useState(null);
@@ -51,19 +52,7 @@ export default function ProjectList(props){
                     </ProjectLink>
                 ))}
                 <Grid item xs={1} sm={1} md={1} marginTop={3}>
-                    <Card elevation={0}
-                          sx={{minWidth: 275}}
-                          style={{backgroundColor: "gray"}}
-                          onClick={() => {
-
-                          }}>
-                        <CardContent>
-                            <Fab color={"primary"} aria-label={"add"} variant={"extended"}>
-                                <AddIcon sx={{ mr: 1 }}/>
-                                Add new project
-                            </Fab>
-                        </CardContent>
-                    </Card>
+                    <BasicModal />
                 </Grid>
             </Grid>
         );
