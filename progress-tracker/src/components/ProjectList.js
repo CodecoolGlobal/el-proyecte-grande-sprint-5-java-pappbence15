@@ -1,5 +1,9 @@
 import {useEffect, useState} from "react";
 import ProjectLink from "./ProjectLink";
+import {Card, CardContent, Fab, Paper} from "@mui/material";
+import Grid from "@mui/material/Grid";
+import AddIcon from '@mui/icons-material/Add';
+import AddNewProjectModal from "./AddNewProjectModal";
 
 export default function ProjectList(props){
     const [error, setError] = useState(null);
@@ -38,18 +42,19 @@ export default function ProjectList(props){
         return <div>Loading...</div>;
     } else {
         return (
-            <ul>
+            <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 1, sm: 1, md: 1 }} direction={"row"}>
                 {items.map(item => (
-                    <li key={item.id}>
-                        <ProjectLink name={item.name}
-                                     url={'/admin/project/' + item.id}
-                                     id={item.id}
-                                     changeComponent={props.changeComponent}
-                                     changeProject={props.changeProject}
-                        />
-                    </li>
+                    <ProjectLink name={item.name}
+                             url={'/admin/project/' + item.id}
+                             id={item.id}
+                             changeComponent={props.changeComponent}
+                             changeProject={props.changeProject}>
+                    </ProjectLink>
                 ))}
-            </ul>
+                <Grid item xs={1} sm={1} md={1} marginTop={3}>
+                    <AddNewProjectModal />
+                </Grid>
+            </Grid>
         );
     }
 }

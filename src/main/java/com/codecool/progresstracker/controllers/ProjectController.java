@@ -2,6 +2,7 @@ package com.codecool.progresstracker.controllers;
 
 import com.codecool.progresstracker.dao.ProjectDao;
 import com.codecool.progresstracker.model.Project;
+import com.codecool.progresstracker.model.ProjectDTO;
 import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserType;
 import com.codecool.progresstracker.service.ProjectService;
@@ -14,19 +15,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class ProjectController {
     private final UserService userService;
     private final ProjectService projectService;
-    private final ProjectDao projectDao;
 
     @Autowired
-    public ProjectController(UserService userService, ProjectService projectService, ProjectDao projectDao) {
+    public ProjectController(UserService userService, ProjectService projectService) {
         this.userService = userService;
         this.projectService = projectService;
-        this.projectDao = projectDao;
     }
 
     @ResponseBody
@@ -54,17 +54,24 @@ public class ProjectController {
             return new ResponseEntity<>("Unauthorized: you are not logged in as a project owner", HttpStatus.UNAUTHORIZED);        }
     }
 
-    @ResponseBody //TODO ask why it works only with this.
+    @ResponseBody
     @PostMapping("/project/add")
-    public void saveNewProject(@RequestBody Project project) {
+    public void saveNewProject(@RequestBody ProjectDTO projectDTO) {
+        System.out.println(projectDTO.getName() + " " + projectDTO.getAdminEmail() + " " + projectDTO.getOwnerEmail());
+        User owner = userService.getUserByEmail(projectDTO.getOwnerEmail());
+        User admin = userService.getUserByEmail(projectDTO.getAdminEmail());
+        List<User> adminList = new ArrayList<>();
+        adminList.add(admin);
+        Project project = new Project(projectDTO.getName(), owner, adminList);
+        projectService.saveProject(project);
 //        User user = userService.getLoggedInUser(); TODO make this work with session.
-        User user = userService.getAll().get(0);
+        /*User user = userService.getAll().get(0);
         if (user.getUserType().equals(UserType.ADMIN)) {
             project.getAdmins().add(user);
         } else if (user.getUserType().equals(UserType.PROJECT_OWNER)) {
             project.setOwner(user);
         }
-        projectService.saveProject(project);
+        projectService.saveProject(project);*/
     }
 
     @ResponseBody
