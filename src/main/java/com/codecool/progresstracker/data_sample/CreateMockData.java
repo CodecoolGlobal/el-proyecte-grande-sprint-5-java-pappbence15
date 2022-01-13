@@ -16,14 +16,15 @@ import java.util.List;
 public class CreateMockData {
     private final UserService userService;
     private final ProjectService projectService;
-
+    private final UserStoryService userStoryService;
 
     private final SimpleDateFormat dateFormat;
 
     @Autowired
-    public CreateMockData(UserService userService, ProjectService projectService){
+    public CreateMockData(UserService userService, ProjectService projectService, UserStoryService userStoryService){
         this.userService = userService;
         this.projectService = projectService;
+        this.userStoryService = userStoryService;
 
 
         this.dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -55,18 +56,15 @@ public class CreateMockData {
 
         projectService.createNewProject(new Project("Neres kávéház", userList.get(0), adminList));
         projectService.createNewProject(new Project("Antal-film", userList.get(0), adminList));
-        projectService.createNewProject(new Project("Journey refactor", userList.get(0), adminList));
-        projectService.createNewProject(new Project("Codewars 5kyu", userList.get(0), adminList));//4 projects created and saved
-
         List<Project> projects = projectService.getAll();
 
-//        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("Csempézés", 0.65, true, new ArrayList<Goal>()));
-//        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("Falfestés", 0.7, true, new ArrayList<Goal>()));
-//        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("Lakkozás", 0.3, true, new ArrayList<Goal>()));
-//
-//        userStoryService.addNewUserStory(projects.get(1),"Pénzgyűjtés",0.01, true);
-//        userStoryService.addNewUserStory(projects.get(1),"Final script",0.8, false);
-//        userStoryService.createNewUserStory(projects.get(1),"Ruha design",0.96, true);
+        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("Csempézés", 0.65, true));
+        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("Falfestés", 0.7, false));
+        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("Lakkozás", 0.3, false));
+
+        projectService.addUserStoryToProject(projects.get(1).getId(), new UserStory("Test", 0.62, false));
+        projectService.addUserStoryToProject(projects.get(1).getId(), new UserStory("Test1", 0.3, true));
+        projectService.addUserStoryToProject(projects.get(1).getId(), new UserStory("Test2", 0.1, true));
 
 
 //        goalService.createNewProjectGoal("A csempe megrendelése", Statuses.IN_PROGRESS, dateFormat.parse("2021-12-15"), projects.get(0));
