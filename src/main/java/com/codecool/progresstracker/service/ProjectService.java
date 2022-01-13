@@ -28,7 +28,7 @@ public class ProjectService {
     }
 
     public Project find(UUID id) {
-        return projectRepository.getById(id);
+        return projectRepository.findById(id).get();
     }
 
     public List<Project> getProjectsByAdmin(User admin){

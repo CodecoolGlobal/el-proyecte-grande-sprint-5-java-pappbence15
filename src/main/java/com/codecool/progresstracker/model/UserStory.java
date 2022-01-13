@@ -28,11 +28,10 @@ public class UserStory {
     @OneToMany
     private List<Goal> userStoryGoals;
 
-    public UserStory(String name, double currentPercent, boolean isFavourite, List<Goal> userStoryGoals) {
+    public UserStory(String name, double currentPercent, boolean isFavourite) {
         this.name = name;
         this.currentPercent = currentPercent;
         this.isFavourite = isFavourite;
-        this.userStoryGoals = userStoryGoals;
     }
 
     public void add(UserStoryGoal userStoryGoal){
