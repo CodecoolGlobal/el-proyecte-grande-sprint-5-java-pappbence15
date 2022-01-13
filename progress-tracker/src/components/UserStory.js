@@ -2,9 +2,13 @@ import {Star} from "./Star";
 import ProgressBar from "./ProgressBar"
 import {Card, CardContent, Typography} from "@mui/material";
 
+const style = {
+    backgroundColor: "white"
+}
+
 export default function UserStory(props){
     return(
-        <Card sx={{minWidth: 275}}>
+        <Card sx={{minWidth: 275}} style={style}>
             <CardContent>
                 <Typography sx={{ fontSize: 20 }} color="text" gutterBottom>
                     {props.story.name}

@@ -18,6 +18,9 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
+const addStyle = {
+    backgroundColor: "#61dafb"
+}
 
 export default function AddNewProjectModal() {
     const [open, setOpen] = useState(false);
@@ -49,11 +52,11 @@ export default function AddNewProjectModal() {
 
             <Card elevation={0}
                   sx={{minWidth: 275}}
-                  style={{backgroundColor: "gray"}}
+                  style={{backgroundColor: "#5F636770"}}
                   onClick={handleOpen}
             >
                 <CardContent>
-                    <Fab color={"primary"} aria-label={"add"} variant={"extended"} >
+                    <Fab style={addStyle} aria-label={"add"} variant={"extended"}>
                         Add new Project
                         <AddIcon sx={{ mr: 1 }}/>
                     </Fab>
