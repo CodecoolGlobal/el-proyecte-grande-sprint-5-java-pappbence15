@@ -1,0 +1,26 @@
+.navbar-link{
+    font-size: 150%;
+    font-family: Monospaced, monospace;
+    text-decoration: none;
+    color: #61dafb;
+}
+.navbar-link:hover {
+    color: #ff00ff;
+}
+
+.navbar-link-container{
+    text-align: center;
+    vertical-align: middle;
+    margin-left: 5%;
+}
+
+.navbar-container{
+    display: flex;
+    justify-content: left;
+    /*border: #61dafb 3px solid;
+    border-radius: 25px;*/
+}
+
+.navbar-link:hover{
+    color: #ff00ff;
+}

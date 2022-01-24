@@ -1,0 +1,28 @@
+.App-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    position: sticky;
+    width: 100%;
+    top: 0;
+
+    font-size: calc(3vmin);
+
+    background-color: #282c34;
+
+    box-shadow: 0 0.2em rgba(95, 99, 103, 0.44);
+}
+
+.App-name {
+    margin: 0;
+    color: white;
+}
+
+.App-logo {
+    height: 10vmin;
+    pointer-events: none;
+    transform: rotate(90deg);
+}
+
