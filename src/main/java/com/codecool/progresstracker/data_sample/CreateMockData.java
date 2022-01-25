@@ -6,13 +6,14 @@ import com.codecool.progresstracker.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
 public class CreateMockData {
     private final UserService userService;
     private final ProjectService projectService;
@@ -32,8 +33,8 @@ public class CreateMockData {
 
     public void spamMockData(){
 
-
-        userService.createNewUser(new User(UserType.PROJECT_OWNER,"John Smith", "John", "john@gmail.com","John123", new UserSettings()));
+        User user = new User(UserType.PROJECT_OWNER,"John Smith", "John", "john@gmail.com","John123", new UserSettings());
+        userService.createNewUser(user);
         userService.createNewUser(new User(UserType.PROJECT_OWNER,"Ruth Gilbert", "Ruth", "ruth@gmail.com", "Ruth123", new UserSettings()));
         userService.createNewUser(new User(UserType.PROJECT_OWNER,"Gillian Medina", "Gillian", "gillian@gmail.com", "Gillian123", new UserSettings()));
         userService.createNewUser(new User(UserType.PROJECT_OWNER,"Travis Hart", "Travis", "travis@gmail.com", "Travis123", new UserSettings()));
@@ -58,13 +59,13 @@ public class CreateMockData {
         projectService.createNewProject(new Project("Garden renovation", userList.get(0), adminList));
         List<Project> projects = projectService.getAll();
 
-        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("House base", 0.65, true));
-        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("Painting", 0.7, false));
-        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("Furnishing", 0.3, false));
-
-        projectService.addUserStoryToProject(projects.get(1).getId(), new UserStory("Get rid of old plants", 0.62, false));
-        projectService.addUserStoryToProject(projects.get(1).getId(), new UserStory("Irrigation system", 0.3, true));
-        projectService.addUserStoryToProject(projects.get(1).getId(), new UserStory("New plants", 0.1, true));
+//        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("House base", 0.65, true));
+//        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("Painting", 0.7, false));
+//        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("Furnishing", 0.3, false));
+//
+//        projectService.addUserStoryToProject(projects.get(1).getId(), new UserStory("Get rid of old plants", 0.62, false));
+//        projectService.addUserStoryToProject(projects.get(1).getId(), new UserStory("Irrigation system", 0.3, true));
+//        projectService.addUserStoryToProject(projects.get(1).getId(), new UserStory("New plants", 0.1, true));
 
 
 //        goalService.createNewProjectGoal("A csempe megrendelése", Statuses.IN_PROGRESS, dateFormat.parse("2021-12-15"), projects.get(0));
