@@ -33,7 +33,7 @@ public class UserService {
 
 
     public void createNewUser(User newUser){
-        userRepository.save(newUser);
+        userRepository.saveAndFlush(newUser);
     }
 
     public void updateUserSettings(UserSettings newUserSettings){
