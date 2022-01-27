@@ -1,20 +1,20 @@
 import {Star} from "./Star";
-import ProgressBar from "./ProgressBar"
-import {Card, CardContent, Typography} from "@mui/material";
+import {Card, CardContent, Fab, Typography} from "@mui/material";
+import EditIcon from '@mui/icons-material/Edit';
+import { positions } from '@mui/system';
 
-const style = {
-    backgroundColor: "white"
-}
+
 
 export default function UserStory(props){
     return(
-        <Card sx={{minWidth: 275}} style={style}>
+        <Card sx={{minWidth: 275}} style={{marginTop: '5%'}}>
             <CardContent>
-                <Typography sx={{ fontSize: 20 }} color="text" gutterBottom>
+                <Typography sx={{ fontSize: 20 }} gutterBottom>
                     {props.story.name}
                 </Typography>
-                <ProgressBar size={"small"}
-                             percentage={100*(props.story.currentPercent)}/>
+                <Fab color="secondary" aria-label="edit" size={"small"} style={{position: "absolute", marginLeft: "10%"}}>
+                    <EditIcon />
+                </Fab>
                 <Star full={props.story.favourite} id={props.story.id}/>
             </CardContent>
         </Card>
