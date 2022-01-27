@@ -1,9 +1,9 @@
 package com.codecool.progresstracker.model;
 
 public enum UserType {
-    PROJECT_OWNER("Project owner"),
-    ADMIN("Admin"),
-    SUPER_USER("Super user");
+    PROJECT_OWNER("owner"),
+    ADMIN("admin"),
+    SUPER_USER("SuperUser");
 
     private final String fancyUserType;
 
