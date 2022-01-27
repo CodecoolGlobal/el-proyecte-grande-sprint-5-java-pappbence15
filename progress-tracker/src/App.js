@@ -11,8 +11,7 @@ import ProjectList from "./components/ProjectList";
 import ProjectAdminView from "./components/ProjectAdminView";
 import Settings from "./Settings";
 import {Container} from "@mui/material";
-import {Login, Logout} from "@mui/icons-material";
-import LoginPage from "./components/layout/Login.js"
+import AppBar from "./components/layout/AppBar";
 
 function App() {
     const [component, setComponent] = useState('All')
@@ -39,7 +38,8 @@ function App() {
   return (
         <div className={backgroundColor} id='main-div'>
             <div className="App">
-                <Header name={"Name of the Brand"} changeComponent={changeComponent}/>
+                <AppBar/>
+                {/*<Header name={"Name of the Brand"} changeComponent={changeComponent}/>*/}
                 <Footer owner={"©Hello World KFT"} creators={["Sjpeti97", "pappbence15"]} links={["https://github.com/Sjpeti97", "https://github.com/pappbence15"]}/>
 
             </div>
