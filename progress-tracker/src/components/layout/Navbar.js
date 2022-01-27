@@ -5,6 +5,7 @@ function Navbar(props){
     const latest = 'Latest';
     const all = 'All';
     const settings = 'Settings'
+    const logout = 'Logout'
 
     return(
         <div className='navbar-container'>
@@ -19,6 +20,9 @@ function Navbar(props){
             </div>
             <div className='navbar-link-container'>
                 <NavbarLink name={settings} changeComponent={props.change}/>
+            </div>
+            <div className='navbar-link-container'>
+                <NavbarLink name={logout} changeComponent={props.change}/>
             </div>
         </div>
     )
