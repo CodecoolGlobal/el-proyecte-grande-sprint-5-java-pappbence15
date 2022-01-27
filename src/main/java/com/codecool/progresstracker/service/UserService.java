@@ -5,8 +5,8 @@ import com.codecool.progresstracker.model.User;
 import com.codecool.progresstracker.model.UserSettings;
 
 import com.codecool.progresstracker.repository.UserRepository;
-import org.h2.jdbc.JdbcConnection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,9 +16,11 @@ import java.util.UUID;
 public class UserService {
     private User loggedInUser;
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
         loggedInUser = null;
         this.userRepository = userRepository;
     }
@@ -33,6 +35,7 @@ public class UserService {
 
 
     public void createNewUser(User newUser){
+        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         userRepository.saveAndFlush(newUser);
     }
 
@@ -64,5 +67,9 @@ public class UserService {
 
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public User getUserByUserName(String userName) {
+        return userRepository.getUserByUserName(userName);
     }
 }
