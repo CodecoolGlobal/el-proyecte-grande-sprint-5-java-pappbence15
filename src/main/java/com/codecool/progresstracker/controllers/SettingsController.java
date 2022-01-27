@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Objects;
 
 @Controller
+@CrossOrigin("http://localhost:3000")
 public class SettingsController {
 
     private final UserService userService;

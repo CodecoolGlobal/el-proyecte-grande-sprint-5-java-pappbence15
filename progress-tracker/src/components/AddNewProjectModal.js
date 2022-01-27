@@ -14,13 +14,11 @@ const style = {
     transform: 'translate(-50%, -50%)',
     //width: 400,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    borderRadius: '10px'
 };
-const addStyle = {
-    backgroundColor: "#61dafb"
-}
+
 
 export default function AddNewProjectModal() {
     const [open, setOpen] = useState(false);
@@ -52,11 +50,10 @@ export default function AddNewProjectModal() {
 
             <Card elevation={0}
                   sx={{minWidth: 275}}
-                  style={{backgroundColor: "#5F636770"}}
                   onClick={handleOpen}
             >
                 <CardContent>
-                    <Fab style={addStyle} aria-label={"add"} variant={"extended"}>
+                    <Fab aria-label={"add"} variant={"extended"}>
                         Add new Project
                         <AddIcon sx={{ mr: 1 }}/>
                     </Fab>

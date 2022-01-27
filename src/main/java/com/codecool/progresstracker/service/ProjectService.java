@@ -64,7 +64,7 @@ public class ProjectService {
     }
 
     public void saveProject(Project project) {
-        projectRepository.save(project);
+        projectRepository.saveAndFlush(project);
     }
 
     public Project getProjectById(UUID id) {
@@ -73,7 +73,7 @@ public class ProjectService {
 
     public void addUserStoryToProject(UUID projectId, UserStory userStory) {
         Project project = getProjectById(projectId);
-        project.getUserStories().add(userStory);
-        projectRepository.save(project);
+        project.addStory(userStory);
+        projectRepository.saveAndFlush(project);
     }
 }

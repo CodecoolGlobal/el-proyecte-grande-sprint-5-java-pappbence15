@@ -1,48 +1,92 @@
-import './style/App.css';
-import './style/Navbar.css';
-import './style/Header.css'
-import './style/Footer.css'
-import './style/Settings.css';
-import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
-import './style/DarkMode.css'
 import {useEffect, useState} from "react";
 import ProjectList from "./components/ProjectList";
 import ProjectAdminView from "./components/ProjectAdminView";
 import Settings from "./Settings";
-import {Container} from "@mui/material";
+import {Container, createTheme, CssBaseline, ThemeProvider} from "@mui/material";
+import AppBar from "./components/layout/AppBar";
+import './style/Header.css';
 
 function App() {
     const [component, setComponent] = useState('All')
     const [projectId, setProjectId] = useState('')
     const [darkMode, setDarkMode] = useState(true);
+    const [userType, setUserType] = useState('');
     const setTheme = (mode) => setDarkMode(mode);
     const changeComponent = (newComponent) => setComponent(newComponent)
     const changeProjectId = (newId) => setProjectId(newId)
-    let backgroundColor;
 
+    let theme;
+
+    const darkTheme = createTheme({
+        palette: {
+            type: 'dark',
+            primary: {
+                main: '#1976d2',
+            },
+            secondary: {
+                main: '#ffd600',
+            },
+            info: {
+                main: '#2196f3',
+            },
+            background: {
+                default: '#070825',
+                paper: 'rgba(26,35,126,0.90)',
+            },
+            text: {
+                primary: '#ffffff',
+                hint: '#bbdefb',
+                secondary: '#bbdefb',
+            },
+            warning: {
+                main: '#7c4dff',
+            },
+        },
+    });
+
+    const lightTheme = createTheme({
+        palette: {
+            type: 'light',
+            primary: {
+                main: '#5c6bc0',
+            },
+            secondary: {
+                main: '#ff4081',
+            },
+            background: {
+                paper: '#e8eaf6',
+            },
+        },
+    })
+
+
+
+    useEffect(() => getThemeSetting(setDarkMode, setUserType), [])
     if(darkMode){
-        backgroundColor = "dark-mode-background";
+        theme = darkTheme
     }else{
-        backgroundColor = 'light-mode-background';
+        theme = lightTheme
+
     }
 
-    useEffect(() => getThemeSetting(setDarkMode), [])
-
   return (
-        <div className={backgroundColor} id='main-div'>
+      <ThemeProvider theme={theme}>
+          <CssBaseline/>
+        <div id='main-div'>
             <div className="App">
-                <Header name={"Name of the Brand"} changeComponent={changeComponent}/>
-                <Footer owner={"©Hello World KFT"} creators={["csillalukacs", "Sjpeti97", "pappbence15", "TheBackendGuy"]} links={['https://github.com/csillalukacs', "https://github.com/Sjpeti97", "https://github.com/pappbence15", "https://github.com/JustBenS1"]}/>
+                <AppBar changeComponent={changeComponent} setTheme={setTheme} currentTheme={darkMode}/>
+                {/*<Footer owner={"©Hello World KFT"} creators={["Sjpeti97", "pappbence15"]} links={["https://github.com/Sjpeti97", "https://github.com/pappbence15"]}/>*/}
+
             </div>
-            <Container maxWidth="sm">
-                {renderDynamicComponent(component, changeComponent, projectId, changeProjectId, setTheme, darkMode)}
+            <Container maxWidth="lg">
+                {renderDynamicComponent(component, changeComponent, projectId, changeProjectId, setTheme, darkMode, userType)}
             </Container>
         </div>
+      </ThemeProvider>
   );
 }
 
-function renderDynamicComponent(component, changeComponent, projectId, changeProject, setTheme, darkMode){
+function renderDynamicComponent(component, changeComponent, projectId, changeProject, setTheme, darkMode, userType){
     switch (component){
         case 'All':
             if (projectId) {
@@ -50,8 +94,7 @@ function renderDynamicComponent(component, changeComponent, projectId, changePro
                                           detailedView={true}
                 />)
             } else {
-                return (<ProjectList userType={"admin"}
-                                     changeComponent={changeComponent}
+                return (<ProjectList changeComponent={changeComponent}
                                      changeProject={changeProject}
                                      projectId={projectId}
                 />)
@@ -62,24 +105,33 @@ function renderDynamicComponent(component, changeComponent, projectId, changePro
                                           detailedView={false}
                 />)
             } else {
-                return (<ProjectList userType={"admin"}
-                                     changeComponent={changeComponent}
+                return (<ProjectList changeComponent={changeComponent}
                                      changeProject={changeProject}
                                      projectId={projectId}
                 />)
             }
         case 'Projects':
-            return (<ProjectList userType={"admin"}
-                                 changeComponent={changeComponent}
+            return (<ProjectList changeComponent={changeComponent}
                                  changeProject={changeProject}
                                  projectId={projectId}
             />)
         case 'Settings':
             return <Settings setTheme={setTheme} darkMode={darkMode}/>
+
+        case 'Logout':
+            return (
+                <div>
+                    <h1>Are you sure?</h1>
+                    <a href={"http://localhost:8080/logout"}>Yes, log me out </a>
+                    <br/>
+                    <a href={"/"}>No, stay here </a>
+                </div>
+            )
     }
 }
 
-function getThemeSetting(setTheme){
+
+function getThemeSetting(setTheme, setUserType){
     fetch("/settings/darkMode")
         .then(res => res.json())
         .then(result => {
@@ -87,5 +139,6 @@ function getThemeSetting(setTheme){
             setTheme(result)
         })
 }
+
 
 export default App;

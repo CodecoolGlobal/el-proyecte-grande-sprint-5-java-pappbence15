@@ -2,8 +2,8 @@ import {useEffect, useState} from "react";
 import ProjectLink from "./ProjectLink";
 import {Card, CardContent, Fab, Paper} from "@mui/material";
 import Grid from "@mui/material/Grid";
-import AddIcon from '@mui/icons-material/Add';
 import AddNewProjectModal from "./AddNewProjectModal";
+import DescriptionAlert from "./layout/LogInAlert";
 
 export default function ProjectList(props){
     const [error, setError] = useState(null);
@@ -11,17 +11,7 @@ export default function ProjectList(props){
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        let url = ''
-        switch(String(props.userType)){
-            case "admin":
-                url = "/admin/projects";
-                break;
-            case "owner":
-                url = "/owner/projects";
-                break;
-            default:
-                console.log(props.userType)
-        }
+        let url = '/projects'
         fetch(url)
             .then(res => res.json())
             .then(
@@ -37,7 +27,11 @@ export default function ProjectList(props){
     }, [])
 
     if (error) {
-        return <div>Error: {error.message}</div>;
+        return (
+            <div>
+                <DescriptionAlert/>
+            </div>
+        );
     } else if (!isLoaded) {
         return <div>Loading...</div>;
     } else {

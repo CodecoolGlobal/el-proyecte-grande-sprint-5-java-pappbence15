@@ -2,6 +2,7 @@ package com.codecool.progresstracker.repository;
 
 import com.codecool.progresstracker.model.UserStory;
 import com.codecool.progresstracker.model.goal.Goal;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -10,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.UUID;
 
-public interface UserStoryRepository extends CrudRepository<UserStory, UUID> {
+public interface UserStoryRepository extends JpaRepository<UserStory, UUID> {
 
     @Modifying
     @Query("update UserStory us " +
