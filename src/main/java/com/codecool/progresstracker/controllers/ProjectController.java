@@ -11,14 +11,19 @@ import com.codecool.progresstracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-@Controller
+@RestController
+@CrossOrigin("http://localhost:3000")
 public class ProjectController {
     private final UserService userService;
     private final ProjectService projectService;
@@ -29,30 +34,43 @@ public class ProjectController {
         this.projectService = projectService;
     }
 
+//    @GetMapping("/current-user")
+//    private ResponseEntity<?> getCurrentUser(){
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        User user = userService.getUserByUserName(authentication.getName());
+//        UserType userType = user.getUserType();
+//        return new ResponseEntity<>(userType, HttpStatus.OK);
+//    }
+
     @ResponseBody
-    @GetMapping("/admin/projects")
+    @GetMapping("/projects")
     public ResponseEntity<?> adminProjectsView() throws ParseException {
-        User user = userService.getLoggedInUser();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.getUserByUserName(authentication.getName());
         UserType userType = user.getUserType();
 
         if(userType.equals(UserType.ADMIN)){
             return new ResponseEntity<>(projectService.getProjectsByAdmin(user), HttpStatus.OK);
-        }else {
-            return new ResponseEntity<>("Unauthorized: you are not logged in as an admin", HttpStatus.UNAUTHORIZED);
+        }else if(userType.equals(UserType.PROJECT_OWNER)){
+            List<Project> projects = projectService.getProjectsByOwner(user);
+            return new ResponseEntity<>(projects, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
         }
     }
 
-    @ResponseBody
-    @GetMapping("/owner/projects")
-    public ResponseEntity<?> ownerProjectsView(){
-        User user = userService.getLoggedInUser();
-        UserType userType = user.getUserType();
-        if(userType.equals(UserType.PROJECT_OWNER)){
-            List<Project> projects = projectService.getProjectsByOwner(user);
-            return new ResponseEntity<>(projects, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>("Unauthorized: you are not logged in as a project owner", HttpStatus.UNAUTHORIZED);        }
-    }
+//    @ResponseBody
+//    @GetMapping("/owner/projects")
+//    public ResponseEntity<?> ownerProjectsView(){
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        User user = userService.getUserByUserName(authentication.getName());
+//        UserType userType = user.getUserType();
+//        if(userType.equals(UserType.PROJECT_OWNER)){
+//            List<Project> projects = projectService.getProjectsByOwner(user);
+//            return new ResponseEntity<>(projects, HttpStatus.OK);
+//        }else{
+//            return new ResponseEntity<>("Unauthorized: you are not logged in as a project owner", HttpStatus.UNAUTHORIZED);        }
+//    }
 
     @ResponseBody
     @PostMapping("/project/add")
