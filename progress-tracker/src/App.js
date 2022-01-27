@@ -11,47 +11,46 @@ import ProjectList from "./components/ProjectList";
 import ProjectAdminView from "./components/ProjectAdminView";
 import Settings from "./Settings";
 import {Container} from "@mui/material";
-import {Login} from "@mui/icons-material";
+import {Login, Logout} from "@mui/icons-material";
 import LoginPage from "./components/layout/Login.js"
 
 function App() {
     const [component, setComponent] = useState('All')
     const [projectId, setProjectId] = useState('')
     const [darkMode, setDarkMode] = useState(true);
-    const [token, setToken] = useState();
+    const [userType, setUserType] = useState('');
     const setTheme = (mode) => setDarkMode(mode);
     const changeComponent = (newComponent) => setComponent(newComponent)
     const changeProjectId = (newId) => setProjectId(newId)
+
+
     let backgroundColor;
 
-    if(!token){
-        return <LoginPage setToken={setToken}/>
-    }
 
-    /*useEffect(() => getThemeSetting(setDarkMode), [])
+
+    useEffect(() => getThemeSetting(setDarkMode, setUserType), [])
     if(darkMode){
         backgroundColor = "dark-mode-background";
     }else{
         backgroundColor = 'light-mode-background';
-    }*/
 
-
+    }
 
   return (
         <div className={backgroundColor} id='main-div'>
             <div className="App">
                 <Header name={"Name of the Brand"} changeComponent={changeComponent}/>
                 <Footer owner={"©Hello World KFT"} creators={["Sjpeti97", "pappbence15"]} links={["https://github.com/Sjpeti97", "https://github.com/pappbence15"]}/>
-                <a href="/logout">Logout</a>
+
             </div>
             <Container maxWidth="sm">
-                {renderDynamicComponent(component, changeComponent, projectId, changeProjectId, setTheme, darkMode)}
+                {renderDynamicComponent(component, changeComponent, projectId, changeProjectId, setTheme, darkMode, userType)}
             </Container>
         </div>
   );
 }
 
-function renderDynamicComponent(component, changeComponent, projectId, changeProject, setTheme, darkMode){
+function renderDynamicComponent(component, changeComponent, projectId, changeProject, setTheme, darkMode, userType){
     switch (component){
         case 'All':
             if (projectId) {
@@ -59,8 +58,7 @@ function renderDynamicComponent(component, changeComponent, projectId, changePro
                                           detailedView={true}
                 />)
             } else {
-                return (<ProjectList userType={"admin"}
-                                     changeComponent={changeComponent}
+                return (<ProjectList changeComponent={changeComponent}
                                      changeProject={changeProject}
                                      projectId={projectId}
                 />)
@@ -71,24 +69,33 @@ function renderDynamicComponent(component, changeComponent, projectId, changePro
                                           detailedView={false}
                 />)
             } else {
-                return (<ProjectList userType={"admin"}
-                                     changeComponent={changeComponent}
+                return (<ProjectList changeComponent={changeComponent}
                                      changeProject={changeProject}
                                      projectId={projectId}
                 />)
             }
         case 'Projects':
-            return (<ProjectList userType={"admin"}
-                                 changeComponent={changeComponent}
+            return (<ProjectList changeComponent={changeComponent}
                                  changeProject={changeProject}
                                  projectId={projectId}
             />)
         case 'Settings':
             return <Settings setTheme={setTheme} darkMode={darkMode}/>
+
+        case 'Logout':
+            return (
+                <div>
+                    <h1>Are you sure?</h1>
+                    <a href={"http://localhost:8080/logout"}>Yes, log me out </a>
+                    <br/>
+                    <a href={"/"}>No, stay here </a>
+                </div>
+            )
     }
 }
 
-function getThemeSetting(setTheme){
+
+function getThemeSetting(setTheme, setUserType){
     fetch("/settings/darkMode")
         .then(res => res.json())
         .then(result => {
@@ -96,5 +103,6 @@ function getThemeSetting(setTheme){
             setTheme(result)
         })
 }
+
 
 export default App;
