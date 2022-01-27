@@ -4,9 +4,6 @@ import {useState} from "react";
 export default function ProgressBar(props) {
     const [percent, setPercent] = useState(props.percentage)
 
-    const hue = (128 + (percent / 100) * 128).toString(10);
-    const color = ["hsl(", hue, ",100%,60%)"].join("");
-
     function inputHandler(e){
         setPercent(e.target.value)
     }
@@ -18,7 +15,7 @@ export default function ProgressBar(props) {
             <div className={`progress-bar ${props.size}`}>
                 <div
                     className={"progress"}
-                    style={{width: `${percent}%`, backgroundColor: `${color}`}}
+                    style={{width: `${percent}%`, backgroundColor: '#51c25a'}}
                 >
                     <span className={"percentage"}>{text}</span>
                 </div>
