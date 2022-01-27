@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 public class UserStoryController {
 
     private final UserStoryService userStoryService;

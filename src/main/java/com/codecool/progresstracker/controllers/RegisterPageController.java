@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/register")
+@CrossOrigin("http://localhost:3000")
 public class RegisterPageController {
 
     private final ProjectService projectService;
@@ -44,7 +45,7 @@ public class RegisterPageController {
 
     @PostMapping
     public String registerNewUser(@RequestBody User user) {
-        userService.saveNewUser(user);
+        userService.createNewUser(user);
         userService.setLoggedInUser(user);
 
         return "registered user";
