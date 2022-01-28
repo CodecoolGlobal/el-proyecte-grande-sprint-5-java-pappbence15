@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import static com.codecool.progresstracker.model.UserType.*;
+
 @Configuration
 @EnableWebSecurity
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -31,17 +33,18 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/login", "/register", "/settings/**", "/css/**", "/js/**", "logo.svg", "logo-for-progress-tracker.png", "/static/**").permitAll()
-//                .antMatchers("/admin/**", "/owner/**", "/init").hasRole(ADMIN.name())
+                .antMatchers("/project/add", "/project/add/admin", "/userstory/add/*", "/*/favorite/*").hasRole(ADMIN.name())
 //                .antMatchers("/owner/**").hasRole(OWNER.name())
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin()
+                .loginPage("/greeting").permitAll()
+                .loginProcessingUrl("/login")
                 .defaultSuccessUrl("http://localhost:3000/", true)
                 .and()
                 .logout()
-//                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login");
+                .logoutSuccessUrl("/greeting");
 
     }
 
@@ -57,23 +60,5 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         provider.setUserDetailsService(applicationUserService);
         return provider;
     }
-
-//    @Override
-//    @Bean
-//    protected UserDetailsService userDetailsService() {
-//        UserDetails adminUser =  User.builder()
-//                .username("admin")
-//                .password(passwordEncoder.encode("Adminpassword"))
-//                .roles(passwordEncoder.encode(ADMIN.name()))
-//                .build();
-//
-//        UserDetails ownerUser =  User.builder()
-//                .username("owner")
-//                .password(passwordEncoder.encode("Ownerpassword"))
-//                .roles(OWNER.name())
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(adminUser, ownerUser);
-//    }
 
 }

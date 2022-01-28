@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Greeting</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet"  />
+    <script th:src="@{/js/greeting.js}" defer></script>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://i.imgur.com/iOJs98j.png" alt="app logo">
+            </div>
+            <div class="brand">
+                <h1>Get It Done </h1>
+            </div>
+        </div>
+
+        <div class="box odd">
+            <div class="button">
+                <h2>Ready to start a project?</h2>
+                <a href="/login" class="login">Login</a>
+                <h2>and see what's going on at any time</h2>
+                <p>You don't have an account?</p>
+                <a href="/register" class="register">Register</a>
+            </div>
+        </div>
+
+        <div class="box even">
+            <div class="picture picture-transition">
+                <img src="https://i.imgur.com/cIUD4Dv.png" alt="kep">
+            </div>
+            <div class="description">
+                <h2>
+                    See all your projects at one place.
+                </h2>
+                <p>
+                    Get It Done makes it easy to see through the chaos. You are always just one click away from knowing the most important aspects of your project.
+                </p>
+            </div>
+        </div>
+
+        <div class="box odd">
+            <div class="description">
+                <h2>
+                    Check out how your project is going.
+                </h2>
+                <p>
+                    Your projects are in good hands... in your hands. Keep track of how each of your projects is going with just one blick of the progressbar.
+                </p>
+            </div>
+            <div class="picture picture-transition">
+                <img src="https://i.imgur.com/cIUD4Dv.png" alt="kep">
+            </div>
+        </div>
+
+        <div class="box even">
+            <div class="picture picture-transition">
+                <img src="https://i.imgur.com/cIUD4Dv.png" alt="kep">
+            </div>
+            <div class="description">
+                <h2>
+                    Dive into the details.
+                </h2>
+                <p>
+                    If you are a fan of the nitty gritty stuff then, you can dive deep into the details and get reports on every task in the project.
+                </p>
+            </div>
+        </div>
+
+        <div class="box odd">
+            <div class="button">
+                <h2>Sooo do you like what You see?</h2>
+                <a href="/login" class="login">Login</a>
+                <h2>Or if you are new here </h2>
+                <a href="/register" class="register">Register</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
