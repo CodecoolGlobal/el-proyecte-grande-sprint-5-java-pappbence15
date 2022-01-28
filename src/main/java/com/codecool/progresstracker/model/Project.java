@@ -39,6 +39,13 @@ public class Project {
         this.userStories = new ArrayList<>();
     }
 
+    public Project(String name, List<UserStory> userStories, User owner, List<User> admins) {
+        this.name = name;
+        this.userStories = userStories;
+        this.owner = owner;
+        this.admins = admins;
+    }
+
     public UserStory findStory(UUID storyId) throws NullPointerException{
         for (UserStory userStory: userStories) {
             if (userStory.getId().equals(storyId)){

@@ -50,16 +50,23 @@ public class CreateMockData {
 
         List<User> userList = userService.getAll();
         List<User> adminList = new ArrayList<>();
+        List<UserStory> userStories = new ArrayList<>();
         adminList.add(userList.get(5));
         adminList.add(userList.get(6));
 
         userService.setLoggedInUser(userList.get(5));//set logged in user
 
+        userStories.add(new UserStory("House base", 0.65, true));
+        userStories.add(new UserStory("Teeeest", 0.35, false));
+        userStories.add(new UserStory("Test", 0.45, true));
+        userStories.add(new UserStory("TestTest", 0.55, false));
+
         projectService.createNewProject(new Project("Build My House", userList.get(0), adminList));
         projectService.createNewProject(new Project("Garden renovation", userList.get(0), adminList));
+        projectService.createNewProject(new Project("Test", userStories, userList.get(0), adminList));
         List<Project> projects = projectService.getAll();
 
-//        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("House base", 0.65, true));
+
 //        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("Painting", 0.7, false));
 //        projectService.addUserStoryToProject(projects.get(0).getId(), new UserStory("Furnishing", 0.3, false));
 //
