@@ -48,7 +48,7 @@ export default function AddNewProjectModal() {
     return (
         <div>
 
-            <Card elevation={0}
+            <Card elevation={3}
                   sx={{minWidth: 275}}
                   onClick={handleOpen}
             >

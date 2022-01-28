@@ -81,7 +81,7 @@ body {
 }
 
 .button > .login {
-    background-color: #61dafb;
+    background-color: #ffd600;
     color: #282c34;
     border-radius: 40px;
     padding: 7px 16px;
@@ -91,7 +91,7 @@ body {
 }
 
 .button > .register {
-    background-color: #61dafb;
+    background-color: #ff4081;
     color: #282c34;
     border-radius: 40px;
     padding: 7px 16px;
