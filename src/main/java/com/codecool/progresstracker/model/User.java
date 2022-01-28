@@ -34,6 +34,15 @@ public class User {
         this.userSettings = userSettings;
     }
 
+    public User(UserType userType, String name, String userName, String email, String password) {
+        this.userType = userType;
+        this.name = name;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.userSettings = new UserSettings();
+    }
+
     public boolean doesPasswordMatch(String password){
         return Objects.equals(this.password, password);
     }

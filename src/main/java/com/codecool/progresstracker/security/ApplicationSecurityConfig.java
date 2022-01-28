@@ -39,11 +39,12 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .formLogin()
+                .loginPage("/greeting").permitAll()
+                .loginProcessingUrl("/login")
                 .defaultSuccessUrl("http://localhost:3000/", true)
                 .and()
                 .logout()
-//                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login");
+                .logoutSuccessUrl("/greeting");
 
     }
 

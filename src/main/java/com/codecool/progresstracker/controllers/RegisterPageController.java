@@ -7,13 +7,14 @@ import com.codecool.progresstracker.service.ProjectService;
 
 import com.codecool.progresstracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/register")
 @CrossOrigin("http://localhost:3000")
 public class RegisterPageController {
@@ -31,8 +32,7 @@ public class RegisterPageController {
     @GetMapping
     public String registerPage(Model model){
         model.addAttribute("fancyUserTypes", getFancyUserTypes());
-
-        return "register get";
+        return "register";
     }
 
     public List<String> getFancyUserTypes(){
@@ -44,10 +44,8 @@ public class RegisterPageController {
     }
 
     @PostMapping
-    public String registerNewUser(@RequestBody User user) {
+    public void registerNewUser(@RequestBody User user) {
         userService.createNewUser(user);
-        userService.setLoggedInUser(user);
-
-        return "registered user";
+//        userService.setLoggedInUser(user);
     }
 }

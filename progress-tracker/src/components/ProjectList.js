@@ -41,7 +41,7 @@ export default function ProjectList(props){
             <div>
                 <div>Error: {error.message}</div>
                 <h1>
-                    <a href={"http://localhost:8080/login"}>Log in to continue</a>
+                    <a href={"http://localhost:8080/greeting"}>Log in to continue</a>
                 </h1>
             </div>
         );
