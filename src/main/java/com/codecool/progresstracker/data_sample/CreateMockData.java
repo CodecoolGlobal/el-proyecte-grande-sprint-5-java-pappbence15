@@ -56,14 +56,14 @@ public class CreateMockData {
 
         userService.setLoggedInUser(userList.get(5));//set logged in user
 
-        userStories.add(new UserStory("House base", 0.65, true));
-        userStories.add(new UserStory("Teeeest", 0.35, false));
-        userStories.add(new UserStory("Test", 0.45, true));
-        userStories.add(new UserStory("TestTest", 0.55, false));
+        userStories.add(new UserStory("Security", 0.65, false));
+        userStories.add(new UserStory("Front end update", 0.35, true));
+        userStories.add(new UserStory("Greeting page", 0.45, true));
+        userStories.add(new UserStory("More security", 0.55, false));
 
-        projectService.createNewProject(new Project("Build My House", userList.get(0), adminList));
+        projectService.createNewProject(new Project("Get rid of old plants", userList.get(0), adminList));
         projectService.createNewProject(new Project("Garden renovation", userList.get(0), adminList));
-        projectService.createNewProject(new Project("Test", userStories, userList.get(0), adminList));
+        projectService.createNewProject(new Project("Week-4", userStories, userList.get(0), adminList));
         List<Project> projects = projectService.getAll();
 
 
