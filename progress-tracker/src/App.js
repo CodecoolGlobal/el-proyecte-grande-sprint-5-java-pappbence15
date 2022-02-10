@@ -9,7 +9,7 @@ import './style/Header.css';
 function App() {
     const [component, setComponent] = useState('All')
     const [projectId, setProjectId] = useState('')
-    const [darkMode, setDarkMode] = useState(true);
+    const [darkMode, setDarkMode] = useState(false);
     const [userType, setUserType] = useState('');
     const setTheme = (mode) => setDarkMode(mode);
     const changeComponent = (newComponent) => setComponent(newComponent)
