@@ -8,7 +8,7 @@ export default function DescriptionAlert() {
         <Alert severity="error">
             <AlertTitle>Error</AlertTitle>
             You are not logged in.<strong> Log in or register!  </strong>
-            <Link href={"http://localhost:8080/login"} underline={'hover'} color={'error'}>{"Here"}</Link>
+            <Link href={"http://localhost:8080/greeting"} underline={'hover'} color={'error'}>{"Here"}</Link>
         </Alert>
         </Stack>
     );
