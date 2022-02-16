@@ -16,6 +16,8 @@ COPY ./src /app
 EXPOSE 3000
 
 CMD ["npm", "start"]
+#docker build -t planner:latest .
+#docker run -p 3000:3000 planner:latest
 #npm run-script build
 #cd build/
 #python3 -m http.server
