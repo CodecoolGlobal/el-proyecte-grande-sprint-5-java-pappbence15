@@ -26,7 +26,7 @@ RUN rm -rf ./*
 COPY --from=builder /app/build .
 # Containers run nginx with global directives and daemon off
 EXPOSE 8080
-CMD [ "sudo nginx -g 'daemon off;'" ]
+CMD ["bash", "run-app.sh"]
 
 #docker build -t planner:latest .
 #docker run -p 3000:3000 planner:latest
