@@ -72,3 +72,18 @@ jobs:
             echo "runing the docker image"
             echo "Testing the nodejs  app endpoints"
             echo ${{ steps.docker_build.outputs.digest }}
+
+  deploy_to_Heroku:
+    name: Deploy to Heroku
+    runs-on: ubuntu-latest
+    needs: [ push_to_DockerHub ]
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+      - name: deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          usedocker: true
