@@ -25,7 +25,7 @@ RUN rm -rf ./*
 #COPY ./default.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/build .
 # Containers run nginx with global directives and daemon off
-ENTRYPOINT ["nginx", "-g", "daemon", "off;"]
+ENTRYPOINT ["nginx", "-g", "daemon", "off"]
 
 #docker build -t planner:latest .
 #docker run -p 3000:3000 planner:latest
