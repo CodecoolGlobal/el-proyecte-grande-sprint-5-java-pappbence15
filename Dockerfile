@@ -10,22 +10,19 @@ RUN npm install
 COPY . ./
 RUN npm run build
 
-#RUN npm ci --only=production
-
-#Stage 2
-
 FROM nginx:1.19.0
 
 WORKDIR /usr/share/nginx/html
 
 RUN rm -rf ./*
 
-#COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+RUN rm -rf /etc/nginx/sites-enabled/default
+
+COPY ./cutom_server.conf /etc/nginx/sites-available/
+
 COPY --from=builder /app/build .
 
-EXPOSE 8080
-
-ENTRYPOINT ["bash", "run-app.sh"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
 #docker build -t planner:latest .
 #docker run -p 3000:3000 planner:latest

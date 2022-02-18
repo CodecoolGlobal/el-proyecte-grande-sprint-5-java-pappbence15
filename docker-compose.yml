@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+
+  server:
+    build: ../../week4/el-proyecte-grande-sprint-4-java-pappbence15
+    ports:
+      - "8080:8080"
+    container_name: "server"
+
+  app:
+    build: .
+    ports:
+      - "3000:80"
+    container_name: "frontend"
+    links:
+      - server
